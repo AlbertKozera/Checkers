@@ -16,5 +16,20 @@ namespace Warcaby
         {
             InitializeComponent();
         }
+
+        private void exitButton(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void newGameButton(object sender, EventArgs e)
+        {
+
+        }
+
+        private void optionsButton(object sender, EventArgs e)
+        {
+
+        }
     }
 }
