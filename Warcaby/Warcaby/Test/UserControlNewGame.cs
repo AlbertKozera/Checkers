@@ -16,7 +16,6 @@ namespace Warcaby
         {
             InitializeComponent();
         }
-        
 
         private void backToMenu(object sender, EventArgs e)
         {
