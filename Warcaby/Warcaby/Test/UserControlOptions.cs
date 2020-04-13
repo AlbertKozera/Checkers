@@ -10,15 +10,14 @@ using System.Windows.Forms;
 
 namespace Warcaby
 {
-    public partial class UserControlNewGame : UserControl
+    public partial class UserControlOptions : UserControl
     {
-        public UserControlNewGame()
+        public UserControlOptions()
         {
             InitializeComponent();
         }
-        
 
-        private void backToMenu(object sender, EventArgs e)
+        private void backToManu(object sender, EventArgs e)
         {
             this.Hide();
         }
