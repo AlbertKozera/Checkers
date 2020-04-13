@@ -32,6 +32,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.userControlNewGame1 = new Warcaby.UserControlNewGame();
+            this.userControlOptions1 = new Warcaby.UserControlOptions();
             this.SuspendLayout();
             // 
             // button1
@@ -82,12 +84,29 @@
             this.label1.Text = "Warcaby";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
+            // userControlNewGame1
+            // 
+            this.userControlNewGame1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlNewGame1.Location = new System.Drawing.Point(0, 0);
+            this.userControlNewGame1.Name = "userControlNewGame1";
+            this.userControlNewGame1.Size = new System.Drawing.Size(984, 661);
+            this.userControlNewGame1.TabIndex = 5;
+            // 
+            // userControlOptions1
+            // 
+            this.userControlOptions1.Location = new System.Drawing.Point(0, 0);
+            this.userControlOptions1.Name = "userControlOptions1";
+            this.userControlOptions1.Size = new System.Drawing.Size(984, 661);
+            this.userControlOptions1.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Warcaby.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(984, 661);
+            this.Controls.Add(this.userControlOptions1);
+            this.Controls.Add(this.userControlNewGame1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -96,6 +115,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Warcaby";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,6 +126,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
+        private UserControlNewGame userControlNewGame1;
+        private UserControlOptions userControlOptions1;
     }
 }
 

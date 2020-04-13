@@ -24,12 +24,20 @@ namespace Warcaby
 
         private void newGameButton(object sender, EventArgs e)
         {
-
+            userControlNewGame1.Visible = true;
+            userControlOptions1.Visible = false;
         }
 
         private void optionsButton(object sender, EventArgs e)
         {
+            userControlNewGame1.Visible = false;
+            userControlOptions1.Visible = true;
+        }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            userControlNewGame1.Visible = false;
+            userControlOptions1.Visible = false;
         }
     }
 }
