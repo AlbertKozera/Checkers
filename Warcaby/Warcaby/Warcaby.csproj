@@ -54,6 +54,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControlNewGame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlNewGame.Designer.cs">
+      <DependentUpon>UserControlNewGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlOptions.Designer.cs">
+      <DependentUpon>UserControlOptions.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -67,6 +79,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControlNewGame.resx">
+      <DependentUpon>UserControlNewGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlOptions.resx">
+      <DependentUpon>UserControlOptions.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
