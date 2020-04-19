@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Warcaby
 {
-    static class Program
+    static class EntryPoint
     {
         /// <summary>
         /// The main entry point for the application.
@@ -16,7 +16,7 @@ namespace Warcaby
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1()); //ghghghgh
+            Application.Run(new Form1());
         }
     }
 }
