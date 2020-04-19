@@ -1,6 +1,6 @@
 ﻿namespace Warcaby
 {
-    partial class UserControlOptions
+    partial class Options
     {
         /// <summary> 
         /// Required designer variable.

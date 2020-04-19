@@ -1,6 +1,6 @@
 ﻿namespace Warcaby
 {
-    partial class UserControlNewGame
+    partial class NewGame
     {
         /// <summary> 
         /// Required designer variable.
