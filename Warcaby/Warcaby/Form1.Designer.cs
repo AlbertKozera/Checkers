@@ -32,8 +32,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.userControlNewGame1 = new Warcaby.UserControlNewGame();
-            this.userControlOptions1 = new Warcaby.UserControlOptions();
+            this.userControlNewGame1 = new Warcaby.NewGame();
+            this.userControlOptions1 = new Warcaby.Options();
             this.SuspendLayout();
             // 
             // button1
@@ -126,8 +126,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
-        private UserControlNewGame userControlNewGame1;
-        private UserControlOptions userControlOptions1;
+        private NewGame userControlNewGame1;
+        private Options userControlOptions1;
     }
 }
 

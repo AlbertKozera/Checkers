@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Warcaby
 {
-    public partial class UserControlNewGame : UserControl
+    public partial class NewGame : UserControl
     {
-        public UserControlNewGame()
+        public NewGame()
         {
             InitializeComponent();
         }

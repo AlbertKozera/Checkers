@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Warcaby
 {
-    public partial class UserControlOptions : UserControl
+    public partial class Options : UserControl
     {
-        public UserControlOptions()
+        public Options()
         {
             InitializeComponent();
         }
