@@ -8,19 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Warcaby
+namespace Warcaby.Forms
 {
-    public partial class NewGame : UserControl
+    public partial class UCNewGame : UserControl
     {
-        public NewGame()
+        public UCNewGame()
         {
             InitializeComponent();
         }
-        
 
         private void backToMenu(object sender, EventArgs e)
         {
-            this.Hide();
+            Controls.Clear();
+            UCMainMenu ucMainMenu = new UCMainMenu();
+            Controls.Add(ucMainMenu);
+            ucMainMenu.Show();
         }
     }
 }

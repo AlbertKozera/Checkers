@@ -1,6 +1,6 @@
 ﻿namespace Warcaby
 {
-    partial class NewGame
+    partial class NewGameControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -51,13 +51,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Nowa gra";
             // 
-            // UserControlNewGame
+            // NewGameControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.backButton);
-            this.Name = "UserControlNewGame";
+            this.Name = "NewGameControl";
             this.Size = new System.Drawing.Size(984, 661);
             this.ResumeLayout(false);
             this.PerformLayout();
