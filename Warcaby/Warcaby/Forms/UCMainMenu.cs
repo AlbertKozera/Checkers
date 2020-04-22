@@ -35,6 +35,7 @@ namespace Warcaby.Forms
 
         private void exitEvent(object sender, EventArgs e)
         {
+
             ((Form1)this.TopLevelControl).Close();
         }
     }
