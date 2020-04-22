@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,18 +10,17 @@ using System.Windows.Forms;
 
 namespace Warcaby
 {
-    public partial class Form1 : Form
+    public partial class OptionsControl : UserControl
     {
-        public Form1()
+        public OptionsControl()
         {
             InitializeComponent();
         }
 
-        private void OnLoad(object sender, EventArgs e)
+        private void backToManu(object sender, EventArgs e)
         {
-            ucMainMenu.Visible = true;
-            ucNewGame.Visible = false;
-            ucOptions.Visible = false;
+            
+            Hide();
         }
     }
 }

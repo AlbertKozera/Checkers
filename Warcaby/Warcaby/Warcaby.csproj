@@ -53,21 +53,36 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="EntryPoint.cs" />
+    <Compile Include="Forms\UCMainMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UCMainMenu.Designer.cs">
+      <DependentUpon>UCMainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UCNewGame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UCNewGame.Designer.cs">
+      <DependentUpon>UCNewGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UCOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UCOptions.Designer.cs">
+      <DependentUpon>UCOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Forms\NewGame.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\NewGame.Designer.cs">
-      <DependentUpon>NewGame.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Options.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\Options.Designer.cs">
-      <DependentUpon>Options.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UCMainMenu.resx">
+      <DependentUpon>UCMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UCNewGame.resx">
+      <DependentUpon>UCNewGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UCOptions.resx">
+      <DependentUpon>UCOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -79,12 +94,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Forms\NewGame.resx">
-      <DependentUpon>NewGame.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Options.resx">
-      <DependentUpon>Options.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -101,5 +110,6 @@
   <ItemGroup>
     <None Include="Resources\background.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
