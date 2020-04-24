@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Warcaby
 {
-    public partial class NewGame : UserControl
+    public partial class NewGameControl : UserControl
     {
-        public NewGame()
+        public NewGameControl()
         {
             InitializeComponent();
         }
@@ -20,7 +20,8 @@ namespace Warcaby
 
         private void backToMenu(object sender, EventArgs e)
         {
-            this.Hide();
+            Controls.Clear();
+            
         }
     }
 }
