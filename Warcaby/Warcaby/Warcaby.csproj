@@ -115,6 +115,7 @@
     <Content Include="Resources\dame_highlighted_white.png" />
     <Content Include="Resources\dame_red.png" />
     <Content Include="Resources\dame_white.png" />
+    <Content Include="Resources\empty_field.png" />
     <Content Include="Resources\pawn_highlighted_red.png" />
     <Content Include="Resources\pawn_highlighted_white.png" />
     <Content Include="Resources\pawn_red.png" />

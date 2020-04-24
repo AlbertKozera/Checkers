@@ -133,6 +133,9 @@
   <data name="dame_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dame_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="empty_field" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\empty_field.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="pawn_highlighted_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pawn_highlighted_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

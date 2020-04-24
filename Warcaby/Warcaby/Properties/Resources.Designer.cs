@@ -113,6 +113,16 @@ namespace Warcaby.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap empty_field {
+            get {
+                object obj = ResourceManager.GetObject("empty_field", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pawn_highlighted_red {
             get {
                 object obj = ResourceManager.GetObject("pawn_highlighted_red", resourceCulture);
