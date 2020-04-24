@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="MainStage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainStage.Designer.cs">
+      <DependentUpon>MainStage.cs</DependentUpon>
     </Compile>
     <Compile Include="EntryPoint.cs" />
     <Compile Include="Forms\UCMainMenu.cs">
@@ -72,8 +72,8 @@
       <DependentUpon>UCOptions.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="MainStage.resx">
+      <DependentUpon>MainStage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UCMainMenu.resx">
       <DependentUpon>UCMainMenu.cs</DependentUpon>
@@ -110,6 +110,15 @@
   <ItemGroup>
     <None Include="Resources\background.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\dame_highlighted_red.png" />
+    <Content Include="Resources\dame_highlighted_white.png" />
+    <Content Include="Resources\dame_red.png" />
+    <Content Include="Resources\dame_white.png" />
+    <Content Include="Resources\pawn_highlighted_red.png" />
+    <Content Include="Resources\pawn_highlighted_white.png" />
+    <Content Include="Resources\pawn_red.png" />
+    <Content Include="Resources\pawn_white.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
