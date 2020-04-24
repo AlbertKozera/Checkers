@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Warcaby
 {
-    public partial class Form1 : Form
+    public partial class MainStage : Form
     {
-        public Form1()
+        public MainStage()
         {
             InitializeComponent();
         }

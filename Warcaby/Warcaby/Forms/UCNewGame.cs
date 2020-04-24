@@ -24,5 +24,6 @@ namespace Warcaby.Forms
             Controls.Add(ucMainMenu);
             ucMainMenu.Show();
         }
+
     }
 }
