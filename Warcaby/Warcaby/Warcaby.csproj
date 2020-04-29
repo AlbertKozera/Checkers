@@ -120,6 +120,9 @@
     <Content Include="Resources\pawn_highlighted_white.png" />
     <Content Include="Resources\pawn_red.png" />
     <Content Include="Resources\pawn_white.png" />
+    <Content Include="Resources\threadOption.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
