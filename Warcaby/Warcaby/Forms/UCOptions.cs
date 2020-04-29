@@ -14,9 +14,13 @@ namespace Warcaby.Forms
 {
     public partial class UCOptions : UserControl
     {
+        string filePath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+                
         public UCOptions()
         {
             InitializeComponent();
+            filePath = Directory.GetParent(Directory.GetParent(filePath).FullName).FullName;
+            filePath += @"\Resources\threadOption.txt";
         }
 
         private void backToMenu(object sender, EventArgs e)
@@ -29,42 +33,30 @@ namespace Warcaby.Forms
 
         private void checkBoxThreadYes_CheckedChanged(object sender, EventArgs e)
         {
+            TextWriter text = new StreamWriter(filePath);
             if (checkBoxThread.Checked)
             {
-                string filePath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-                filePath = Directory.GetParent(Directory.GetParent(filePath).FullName).FullName;
-                filePath += @"\Resources\threadOption.txt";
-                TextWriter text = new StreamWriter(filePath);
                 text.WriteLine("Tak");
-                text.Close();
             } 
             else 
             {
-                string filePath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-                filePath = Directory.GetParent(Directory.GetParent(filePath).FullName).FullName;
-                filePath += @"\Resources\threadOption.txt";
-                TextWriter text = new StreamWriter(filePath);
                 text.WriteLine("Nie");
-                text.Close();
             }
+            text.Close();
         }
 
         private void UCOptions_Load(object sender, EventArgs e)
         {
-            string filePath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-            filePath = Directory.GetParent(Directory.GetParent(filePath).FullName).FullName;
-            filePath += @"\Resources\threadOption.txt";
             string readText = File.ReadLines(filePath).First();
             if (readText == "Tak")
             {
                 checkBoxThread.Checked = true;
-            } if(readText == "Nie")
+            } 
+            else
             {
                 checkBoxThread.Checked = false;
             }
-
-        }
-
+        }      
         
     }
 }
