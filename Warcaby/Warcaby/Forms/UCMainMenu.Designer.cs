@@ -43,7 +43,7 @@
             this.buttonNewGame.TabIndex = 0;
             this.buttonNewGame.Text = "Nowa gra";
             this.buttonNewGame.UseVisualStyleBackColor = true;
-            this.buttonNewGame.Click += new System.EventHandler(this.newGameEvent);
+            this.buttonNewGame.Click += new System.EventHandler(this.TypeOfGameEvent);
             // 
             // buttonOption
             // 
@@ -54,7 +54,7 @@
             this.buttonOption.TabIndex = 1;
             this.buttonOption.Text = "Opcje";
             this.buttonOption.UseVisualStyleBackColor = true;
-            this.buttonOption.Click += new System.EventHandler(this.optionsEvent);
+            this.buttonOption.Click += new System.EventHandler(this.OptionsEvent);
             // 
             // buttonExit
             // 
@@ -65,7 +65,7 @@
             this.buttonExit.TabIndex = 2;
             this.buttonExit.Text = "Wyjście";
             this.buttonExit.UseVisualStyleBackColor = true;
-            this.buttonExit.Click += new System.EventHandler(this.exitEvent);
+            this.buttonExit.Click += new System.EventHandler(this.ExitEvent);
             // 
             // labelWarcaby
             // 
@@ -78,7 +78,7 @@
             this.labelWarcaby.TabIndex = 3;
             this.labelWarcaby.Text = "Warcaby";
             // 
-            // usMainMenu
+            // UCMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -87,7 +87,7 @@
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.buttonOption);
             this.Controls.Add(this.buttonNewGame);
-            this.Name = "usMainMenu";
+            this.Name = "UCMainMenu";
             this.Size = new System.Drawing.Size(984, 661);
             this.ResumeLayout(false);
             this.PerformLayout();
