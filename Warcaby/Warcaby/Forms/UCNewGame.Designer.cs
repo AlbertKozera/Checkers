@@ -30,7 +30,7 @@
         {
             this.labelNewGame = new System.Windows.Forms.Label();
             this.buttonBackToMenu = new System.Windows.Forms.Button();
-            this.game_board = new System.Windows.Forms.Panel();
+            this.fieldsContainer = new System.Windows.Forms.Panel();
             this.field_2 = new System.Windows.Forms.PictureBox();
             this.field_4 = new System.Windows.Forms.PictureBox();
             this.field_6 = new System.Windows.Forms.PictureBox();
@@ -63,7 +63,7 @@
             this.field_59 = new System.Windows.Forms.PictureBox();
             this.field_61 = new System.Windows.Forms.PictureBox();
             this.field_63 = new System.Windows.Forms.PictureBox();
-            this.game_board.SuspendLayout();
+            this.fieldsContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.field_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_6)).BeginInit();
@@ -117,45 +117,46 @@
             this.buttonBackToMenu.UseVisualStyleBackColor = true;
             this.buttonBackToMenu.Click += new System.EventHandler(this.backToMenu);
             // 
-            // game_board
+            // fieldsContainer
             // 
-            this.game_board.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.game_board.Controls.Add(this.field_2);
-            this.game_board.Controls.Add(this.field_4);
-            this.game_board.Controls.Add(this.field_6);
-            this.game_board.Controls.Add(this.field_8);
-            this.game_board.Controls.Add(this.field_9);
-            this.game_board.Controls.Add(this.field_11);
-            this.game_board.Controls.Add(this.field_13);
-            this.game_board.Controls.Add(this.field_15);
-            this.game_board.Controls.Add(this.field_18);
-            this.game_board.Controls.Add(this.field_20);
-            this.game_board.Controls.Add(this.field_22);
-            this.game_board.Controls.Add(this.field_24);
-            this.game_board.Controls.Add(this.field_25);
-            this.game_board.Controls.Add(this.field_27);
-            this.game_board.Controls.Add(this.field_29);
-            this.game_board.Controls.Add(this.field_31);
-            this.game_board.Controls.Add(this.field_34);
-            this.game_board.Controls.Add(this.field_36);
-            this.game_board.Controls.Add(this.field_38);
-            this.game_board.Controls.Add(this.field_40);
-            this.game_board.Controls.Add(this.field_41);
-            this.game_board.Controls.Add(this.field_43);
-            this.game_board.Controls.Add(this.field_45);
-            this.game_board.Controls.Add(this.field_47);
-            this.game_board.Controls.Add(this.field_50);
-            this.game_board.Controls.Add(this.field_52);
-            this.game_board.Controls.Add(this.field_54);
-            this.game_board.Controls.Add(this.field_56);
-            this.game_board.Controls.Add(this.field_57);
-            this.game_board.Controls.Add(this.field_59);
-            this.game_board.Controls.Add(this.field_61);
-            this.game_board.Controls.Add(this.field_63);
-            this.game_board.Location = new System.Drawing.Point(181, 35);
-            this.game_board.Name = "game_board";
-            this.game_board.Size = new System.Drawing.Size(601, 601);
-            this.game_board.TabIndex = 7;
+            this.fieldsContainer.AllowDrop = true;
+            this.fieldsContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.fieldsContainer.Controls.Add(this.field_2);
+            this.fieldsContainer.Controls.Add(this.field_4);
+            this.fieldsContainer.Controls.Add(this.field_6);
+            this.fieldsContainer.Controls.Add(this.field_8);
+            this.fieldsContainer.Controls.Add(this.field_9);
+            this.fieldsContainer.Controls.Add(this.field_11);
+            this.fieldsContainer.Controls.Add(this.field_13);
+            this.fieldsContainer.Controls.Add(this.field_15);
+            this.fieldsContainer.Controls.Add(this.field_18);
+            this.fieldsContainer.Controls.Add(this.field_20);
+            this.fieldsContainer.Controls.Add(this.field_22);
+            this.fieldsContainer.Controls.Add(this.field_24);
+            this.fieldsContainer.Controls.Add(this.field_25);
+            this.fieldsContainer.Controls.Add(this.field_27);
+            this.fieldsContainer.Controls.Add(this.field_29);
+            this.fieldsContainer.Controls.Add(this.field_31);
+            this.fieldsContainer.Controls.Add(this.field_34);
+            this.fieldsContainer.Controls.Add(this.field_36);
+            this.fieldsContainer.Controls.Add(this.field_38);
+            this.fieldsContainer.Controls.Add(this.field_40);
+            this.fieldsContainer.Controls.Add(this.field_41);
+            this.fieldsContainer.Controls.Add(this.field_43);
+            this.fieldsContainer.Controls.Add(this.field_45);
+            this.fieldsContainer.Controls.Add(this.field_47);
+            this.fieldsContainer.Controls.Add(this.field_50);
+            this.fieldsContainer.Controls.Add(this.field_52);
+            this.fieldsContainer.Controls.Add(this.field_54);
+            this.fieldsContainer.Controls.Add(this.field_56);
+            this.fieldsContainer.Controls.Add(this.field_57);
+            this.fieldsContainer.Controls.Add(this.field_59);
+            this.fieldsContainer.Controls.Add(this.field_61);
+            this.fieldsContainer.Controls.Add(this.field_63);
+            this.fieldsContainer.Location = new System.Drawing.Point(181, 35);
+            this.fieldsContainer.Name = "fieldsContainer";
+            this.fieldsContainer.Size = new System.Drawing.Size(601, 601);
+            this.fieldsContainer.TabIndex = 7;
             // 
             // field_2
             // 
@@ -237,6 +238,7 @@
             this.field_18.Size = new System.Drawing.Size(75, 75);
             this.field_18.TabIndex = 32;
             this.field_18.TabStop = false;
+            this.field_18.MouseDown += new System.Windows.Forms.MouseEventHandler(this.field_18_MouseDown);
             // 
             // field_20
             // 
@@ -273,6 +275,8 @@
             this.field_25.Size = new System.Drawing.Size(75, 75);
             this.field_25.TabIndex = 52;
             this.field_25.TabStop = false;
+            this.field_25.DragDrop += new System.Windows.Forms.DragEventHandler(this.field_25_DragDrop);
+            this.field_25.DragEnter += new System.Windows.Forms.DragEventHandler(this.field_25_DragEnter);
             // 
             // field_27
             // 
@@ -447,14 +451,16 @@
             // 
             // UCNewGame
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.game_board);
+            this.Controls.Add(this.fieldsContainer);
             this.Controls.Add(this.buttonBackToMenu);
             this.Controls.Add(this.labelNewGame);
             this.Name = "UCNewGame";
             this.Size = new System.Drawing.Size(984, 661);
-            this.game_board.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.UCNewGame_Load);
+            this.fieldsContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.field_2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_6)).EndInit();
@@ -496,7 +502,7 @@
 
         private System.Windows.Forms.Label labelNewGame;
         private System.Windows.Forms.Button buttonBackToMenu;
-        private System.Windows.Forms.Panel game_board;
+        private System.Windows.Forms.Panel fieldsContainer;
         private System.Windows.Forms.PictureBox field_2;
         private System.Windows.Forms.PictureBox field_4;
         private System.Windows.Forms.PictureBox field_6;
