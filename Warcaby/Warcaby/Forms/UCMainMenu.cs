@@ -17,15 +17,15 @@ namespace Warcaby.Forms
             InitializeComponent();
         }
 
-        private void newGameEvent(object sender, EventArgs e)
+        private void TypeOfGameEvent(object sender, EventArgs e)
         {
             Controls.Clear();
-            UCNewGame ucNewGame = new UCNewGame();
-            Controls.Add(ucNewGame);
-            ucNewGame.Show();
+            UCTypeOfGame ucTypeOfGame = new UCTypeOfGame();
+            Controls.Add(ucTypeOfGame);
+            ucTypeOfGame.Show();
         }
 
-        private void optionsEvent(object sender, EventArgs e)
+        private void OptionsEvent(object sender, EventArgs e)
         {
             Controls.Clear();
             UCOptions ucOptions = new UCOptions();
@@ -33,7 +33,7 @@ namespace Warcaby.Forms
             ucOptions.Show();
         }
 
-        private void exitEvent(object sender, EventArgs e)
+        private void ExitEvent(object sender, EventArgs e)
         {
             ((MainStage)this.TopLevelControl).Close();
         }

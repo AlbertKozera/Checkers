@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Forms\Field.cs" />
+    <Compile Include="Forms\UCTypeOfGame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UCTypeOfGame.Designer.cs">
+      <DependentUpon>UCTypeOfGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainStage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,9 @@
       <DependentUpon>UCOptions.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\UCTypeOfGame.resx">
+      <DependentUpon>UCTypeOfGame.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainStage.resx">
       <DependentUpon>MainStage.cs</DependentUpon>
     </EmbeddedResource>

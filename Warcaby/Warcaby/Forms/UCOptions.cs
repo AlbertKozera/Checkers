@@ -15,12 +15,19 @@ namespace Warcaby.Forms
     public partial class UCOptions : UserControl
     {
         string filePath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+        
                 
         public UCOptions()
         {
             InitializeComponent();
             filePath = Directory.GetParent(Directory.GetParent(filePath).FullName).FullName;
             filePath += @"\Resources\threadOption.txt";
+        }
+        private void EditLine(string newText, string fileName, int line) //Funkcja odpowiednia za edycje wskazanej linii
+        {
+            string[] readLine = File.ReadAllLines(fileName);
+            readLine[line - 1] = newText;
+            File.WriteAllLines(fileName, readLine);
         }
 
         private void backToMenu(object sender, EventArgs e)
@@ -33,22 +40,19 @@ namespace Warcaby.Forms
 
         private void checkBoxThreadYes_CheckedChanged(object sender, EventArgs e)
         {
-            TextWriter text = new StreamWriter(filePath);
             if (checkBoxThread.Checked)
             {
-                text.WriteLine("Tak");
-            } 
-            else 
+                EditLine("True", filePath, 1);
+            } else 
             {
-                text.WriteLine("Nie");
+                EditLine("False", filePath, 1);
             }
-            text.Close();
         }
 
         private void UCOptions_Load(object sender, EventArgs e)
         {
-            string readText = File.ReadLines(filePath).First();
-            if (readText == "Tak")
+            string readFirstLine = File.ReadLines(filePath).First();
+            if (readFirstLine == "True")
             {
                 checkBoxThread.Checked = true;
             } 
@@ -56,7 +60,25 @@ namespace Warcaby.Forms
             {
                 checkBoxThread.Checked = false;
             }
-        }      
-        
+            string readSecondLine = File.ReadLines(filePath).Skip(1).First();
+            if (readSecondLine == "First")
+            {
+                checkBoxStartingGame.Checked = true;
+            } else
+            {
+                checkBoxStartingGame.Checked = false;
+            }
+        }
+
+        private void CheckBoxStartingGame_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxStartingGame.Checked)
+            {
+                EditLine("First", filePath, 2);
+            } else
+            {
+                EditLine("Second", filePath, 2);
+            }
+        }
     }
 }
