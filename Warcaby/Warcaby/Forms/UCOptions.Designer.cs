@@ -32,6 +32,8 @@
             this.buttonBackToMenu = new System.Windows.Forms.Button();
             this.optionsQuestion = new System.Windows.Forms.Label();
             this.checkBoxThread = new System.Windows.Forms.CheckBox();
+            this.optionsLabel2 = new System.Windows.Forms.Label();
+            this.checkBoxStartingGame = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // labelOptions
@@ -76,12 +78,35 @@
             this.checkBoxThread.TabIndex = 3;
             this.checkBoxThread.UseVisualStyleBackColor = true;
             this.checkBoxThread.CheckedChanged += new System.EventHandler(this.checkBoxThreadYes_CheckedChanged);
+            this.checkBoxThread.MouseCaptureChanged += new System.EventHandler(this.checkBoxThreadYes_CheckedChanged);
+            // 
+            // optionsLabel2
+            // 
+            this.optionsLabel2.AutoSize = true;
+            this.optionsLabel2.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.optionsLabel2.Location = new System.Drawing.Point(163, 300);
+            this.optionsLabel2.Name = "optionsLabel2";
+            this.optionsLabel2.Size = new System.Drawing.Size(486, 31);
+            this.optionsLabel2.TabIndex = 4;
+            this.optionsLabel2.Text = "Komputer zaczyna partię jako pierwszy";
+            // 
+            // checkBoxStartingGame
+            // 
+            this.checkBoxStartingGame.AutoSize = true;
+            this.checkBoxStartingGame.Location = new System.Drawing.Point(782, 317);
+            this.checkBoxStartingGame.Name = "checkBoxStartingGame";
+            this.checkBoxStartingGame.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxStartingGame.TabIndex = 5;
+            this.checkBoxStartingGame.UseVisualStyleBackColor = true;
+            this.checkBoxStartingGame.MouseCaptureChanged += new System.EventHandler(this.CheckBoxStartingGame_CheckedChanged);
             // 
             // UCOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Controls.Add(this.checkBoxStartingGame);
+            this.Controls.Add(this.optionsLabel2);
             this.Controls.Add(this.checkBoxThread);
             this.Controls.Add(this.optionsQuestion);
             this.Controls.Add(this.buttonBackToMenu);
@@ -100,5 +125,7 @@
         private System.Windows.Forms.Button buttonBackToMenu;
         private System.Windows.Forms.Label optionsQuestion;
         private System.Windows.Forms.CheckBox checkBoxThread;
+        private System.Windows.Forms.Label optionsLabel2;
+        private System.Windows.Forms.CheckBox checkBoxStartingGame;
     }
 }

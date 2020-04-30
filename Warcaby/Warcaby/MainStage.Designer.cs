@@ -32,7 +32,7 @@
             this.ucOptions = new Warcaby.Forms.UCOptions();
             this.ucNewGame = new Warcaby.Forms.UCNewGame();
             this.ucMainMenu = new Warcaby.Forms.UCMainMenu();
-            this.ucTypeOfGame1 = new Warcaby.Forms.UCTypeOfGame();
+            this.ucTypeOfGame = new Warcaby.Forms.UCTypeOfGame();
             this.SuspendLayout();
             // 
             // ucOptions
@@ -58,20 +58,20 @@
             this.ucMainMenu.Size = new System.Drawing.Size(984, 661);
             this.ucMainMenu.TabIndex = 2;
             // 
-            // ucTypeOfGame1
+            // ucTypeOfGame
             // 
-            this.ucTypeOfGame1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucTypeOfGame1.BackgroundImage")));
-            this.ucTypeOfGame1.Location = new System.Drawing.Point(0, 0);
-            this.ucTypeOfGame1.Name = "ucTypeOfGame1";
-            this.ucTypeOfGame1.Size = new System.Drawing.Size(984, 661);
-            this.ucTypeOfGame1.TabIndex = 3;
+            this.ucTypeOfGame.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucTypeOfGame.BackgroundImage")));
+            this.ucTypeOfGame.Location = new System.Drawing.Point(0, 0);
+            this.ucTypeOfGame.Name = "ucTypeOfGame";
+            this.ucTypeOfGame.Size = new System.Drawing.Size(984, 661);
+            this.ucTypeOfGame.TabIndex = 3;
             // 
             // MainStage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 657);
-            this.Controls.Add(this.ucTypeOfGame1);
+            this.Controls.Add(this.ucTypeOfGame);
             this.Controls.Add(this.ucMainMenu);
             this.Controls.Add(this.ucNewGame);
             this.Controls.Add(this.ucOptions);
@@ -89,7 +89,7 @@
         private Forms.UCOptions ucOptions;
         private Forms.UCNewGame ucNewGame;
         private Forms.UCMainMenu ucMainMenu;
-        private Forms.UCTypeOfGame ucTypeOfGame1;
+        private Forms.UCTypeOfGame ucTypeOfGame;
     }
 }
 

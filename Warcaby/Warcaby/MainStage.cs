@@ -22,7 +22,7 @@ namespace Warcaby
             ucMainMenu.Visible = true;
             ucNewGame.Visible = false;
             ucOptions.Visible = false;
-            ucTypeOfGame1.Visible = false;
+            ucTypeOfGame.Visible = false;
         }
     }
 }
