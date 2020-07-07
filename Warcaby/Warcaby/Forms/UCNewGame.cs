@@ -54,22 +54,25 @@ namespace Warcaby.Forms
             ucMainMenu.Show();
         }
 
-        private void field_25_DragDrop(object sender, DragEventArgs e)
+        private void DragDrop(object sender, DragEventArgs e)
         {
-            field_25.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
+            PictureBox field = (PictureBox)sender;
+            field.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
+         
         }
 
-        private void field_18_MouseDown(object sender, MouseEventArgs e)
+        private void MouseDown(object sender, MouseEventArgs e)
         {
             // if ---> isPawn isDame / odpowiedni kolor / brak przymusowego bicia
-            field_18.DoDragDrop(field_18.Image, DragDropEffects.Move);
+            PictureBox field = (PictureBox)sender;
+            field.DoDragDrop(field_18.Image, DragDropEffects.Move);    
+    
         }
 
-        private void field_25_DragEnter(object sender, DragEventArgs e)
+        private void DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = e.AllowedEffect;
         }
-
 
     }
 }
