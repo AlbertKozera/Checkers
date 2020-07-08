@@ -13,6 +13,8 @@ namespace Warcaby.Forms
     public partial class UCNewGame : UserControl
     {
         public Dictionary<int, Field> gameBoard = new Dictionary<int, Field>();
+        Boolean flaga = false;
+
         public UCNewGame()
         {
             InitializeComponent();
@@ -54,19 +56,50 @@ namespace Warcaby.Forms
             ucMainMenu.Show();
         }
 
+        public class MyDraggedData
+        {
+            public object Data { get; set; }
+        }
+                
         private void DragDrop(object sender, DragEventArgs e)
         {
-            PictureBox field = (PictureBox)sender;
-            field.Image = (Bitmap)e.Data.GetData(DataFormats.Bitmap);
-         
-        }
+            PictureBox fieldTo = (PictureBox)sender;              
+            int indexTo = Int16.Parse(fieldTo.Tag.ToString());
+            MyDraggedData data = (MyDraggedData)e.Data.GetData(typeof(MyDraggedData));
+            PictureBox fieldFrom = new PictureBox();
+            fieldFrom = (PictureBox)data.Data;
 
+            
+            // sprawdzamy czy można postawić pionek
+            if (gameBoard[indexTo].isEmptyField) {
+                // ustawiamy odpowiednią bitmape
+                fieldTo.Image = fieldFrom.Image;                                
+                int indexFrom = Int16.Parse(fieldFrom.Tag.ToString());
+                gameBoard[indexTo].isPawn = true;
+                gameBoard[indexTo].isEmptyField = false;
+                gameBoard[indexTo].isDame = false;
+                gameBoard[indexTo].color = gameBoard[indexFrom].color;
+                flaga = true;
+            }                  
+        }
+        
         private void MouseDown(object sender, MouseEventArgs e)
         {
-            // if ---> isPawn isDame / odpowiedni kolor / brak przymusowego bicia
-            PictureBox field = (PictureBox)sender;
-            field.DoDragDrop(field_18.Image, DragDropEffects.Move);    
-    
+            PictureBox fieldFrom = (PictureBox)sender;
+            MyDraggedData data = new MyDraggedData();
+            data.Data = fieldFrom;
+                       
+            // sprawdzamy czy zakończyła się operacja drag drop, oraz czy jest możliwość postawienia pionka na wybranym przez nas polu
+            if ((fieldFrom.DoDragDrop(data, DragDropEffects.Move) == DragDropEffects.Move) && flaga == true)
+            {
+                int indexFrom = Int16.Parse(fieldFrom.Tag.ToString());
+                fieldFrom.Image = new Bitmap(Properties.Resources.empty_field);
+                gameBoard[indexFrom].isEmptyField = true;
+                gameBoard[indexFrom].isPawn = false;
+                gameBoard[indexFrom].isDame = false;
+                flaga = false;
+            }
+
         }
 
         private void DragEnter(object sender, DragEventArgs e)

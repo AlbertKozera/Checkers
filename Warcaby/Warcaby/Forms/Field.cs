@@ -8,9 +8,10 @@ namespace Warcaby.Forms
 {
     public class Field
     {
-
-        public bool isEmptyField, isPawn, isDame;
-        public string color;
+        public bool isEmptyField { get; set; }
+        public bool isPawn { get; set; }
+        public bool isDame { get; set; }
+        public string color { get; set; }
 
         public Field(bool isEmptyField, bool isPawn, bool isDame, string color)
         {
@@ -21,7 +22,7 @@ namespace Warcaby.Forms
             BasicLogic();
         }
 
-        private void BasicLogic()
+        public void BasicLogic()
         {
             if (isEmptyField)
             {
@@ -39,6 +40,5 @@ namespace Warcaby.Forms
                 isPawn = false;
             }
         }
-
     }
 }
