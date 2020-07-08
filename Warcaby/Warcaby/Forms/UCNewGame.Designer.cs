@@ -1,4 +1,8 @@
-﻿namespace Warcaby.Forms
+﻿using System.Collections.Generic;
+using System.Security.AccessControl;
+using System.Windows.Forms;
+
+namespace Warcaby.Forms
 {
     partial class UCNewGame
     {
@@ -167,9 +171,9 @@
             this.field_2.TabIndex = 24;
             this.field_2.TabStop = false;
             this.field_2.Tag = "2";
-            this.field_2.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_2.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_2.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_2.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_4
             // 
@@ -180,9 +184,9 @@
             this.field_4.TabIndex = 21;
             this.field_4.TabStop = false;
             this.field_4.Tag = "4";
-            this.field_4.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_4.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_4.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_4.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_6
             // 
@@ -193,9 +197,9 @@
             this.field_6.TabIndex = 23;
             this.field_6.TabStop = false;
             this.field_6.Tag = "6";
-            this.field_6.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_6.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_6.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_6.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_8
             // 
@@ -206,9 +210,9 @@
             this.field_8.TabIndex = 22;
             this.field_8.TabStop = false;
             this.field_8.Tag = "8";
-            this.field_8.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_8.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_8.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_8.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_9
             // 
@@ -219,9 +223,9 @@
             this.field_9.TabIndex = 28;
             this.field_9.TabStop = false;
             this.field_9.Tag = "9";
-            this.field_9.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_9.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_9.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_9.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_11
             // 
@@ -232,9 +236,9 @@
             this.field_11.TabIndex = 25;
             this.field_11.TabStop = false;
             this.field_11.Tag = "11";
-            this.field_11.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_11.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_11.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_11.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_13
             // 
@@ -245,9 +249,9 @@
             this.field_13.TabIndex = 27;
             this.field_13.TabStop = false;
             this.field_13.Tag = "13";
-            this.field_13.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_13.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_13.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_13.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_15
             // 
@@ -258,9 +262,9 @@
             this.field_15.TabIndex = 26;
             this.field_15.TabStop = false;
             this.field_15.Tag = "15";
-            this.field_15.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_15.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_15.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_15.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_18
             // 
@@ -271,9 +275,9 @@
             this.field_18.TabIndex = 32;
             this.field_18.TabStop = false;
             this.field_18.Tag = "18";
-            this.field_18.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_18.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_18.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_18.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_18.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_18.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_20
             // 
@@ -284,9 +288,9 @@
             this.field_20.TabIndex = 29;
             this.field_20.TabStop = false;
             this.field_20.Tag = "20";
-            this.field_20.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_20.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_20.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_20.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_20.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_20.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_22
             // 
@@ -297,9 +301,9 @@
             this.field_22.TabIndex = 31;
             this.field_22.TabStop = false;
             this.field_22.Tag = "22";
-            this.field_22.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_22.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_22.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_22.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_22.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_22.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_24
             // 
@@ -310,9 +314,9 @@
             this.field_24.TabIndex = 30;
             this.field_24.TabStop = false;
             this.field_24.Tag = "24";
-            this.field_24.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_24.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_24.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_24.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_24.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_24.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_25
             // 
@@ -323,9 +327,9 @@
             this.field_25.TabIndex = 52;
             this.field_25.TabStop = false;
             this.field_25.Tag = "25";
-            this.field_25.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_25.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_25.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_25.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_25.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_25.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_27
             // 
@@ -336,9 +340,9 @@
             this.field_27.TabIndex = 49;
             this.field_27.TabStop = false;
             this.field_27.Tag = "27";
-            this.field_27.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_27.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_27.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_27.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_27.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_27.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_29
             // 
@@ -349,9 +353,9 @@
             this.field_29.TabIndex = 51;
             this.field_29.TabStop = false;
             this.field_29.Tag = "29";
-            this.field_29.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_29.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_29.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_29.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_29.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_29.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_31
             // 
@@ -362,9 +366,9 @@
             this.field_31.TabIndex = 50;
             this.field_31.TabStop = false;
             this.field_31.Tag = "31";
-            this.field_31.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_31.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_31.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_31.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_31.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_31.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_34
             // 
@@ -375,9 +379,9 @@
             this.field_34.TabIndex = 48;
             this.field_34.TabStop = false;
             this.field_34.Tag = "34";
-            this.field_34.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_34.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_34.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_34.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_34.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_34.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_36
             // 
@@ -388,9 +392,9 @@
             this.field_36.TabIndex = 45;
             this.field_36.TabStop = false;
             this.field_36.Tag = "36";
-            this.field_36.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_36.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_36.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_36.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_36.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_36.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_38
             // 
@@ -401,9 +405,9 @@
             this.field_38.TabIndex = 47;
             this.field_38.TabStop = false;
             this.field_38.Tag = "38";
-            this.field_38.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_38.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_38.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_38.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_38.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_38.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_40
             // 
@@ -414,9 +418,9 @@
             this.field_40.TabIndex = 46;
             this.field_40.TabStop = false;
             this.field_40.Tag = "40";
-            this.field_40.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_40.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_40.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_40.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_40.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_40.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_41
             // 
@@ -427,9 +431,9 @@
             this.field_41.TabIndex = 40;
             this.field_41.TabStop = false;
             this.field_41.Tag = "41";
-            this.field_41.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_41.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_41.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_41.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_41.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_41.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_43
             // 
@@ -440,9 +444,9 @@
             this.field_43.TabIndex = 37;
             this.field_43.TabStop = false;
             this.field_43.Tag = "43";
-            this.field_43.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_43.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_43.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_43.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_43.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_43.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_45
             // 
@@ -453,9 +457,9 @@
             this.field_45.TabIndex = 39;
             this.field_45.TabStop = false;
             this.field_45.Tag = "45";
-            this.field_45.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_45.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_45.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_45.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_45.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_45.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_47
             // 
@@ -466,9 +470,9 @@
             this.field_47.TabIndex = 38;
             this.field_47.TabStop = false;
             this.field_47.Tag = "47";
-            this.field_47.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_47.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_47.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_47.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_47.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_47.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_50
             // 
@@ -479,9 +483,9 @@
             this.field_50.TabIndex = 44;
             this.field_50.TabStop = false;
             this.field_50.Tag = "50";
-            this.field_50.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_50.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_50.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_50.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_50.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_50.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_52
             // 
@@ -492,9 +496,9 @@
             this.field_52.TabIndex = 41;
             this.field_52.TabStop = false;
             this.field_52.Tag = "52";
-            this.field_52.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_52.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_52.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_52.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_52.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_52.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_54
             // 
@@ -505,9 +509,9 @@
             this.field_54.TabIndex = 43;
             this.field_54.TabStop = false;
             this.field_54.Tag = "54";
-            this.field_54.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_54.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_54.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_54.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_54.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_54.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_56
             // 
@@ -518,9 +522,9 @@
             this.field_56.TabIndex = 42;
             this.field_56.TabStop = false;
             this.field_56.Tag = "56";
-            this.field_56.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_56.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_56.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_56.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_56.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_56.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_57
             // 
@@ -531,9 +535,9 @@
             this.field_57.TabIndex = 36;
             this.field_57.TabStop = false;
             this.field_57.Tag = "57";
-            this.field_57.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_57.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_57.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_57.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_57.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_57.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_59
             // 
@@ -544,9 +548,9 @@
             this.field_59.TabIndex = 33;
             this.field_59.TabStop = false;
             this.field_59.Tag = "59";
-            this.field_59.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_59.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_59.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_59.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_59.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_59.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_61
             // 
@@ -557,9 +561,9 @@
             this.field_61.TabIndex = 35;
             this.field_61.TabStop = false;
             this.field_61.Tag = "61";
-            this.field_61.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_61.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_61.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_61.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_61.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_61.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_63
             // 
@@ -570,9 +574,9 @@
             this.field_63.TabIndex = 34;
             this.field_63.TabStop = false;
             this.field_63.Tag = "63";
-            this.field_63.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDrop);
-            this.field_63.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnter);
-            this.field_63.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
+            this.field_63.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_63.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_63.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // UCNewGame
             // 

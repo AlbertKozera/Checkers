@@ -14,12 +14,11 @@ namespace Warcaby.Forms
     {
         public Dictionary<int, Field> gameBoard = new Dictionary<int, Field>();
         Boolean flaga = false;
-
         public UCNewGame()
         {
             InitializeComponent();
             // Loading white pawns
-            for(int i = 2; i <= 24; i +=2)
+            for (int i = 2; i <= 24; i +=2)
             {
                 gameBoard.Add(i, new Field(false, true, false, "white"));
                 if (i == 8) i--;
@@ -61,29 +60,33 @@ namespace Warcaby.Forms
             public object Data { get; set; }
         }
                 
-        private void DragDrop(object sender, DragEventArgs e)
+        private void DragDropEvent(object sender, DragEventArgs e)
         {
             PictureBox fieldTo = (PictureBox)sender;              
             int indexTo = Int16.Parse(fieldTo.Tag.ToString());
             MyDraggedData data = (MyDraggedData)e.Data.GetData(typeof(MyDraggedData));
             PictureBox fieldFrom = new PictureBox();
             fieldFrom = (PictureBox)data.Data;
+            int indexFrom = Int16.Parse(fieldFrom.Tag.ToString());
 
+            // sprawdzamy czy pole na które chcemy postwić pionek jest puste
+            if(gameBoard[indexTo].isEmptyField) {
+                if (gameBoard[indexFrom].color == "white" && (indexTo == indexFrom + 7 || indexTo == indexFrom + 9)) {
+                    //ustawiamy odpowiednią bitmape
+                    fieldTo.Image = fieldFrom.Image;
+                    gameBoard[indexTo] = Constant.PAWN_WHITE;
+                    flaga = true;
+                } else if (gameBoard[indexFrom].color == "red" && (indexTo == indexFrom - 7 || indexTo == indexFrom - 9)) {
+                    // ustawiamy odpowiednią bitmape
+                    fieldTo.Image = fieldFrom.Image;
+                    gameBoard[indexTo] = Constant.PAWN_RED;
+                    flaga = true;
+                }
+            }
             
-            // sprawdzamy czy można postawić pionek
-            if (gameBoard[indexTo].isEmptyField) {
-                // ustawiamy odpowiednią bitmape
-                fieldTo.Image = fieldFrom.Image;                                
-                int indexFrom = Int16.Parse(fieldFrom.Tag.ToString());
-                gameBoard[indexTo].isPawn = true;
-                gameBoard[indexTo].isEmptyField = false;
-                gameBoard[indexTo].isDame = false;
-                gameBoard[indexTo].color = gameBoard[indexFrom].color;
-                flaga = true;
-            }                  
         }
         
-        private void MouseDown(object sender, MouseEventArgs e)
+        private void MouseDownEvent(object sender, MouseEventArgs e)
         {
             PictureBox fieldFrom = (PictureBox)sender;
             MyDraggedData data = new MyDraggedData();
@@ -94,15 +97,13 @@ namespace Warcaby.Forms
             {
                 int indexFrom = Int16.Parse(fieldFrom.Tag.ToString());
                 fieldFrom.Image = new Bitmap(Properties.Resources.empty_field);
-                gameBoard[indexFrom].isEmptyField = true;
-                gameBoard[indexFrom].isPawn = false;
-                gameBoard[indexFrom].isDame = false;
+                gameBoard[indexFrom] = Constant.EMPTY_FIELD;
                 flaga = false;
             }
 
         }
 
-        private void DragEnter(object sender, DragEventArgs e)
+        private void DragEnteEvent(object sender, DragEventArgs e)
         {
             e.Effect = e.AllowedEffect;
         }
