@@ -10,6 +10,6 @@ namespace Warcaby.Forms
     {
         public static readonly Field PAWN_WHITE = new Field(false, true, false, "white");
         public static readonly Field PAWN_RED = new Field(false, true, false, "red");
-        public static readonly Field EMPTY_FIELD = new Field(true, false, false, null);
+        public static readonly Field EMPTY_FIELD = new Field(true, false, false, "");
     }
 }
