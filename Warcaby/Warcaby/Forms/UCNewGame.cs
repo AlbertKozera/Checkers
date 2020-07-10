@@ -12,7 +12,7 @@ namespace Warcaby.Forms
 {
     public partial class UCNewGame : UserControl
     {
-        public Tuple<int, int, int> pawnsPositions;
+        public List<Tuple<int, int, int>> forcedBeatingForPawnList;
         public Dictionary<int, Field> gameBoard = new Dictionary<int, Field>();
         CheckerLogic checkerLogic = new CheckerLogic();
         Boolean isDragDropEndSucces = false;
@@ -22,7 +22,7 @@ namespace Warcaby.Forms
         {
             InitializeComponent();
             // Loading white pawns
-            for (int i = 2; i <= 24; i +=2)
+            for (int i = 2; i <= 24; i += 2)
             {
                 gameBoard.Add(i, new Field(false, true, false, "white"));
                 if (i == 8) i--;
@@ -45,7 +45,7 @@ namespace Warcaby.Forms
 
         private void UCNewGame_Load(object sender, EventArgs e)
         {
-            for(int i = 0; i <= 31; i++)
+            for (int i = 0; i <= 31; i++)
             {
                 fieldsContainer.Controls[i].AllowDrop = true;
             }
@@ -61,12 +61,12 @@ namespace Warcaby.Forms
 
         public class MyDraggedData
         {
-            public object Data { get; set;}
+            public object Data { get; set; }
         }
-                
+
         private void DragDropEvent(object sender, DragEventArgs e)
         {
-            PictureBox fieldTo = (PictureBox)sender;              
+            PictureBox fieldTo = (PictureBox)sender;
             int indexTo = Int16.Parse(fieldTo.Tag.ToString());
             MyDraggedData data = (MyDraggedData)e.Data.GetData(typeof(MyDraggedData));
             PictureBox fieldFrom = (PictureBox)data.Data;
@@ -78,63 +78,58 @@ namespace Warcaby.Forms
                 if (gameBoard[indexFrom].color.Equals("white") && round)
                 {
                     //ustawiamy odpowiednią bitmape && rusza się biały
-                    pawnsPositions = checkerLogic.DoesPawnHaveAnyBeating(gameBoard, "white");
-                    if ((pawnsPositions == null) && (indexTo == indexFrom + 7 || indexTo == indexFrom + 9))
+                    forcedBeatingForPawnList = checkerLogic.DoesPawnHaveAnyBeating(gameBoard, "white");
+                    if (Extend.IsNullOrEmpty(forcedBeatingForPawnList) && (indexTo == indexFrom + 7 || indexTo == indexFrom + 9))
                     {
                         fieldTo.Image = fieldFrom.Image;
                         gameBoard[indexTo] = Constant.PAWN_WHITE;
                         isDragDropEndSucces = true;
                         round = false;
                     }
-                    else
+                    else if (indexTo == indexFrom - 14 || indexTo == indexFrom - 18 || indexTo == indexFrom + 14 || indexTo == indexFrom + 18)
                     {
-                        if (pawnsPositions.ToValueTuple().Item2 == indexTo)
+                        forcedBeatingForPawnList.ForEach(delegate (Tuple<int, int, int> forcedBeatingForPawnTuple)
                         {
-                            beatenPawnPosition = pawnsPositions.ToValueTuple().Item3;
-                            fieldTo.Image = fieldFrom.Image;
-                            gameBoard[indexTo] = Constant.PAWN_WHITE;
-                            isDragDropEndSucces = true;
-                            pawnsPositions = checkerLogic.DoesPawnHaveAnyBeating(gameBoard, "white"); //Tą funkcję trzeba wywołać dla jednego pola
-                            if (pawnsPositions == null) //jeśli nie ma bicia
-                                round = false;
-                            else
-                                round = true;
-                        }
+                            if (forcedBeatingForPawnTuple.Item2 == indexTo) //sprawdzenie czy biały pionek zbił przeciwny pionek - przymusowe bicie
+                            {
+                                beatenPawnPosition = forcedBeatingForPawnTuple.Item3;
+                                fieldTo.Image = fieldFrom.Image;
+                                gameBoard[indexTo] = Constant.PAWN_WHITE;
+                                isDragDropEndSucces = true;
+                            }
+                        });
+                        forcedBeatingForPawnList.Clear();
                     }
                 }
-                else if (gameBoard[indexTo].isEmptyField)
+                else if (gameBoard[indexFrom].color.Equals("red") && !round)
                 {
-                    if (gameBoard[indexFrom].color.Equals("red") && !round)
+                    //ustawiamy odpowiednią bitmape && rusza się biały
+                    forcedBeatingForPawnList = checkerLogic.DoesPawnHaveAnyBeating(gameBoard, "red");
+                    if (Extend.IsNullOrEmpty(forcedBeatingForPawnList) && (indexTo == indexFrom - 7 || indexTo == indexFrom - 9))
                     {
-                        //ustawiamy odpowiednią bitmape && rusza się biały
-                        pawnsPositions = checkerLogic.DoesPawnHaveAnyBeating(gameBoard, "red");
-                        if ((pawnsPositions == null) && (indexTo == indexFrom - 7 || indexTo == indexFrom - 9))
+                        fieldTo.Image = fieldFrom.Image;
+                        gameBoard[indexTo] = Constant.PAWN_RED;
+                        isDragDropEndSucces = true;
+                        round = true;
+                    }
+                    else if (indexTo == indexFrom - 14 || indexTo == indexFrom - 18 || indexTo == indexFrom + 14 || indexTo == indexFrom + 18)
+                    {
+                        forcedBeatingForPawnList.ForEach(delegate (Tuple<int, int, int> forcedBeatingForPawnTuple)
                         {
-                            fieldTo.Image = fieldFrom.Image;
-                            gameBoard[indexTo] = Constant.PAWN_RED;
-                            isDragDropEndSucces = true;
-                            round = true;
-                        }
-                        else
-                        {
-                            if (pawnsPositions.Item2 == indexTo)
+                            if (forcedBeatingForPawnTuple.Item2 == indexTo)
                             {
-                                beatenPawnPosition = pawnsPositions.Item3;
+                                beatenPawnPosition = forcedBeatingForPawnTuple.Item3;
                                 fieldTo.Image = fieldFrom.Image;
                                 gameBoard[indexTo] = Constant.PAWN_RED;
                                 isDragDropEndSucces = true;
-                                pawnsPositions = checkerLogic.DoesPawnHaveAnyBeating(gameBoard, "red"); //Tą funkcję trzeba wywołać dla jednego pola
-                                if (pawnsPositions == null)
-                                    round = true;
-                                else
-                                    round = false;
                             }
-                        }
+                        });
+                        forcedBeatingForPawnList.Clear();
                     }
                 }
             }
         }
-        
+
         private void MouseDownEvent(object sender, MouseEventArgs e)
         {
             beatenPawnPosition = 0;
@@ -150,10 +145,29 @@ namespace Warcaby.Forms
                 isDragDropEndSucces = false;
                 if (beatenPawnPosition != 0 && gameBoard[beatenPawnPosition].isPawn) //potem trzeba dodać damkę bo jest tylko dla pionka warunek
                 {
-                    PictureBox beatenPawnField = (PictureBox) Controls.Find("field_" + beatenPawnPosition, true)[0];
+                    Field tmp = gameBoard[beatenPawnPosition];
+                    PictureBox beatenPawnField = (PictureBox)Controls.Find("field_" + beatenPawnPosition, true)[0];
                     beatenPawnField.Image = new Bitmap(Properties.Resources.empty_field);
                     gameBoard[beatenPawnPosition] = Constant.EMPTY_FIELD;
                     isDragDropEndSucces = false;
+
+                    if (tmp.color.Equals("white"))
+                    {
+                        forcedBeatingForPawnList = checkerLogic.DoesPawnHaveAnyBeating(gameBoard, "red"); //Tą funkcję trzeba wywołać dla jednego pola
+                        if (Extend.IsNullOrEmpty(forcedBeatingForPawnList))
+                            round = true;
+                        else
+                            round = false;
+                    }
+                    else
+                    {
+                        forcedBeatingForPawnList = checkerLogic.DoesPawnHaveAnyBeating(gameBoard, "white"); //Tą funkcję trzeba wywołać dla jednego pola
+                        if (Extend.IsNullOrEmpty(forcedBeatingForPawnList)) //jeśli nie ma bicia
+                            round = false;
+                        else
+                            round = true;
+                    }
+                    forcedBeatingForPawnList.Clear();
                 }
             }
         }
@@ -162,6 +176,9 @@ namespace Warcaby.Forms
         {
             e.Effect = e.AllowedEffect;
         }
+
+
+
 
     }
 }

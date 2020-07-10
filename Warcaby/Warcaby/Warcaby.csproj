@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Forms\CheckerLogic.cs" />
     <Compile Include="Forms\Constant.cs" />
+    <Compile Include="Forms\Extend.cs" />
     <Compile Include="Forms\Field.cs" />
     <Compile Include="Forms\UCTypeOfGame.cs">
       <SubType>UserControl</SubType>

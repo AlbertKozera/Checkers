@@ -9,10 +9,11 @@ namespace Warcaby.Forms
 {
     class CheckerLogic
     {
-        public Tuple<int, int, int> anyBeating;
+        public List<Tuple<int, int, int>> anyBeating = new List<Tuple<int, int, int>>();
 
-        public Tuple<int, int, int> DoesPawnHaveAnyBeating(Dictionary<int, Field> gameBoard, string currentPawnColor)
+        public List<Tuple<int, int, int>> DoesPawnHaveAnyBeating(Dictionary<int, Field> gameBoard, string currentPawnColor)
         {
+            anyBeating.Clear();
             string enemyPawnColor;
             
             if (currentPawnColor.Equals("white"))
@@ -29,28 +30,28 @@ namespace Warcaby.Forms
                     {
                         if (gameBoard.TryGetValue(i + 14, out fieldData) && fieldData.isEmptyField)
                         {
-                            anyBeating = new Tuple<int, int, int>(i, i + 14, i + 7);
+                            anyBeating.Add(new Tuple<int, int, int>(i, i + 14, i + 7));
                         }
                     }
                     if (gameBoard.TryGetValue(i - 7, out fieldData) && fieldData.color.Equals(enemyPawnColor)) //prawy górny róg
                     {
                         if (gameBoard.TryGetValue(i - 14, out fieldData) && fieldData.isEmptyField)
                         {
-                            anyBeating = new Tuple<int, int, int>(i, i - 14, i - 7);
+                            anyBeating.Add(new Tuple<int, int, int>(i, i - 14, i - 7));
                         }
                     } 
                     if (gameBoard.TryGetValue(i + 9, out fieldData) && fieldData.color.Equals(enemyPawnColor)) //prawy dolny róg
                     {
                         if (gameBoard.TryGetValue(i + 18, out fieldData) && fieldData.isEmptyField)
                         {
-                            anyBeating = new Tuple<int, int, int>(i, i + 18, i + 9);
+                            anyBeating.Add(new Tuple<int, int, int>(i, i + 18, i + 9));
                         }
                     }  
                     if (gameBoard.TryGetValue(i - 9, out fieldData) && fieldData.color.Equals(enemyPawnColor)) //lewy górny róg
                     {
                         if (gameBoard.TryGetValue(i - 18, out fieldData) && fieldData.isEmptyField)
                         {
-                            anyBeating = new Tuple<int, int, int>(i, i - 18, i - 9);
+                            anyBeating.Add(new Tuple<int, int, int>(i, i - 18, i - 9));
                         }
                     }
                 }
