@@ -25,16 +25,16 @@ namespace Warcaby.Service.Human
             PlayerWhiteLogic playerWhiteLogic = new PlayerWhiteLogic(fieldFrom, fieldTo);
             PlayerRedLogic playerRedLogic = new PlayerRedLogic(fieldFrom, fieldTo);
             if (round)
-                Gameplay(playerWhiteLogic, Constant.WHITE);
+                Gameplay(playerWhiteLogic, Constant.WHITE, fieldTo);
             else
-                Gameplay(playerRedLogic, Constant.RED);
+                Gameplay(playerRedLogic, Constant.RED, fieldTo);
         }
 
-        public void Gameplay(IPlayerLogic playerLogic, string PLAYER_COLOR)
+        public void Gameplay(IPlayerLogic playerLogic, string PLAYER_COLOR, PictureBox fieldTo)
         {
             forcedBeatingForPawnList = commonLogic.DoesPawnHaveAnyBeating(gameBoard, PLAYER_COLOR);
-            playerLogic.MovingAPawnThatHasNoBeating();
-            playerLogic.MovingAPawnThatHasABeating();
+            commonLogic.MovingAPawnThatHasNoBeating(playerLogic);
+            commonLogic.MovingAPawnThatHasABeating(playerLogic, Int16.Parse(fieldTo.Tag.ToString()));
         }
     }
 }

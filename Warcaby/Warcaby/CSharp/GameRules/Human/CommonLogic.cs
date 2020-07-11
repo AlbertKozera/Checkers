@@ -82,6 +82,28 @@ namespace Warcaby.Forms
             return anyBeating;
         }
 
+        public void MovingAPawnThatHasNoBeating(IPlayerLogic playerLogic)
+        {
+            if (playerLogic.MovingAPawnThatHasNoBeating_Condition())
+            {
+                playerLogic.CheckerUpdateAfterMovingAPawn();
+            }
+        }
 
+        public void MovingAPawnThatHasABeating(IPlayerLogic playerLogic, int indexTo)
+        {
+            if (playerLogic.MovingAPawnThatHasABeating_Condition())
+            {
+                TypeOfGame.forcedBeatingForPawnList.ForEach(delegate (Tuple<int, int, int> forcedBeatingForPawnTuple)
+                {
+                    if (forcedBeatingForPawnTuple.Item2 == indexTo)
+                    {
+                        playerLogic.CheckerUpdateAfterBeatingAPawn(forcedBeatingForPawnTuple.Item3);
+                    }
+                });
+                playerLogic.CheckForMoreBeating();
+                TypeOfGame.forcedBeatingForPawnList.Clear();
+            }
+        }
     }
 }

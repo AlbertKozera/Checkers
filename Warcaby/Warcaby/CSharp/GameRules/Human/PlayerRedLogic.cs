@@ -14,38 +14,13 @@ namespace Warcaby.Service
         PictureBox fieldTo;
         int indexFrom;
         int indexTo;
-
-
+        
         public PlayerRedLogic(PictureBox fieldFrom, PictureBox fieldTo)
         {
             this.fieldFrom = fieldFrom;
             this.fieldTo = fieldTo;
             indexFrom = Int16.Parse(fieldFrom.Tag.ToString());
             indexTo = Int16.Parse(fieldTo.Tag.ToString());
-        }
-
-        public void MovingAPawnThatHasNoBeating()
-        {
-            if (MovingAPawnThatHasNoBeating_Condition())
-            {
-                CheckerUpdateAfterMovingAPawn();
-            }
-        }
-
-        public void MovingAPawnThatHasABeating()
-        {
-            if (MovingAPawnThatHasABeating_Condition())
-            {
-                TypeOfGame.forcedBeatingForPawnList.ForEach(delegate (Tuple<int, int, int> forcedBeatingForPawnTuple)
-                {
-                    if (forcedBeatingForPawnTuple.Item2 == indexTo)
-                    {
-                        CheckerUpdateAfterBeatingAPawn(forcedBeatingForPawnTuple.Item3);
-                    }
-                });
-                CheckForMoreBeating();
-                TypeOfGame.forcedBeatingForPawnList.Clear();
-            }
         }
 
         public void CheckerUpdateAfterMovingAPawn()
