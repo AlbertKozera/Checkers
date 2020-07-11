@@ -7,16 +7,16 @@ using Warcaby.Service.Human;
 
 namespace Warcaby.Service
 {
-    public class PlayerWhiteLogic : IPlayerLogic
+    public class PlayerWhite : IPlayer
     {
-        CommonLogic commonLogic = new CommonLogic();
+        Common common = new Common();
         PictureBox fieldFrom;
         PictureBox fieldTo;
         int indexFrom;
         int indexTo;
 
 
-        public PlayerWhiteLogic(PictureBox fieldFrom, PictureBox fieldTo)
+        public PlayerWhite(PictureBox fieldFrom, PictureBox fieldTo)
         {
             this.fieldFrom = fieldFrom;
             this.fieldTo = fieldTo;
@@ -70,7 +70,7 @@ namespace Warcaby.Service
 
         public void CheckForMoreBeating()
         {
-            TypeOfGame.forcedBeatingForPawnList = commonLogic.DoesPawnHaveAnyBeating(TypeOfGame.gameBoard, Constant.WHITE);
+            TypeOfGame.forcedBeatingForPawnList = common.DoesPawnHaveAnyBeating(TypeOfGame.gameBoard, Constant.WHITE);
             if (Extend.IsNullOrEmpty(TypeOfGame.forcedBeatingForPawnList))
                 TypeOfGame.round = false;
             else

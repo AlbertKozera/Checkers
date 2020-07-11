@@ -4,7 +4,7 @@ using Warcaby.Service.Human;
 
 namespace Warcaby.Forms
 {
-    public class CommonLogic
+    public class Common
     {
         public List<Tuple<int, int, int>> anyBeating = new List<Tuple<int, int, int>>();
 
@@ -82,26 +82,26 @@ namespace Warcaby.Forms
             return anyBeating;
         }
 
-        public void MovingAPawnThatHasNoBeating(IPlayerLogic playerLogic)
+        public void MovingAPawnThatHasNoBeating(IPlayer player)
         {
-            if (playerLogic.MovingAPawnThatHasNoBeating_Condition())
+            if (player.MovingAPawnThatHasNoBeating_Condition())
             {
-                playerLogic.CheckerUpdateAfterMovingAPawn();
+                player.CheckerUpdateAfterMovingAPawn();
             }
         }
 
-        public void MovingAPawnThatHasABeating(IPlayerLogic playerLogic, int indexTo)
+        public void MovingAPawnThatHasABeating(IPlayer player, int indexTo)
         {
-            if (playerLogic.MovingAPawnThatHasABeating_Condition())
+            if (player.MovingAPawnThatHasABeating_Condition())
             {
                 TypeOfGame.forcedBeatingForPawnList.ForEach(delegate (Tuple<int, int, int> forcedBeatingForPawnTuple)
                 {
                     if (forcedBeatingForPawnTuple.Item2 == indexTo)
                     {
-                        playerLogic.CheckerUpdateAfterBeatingAPawn(forcedBeatingForPawnTuple.Item3);
+                        player.CheckerUpdateAfterBeatingAPawn(forcedBeatingForPawnTuple.Item3);
                     }
                 });
-                playerLogic.CheckForMoreBeating();
+                player.CheckForMoreBeating();
                 TypeOfGame.forcedBeatingForPawnList.Clear();
             }
         }

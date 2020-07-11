@@ -11,7 +11,7 @@ namespace Warcaby.Service.Human
         public static Dictionary<int, Field> gameBoard = new Dictionary<int, Field>();
         public static List<Tuple<int, int, int>> forcedBeatingForPawnList;
         public static Boolean round;
-        CommonLogic commonLogic = new CommonLogic();
+        Common commonLogic = new Common();
         
 
         public TypeOfGame()
@@ -22,15 +22,15 @@ namespace Warcaby.Service.Human
 
         public void GameChooser(PictureBox fieldFrom, PictureBox fieldTo)
         {
-            PlayerWhiteLogic playerWhiteLogic = new PlayerWhiteLogic(fieldFrom, fieldTo);
-            PlayerRedLogic playerRedLogic = new PlayerRedLogic(fieldFrom, fieldTo);
+            PlayerWhite playerWhite = new PlayerWhite(fieldFrom, fieldTo);
+            PlayerRed playerRed = new PlayerRed(fieldFrom, fieldTo);
             if (round)
-                Gameplay(playerWhiteLogic, Constant.WHITE, fieldTo);
+                Gameplay(playerWhite, Constant.WHITE, fieldTo);
             else
-                Gameplay(playerRedLogic, Constant.RED, fieldTo);
+                Gameplay(playerRed, Constant.RED, fieldTo);
         }
 
-        public void Gameplay(IPlayerLogic playerLogic, string PLAYER_COLOR, PictureBox fieldTo)
+        public void Gameplay(IPlayer playerLogic, string PLAYER_COLOR, PictureBox fieldTo)
         {
             forcedBeatingForPawnList = commonLogic.DoesPawnHaveAnyBeating(gameBoard, PLAYER_COLOR);
             commonLogic.MovingAPawnThatHasNoBeating(playerLogic);
