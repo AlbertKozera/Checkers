@@ -15,9 +15,9 @@ namespace Warcaby.Forms
         public List<Tuple<int, int, int>> forcedBeatingForPawnList;
         public Dictionary<int, Field> gameBoard = new Dictionary<int, Field>();
         CheckerLogic checkerLogic = new CheckerLogic();
-        Boolean isDragDropEndSucces = false;
         Boolean round = true;
-        int beatenPawnPosition;
+
+
         public UCNewGame()
         {
             InitializeComponent();
@@ -72,45 +72,76 @@ namespace Warcaby.Forms
             PictureBox fieldFrom = (PictureBox)data.Data;
             int indexFrom = Int16.Parse(fieldFrom.Tag.ToString());
 
+
             // sprawdzamy czy pole na które chcemy postwić pionek jest puste
             if (gameBoard[indexTo].isEmptyField)
             {
-                if (gameBoard[indexFrom].color.Equals("white") && round)
+                if (round)
                 {
                     //ustawiamy odpowiednią bitmape && rusza się biały
                     forcedBeatingForPawnList = checkerLogic.DoesPawnHaveAnyBeating(gameBoard, "white");
                     if (Extend.IsNullOrEmpty(forcedBeatingForPawnList) && (indexTo == indexFrom + 7 || indexTo == indexFrom + 9))
                     {
+                        
+                        
+                        // aktualizacja dokąd
                         fieldTo.Image = fieldFrom.Image;
                         gameBoard[indexTo] = Constant.PAWN_WHITE;
-                        isDragDropEndSucces = true;
                         round = false;
+
+                        // aktualizacja skąd
+                        fieldFrom.Image = new Bitmap(Properties.Resources.empty_field);
+                        gameBoard[indexFrom] = Constant.EMPTY_FIELD;
+
+
+
+
                     }
                     else if (indexTo == indexFrom - 14 || indexTo == indexFrom - 18 || indexTo == indexFrom + 14 || indexTo == indexFrom + 18)
                     {
                         forcedBeatingForPawnList.ForEach(delegate (Tuple<int, int, int> forcedBeatingForPawnTuple)
                         {
-                            if (forcedBeatingForPawnTuple.Item2 == indexTo) //sprawdzenie czy biały pionek zbił przeciwny pionek - przymusowe bicie
-                            {
-                                beatenPawnPosition = forcedBeatingForPawnTuple.Item3;
+                            if (forcedBeatingForPawnTuple.Item2 == indexTo) 
+                            {                             
+                                // aktualizacja dokąd
                                 fieldTo.Image = fieldFrom.Image;
                                 gameBoard[indexTo] = Constant.PAWN_WHITE;
-                                isDragDropEndSucces = true;
+
+                                // aktualizacja skąd
+                                fieldFrom.Image = new Bitmap(Properties.Resources.empty_field);
+                                gameBoard[indexFrom] = Constant.EMPTY_FIELD;
+
+                                // aktualizacja zbitego pionka
+                                PictureBox beatenPawnField = (PictureBox)Controls.Find("field_" + forcedBeatingForPawnTuple.Item3, true)[0];
+                                beatenPawnField.Image = new Bitmap(Properties.Resources.empty_field);
+                                gameBoard[forcedBeatingForPawnTuple.Item3] = Constant.EMPTY_FIELD;                                                           
                             }
-                        });
+                        });                        
+                        
+                        forcedBeatingForPawnList = checkerLogic.DoesPawnHaveAnyBeating(gameBoard, "white"); //Tą funkcję trzeba wywołać dla jednego pola
+                        if (Extend.IsNullOrEmpty(forcedBeatingForPawnList)) //jeśli nie ma bicia
+                            round = false;
+                        else
+                            round = true;
+
                         forcedBeatingForPawnList.Clear();
                     }
                 }
-                else if (gameBoard[indexFrom].color.Equals("red") && !round)
+                else if (!round)
                 {
-                    //ustawiamy odpowiednią bitmape && rusza się biały
+                    //ustawiamy odpowiednią bitmape && rusza się czerwony
                     forcedBeatingForPawnList = checkerLogic.DoesPawnHaveAnyBeating(gameBoard, "red");
                     if (Extend.IsNullOrEmpty(forcedBeatingForPawnList) && (indexTo == indexFrom - 7 || indexTo == indexFrom - 9))
                     {
                         fieldTo.Image = fieldFrom.Image;
                         gameBoard[indexTo] = Constant.PAWN_RED;
-                        isDragDropEndSucces = true;
                         round = true;
+
+
+
+                            // aktualizacja skąd
+                        fieldFrom.Image = new Bitmap(Properties.Resources.empty_field);
+                        gameBoard[indexFrom] = Constant.EMPTY_FIELD;
                     }
                     else if (indexTo == indexFrom - 14 || indexTo == indexFrom - 18 || indexTo == indexFrom + 14 || indexTo == indexFrom + 18)
                     {
@@ -118,12 +149,33 @@ namespace Warcaby.Forms
                         {
                             if (forcedBeatingForPawnTuple.Item2 == indexTo)
                             {
-                                beatenPawnPosition = forcedBeatingForPawnTuple.Item3;
+                                
+                                // aktualizacja dokąd
                                 fieldTo.Image = fieldFrom.Image;
                                 gameBoard[indexTo] = Constant.PAWN_RED;
-                                isDragDropEndSucces = true;
+
+                                // aktualizacja skąd
+                                fieldFrom.Image = new Bitmap(Properties.Resources.empty_field);
+                                gameBoard[indexFrom] = Constant.EMPTY_FIELD;
+
+                                // aktualizacja zbitego pionka
+                                PictureBox beatenPawnField = (PictureBox)Controls.Find("field_" + forcedBeatingForPawnTuple.Item3, true)[0];
+                                beatenPawnField.Image = new Bitmap(Properties.Resources.empty_field);
+                                gameBoard[forcedBeatingForPawnTuple.Item3] = Constant.EMPTY_FIELD;
+
+
+
+                                
                             }
                         });
+                        
+                        
+                        forcedBeatingForPawnList = checkerLogic.DoesPawnHaveAnyBeating(gameBoard, "red"); //Tą funkcję trzeba wywołać dla jednego pola
+                        if (Extend.IsNullOrEmpty(forcedBeatingForPawnList))
+                            round = true;
+                        else
+                            round = false;
+
                         forcedBeatingForPawnList.Clear();
                     }
                 }
@@ -132,44 +184,10 @@ namespace Warcaby.Forms
 
         private void MouseDownEvent(object sender, MouseEventArgs e)
         {
-            beatenPawnPosition = 0;
-            PictureBox fieldFrom = (PictureBox)sender;
+            PictureBox fieldFrom = (PictureBox)sender;                    
             MyDraggedData data = new MyDraggedData();
             data.Data = fieldFrom;
-            // sprawdzamy czy zakończyła się operacja drag drop, oraz czy jest możliwość postawienia pionka na wybranym przez nas polu
-            if ((fieldFrom.DoDragDrop(data, DragDropEffects.Move) == DragDropEffects.Move) && isDragDropEndSucces == true)
-            {
-                int indexFrom = Int16.Parse(fieldFrom.Tag.ToString());
-                fieldFrom.Image = new Bitmap(Properties.Resources.empty_field);
-                gameBoard[indexFrom] = Constant.EMPTY_FIELD;
-                isDragDropEndSucces = false;
-                if (beatenPawnPosition != 0 && gameBoard[beatenPawnPosition].isPawn) //potem trzeba dodać damkę bo jest tylko dla pionka warunek
-                {
-                    Field tmp = gameBoard[beatenPawnPosition];
-                    PictureBox beatenPawnField = (PictureBox)Controls.Find("field_" + beatenPawnPosition, true)[0];
-                    beatenPawnField.Image = new Bitmap(Properties.Resources.empty_field);
-                    gameBoard[beatenPawnPosition] = Constant.EMPTY_FIELD;
-                    isDragDropEndSucces = false;
-
-                    if (tmp.color.Equals("white"))
-                    {
-                        forcedBeatingForPawnList = checkerLogic.DoesPawnHaveAnyBeating(gameBoard, "red"); //Tą funkcję trzeba wywołać dla jednego pola
-                        if (Extend.IsNullOrEmpty(forcedBeatingForPawnList))
-                            round = true;
-                        else
-                            round = false;
-                    }
-                    else
-                    {
-                        forcedBeatingForPawnList = checkerLogic.DoesPawnHaveAnyBeating(gameBoard, "white"); //Tą funkcję trzeba wywołać dla jednego pola
-                        if (Extend.IsNullOrEmpty(forcedBeatingForPawnList)) //jeśli nie ma bicia
-                            round = false;
-                        else
-                            round = true;
-                    }
-                    forcedBeatingForPawnList.Clear();
-                }
-            }
+            fieldFrom.DoDragDrop(data, DragDropEffects.Move);
         }
 
         private void DragEnteEvent(object sender, DragEventArgs e)
