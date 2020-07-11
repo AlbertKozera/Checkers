@@ -1,15 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Warcaby.Service.Human;
 
 namespace Warcaby.Forms
 {
-    class CheckerLogic
+    public class CommonLogic
     {
         public List<Tuple<int, int, int>> anyBeating = new List<Tuple<int, int, int>>();
+
+
+        public void CompleteTheDictionary()
+        {
+            ServiceTmp.gameBoard.Clear();
+            // Loading white pawns
+            for (int i = 2; i <= 24; i += 2)
+            {
+                ServiceTmp.gameBoard.Add(i, new Field(false, true, false, "white"));
+                if (i == 8) i--;
+                if (i == 15) i++;
+            }
+            // Loading empty fields
+            for (int i = 25; i <= 40; i += 2)
+            {
+                ServiceTmp.gameBoard.Add(i, new Field(true, false, false, ""));
+                if (i == 31) i++;
+            }
+            // Loading red pawns
+            for (int i = 41; i <= 63; i += 2)
+            {
+                ServiceTmp.gameBoard.Add(i, new Field(false, true, false, "red"));
+                if (i == 47) i++;
+                if (i == 56) i--;
+            }
+        }
 
         public List<Tuple<int, int, int>> DoesPawnHaveAnyBeating(Dictionary<int, Field> gameBoard, string currentPawnColor)
         {
