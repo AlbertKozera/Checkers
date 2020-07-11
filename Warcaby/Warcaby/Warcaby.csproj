@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CSharp\GameRules\CommonLogic.cs" />
+    <Compile Include="CSharp\GameRules\Human\CommonLogic.cs" />
     <Compile Include="CSharp\Config\Constant.cs" />
     <Compile Include="CSharp\Config\Extend.cs" />
     <Compile Include="CSharp\Dto\Field.cs" />
@@ -82,10 +82,10 @@
       <DependentUpon>UCOptions.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CSharp\GameRules\IPlayerLogic.cs" />
-    <Compile Include="CSharp\GameRules\PlayerRedLogic.cs" />
-    <Compile Include="CSharp\GameRules\PlayerWhiteLogic.cs" />
-    <Compile Include="CSharp\Service\Human\ServiceTmp.cs" />
+    <Compile Include="CSharp\GameRules\Human\IPlayerLogic.cs" />
+    <Compile Include="CSharp\GameRules\Human\PlayerRedLogic.cs" />
+    <Compile Include="CSharp\GameRules\Human\PlayerWhiteLogic.cs" />
+    <Compile Include="CSharp\Service\TypeOfGame.cs" />
     <EmbeddedResource Include="CSharp\Forms\UCTypeOfGame.resx">
       <DependentUpon>UCTypeOfGame.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +141,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CSharp\GameRules\Computer\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

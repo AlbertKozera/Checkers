@@ -7,16 +7,16 @@ using Warcaby.Service.Human;
 
 namespace Warcaby.Service
 {
-    public class PlayerRed : IPlayerLogic
+    public class PlayerWhiteLogic : IPlayerLogic
     {
-        CommonLogic checkerLogic = new CommonLogic();
+        CommonLogic commonLogic = new CommonLogic();
         PictureBox fieldFrom;
         PictureBox fieldTo;
         int indexFrom;
         int indexTo;
 
 
-        public PlayerRed(PictureBox fieldFrom, PictureBox fieldTo)
+        public PlayerWhiteLogic(PictureBox fieldFrom, PictureBox fieldTo)
         {
             this.fieldFrom = fieldFrom;
             this.fieldTo = fieldTo;
@@ -29,7 +29,6 @@ namespace Warcaby.Service
             if (MovingAPawnThatHasNoBeating_Condition())
             {
                 CheckerUpdateAfterMovingAPawn();
-                ServiceTmp.round = true;
             }
         }
 
@@ -37,7 +36,7 @@ namespace Warcaby.Service
         {
             if (MovingAPawnThatHasABeating_Condition())
             {
-                ServiceTmp.forcedBeatingForPawnList.ForEach(delegate (Tuple<int, int, int> forcedBeatingForPawnTuple)
+                TypeOfGame.forcedBeatingForPawnList.ForEach(delegate (Tuple<int, int, int> forcedBeatingForPawnTuple)
                 {
                     if (forcedBeatingForPawnTuple.Item2 == indexTo)
                     {
@@ -45,46 +44,47 @@ namespace Warcaby.Service
                     }
                 });
                 CheckForMoreBeating();
-                ServiceTmp.forcedBeatingForPawnList.Clear();
+                TypeOfGame.forcedBeatingForPawnList.Clear();
             }
         }
 
         public void CheckerUpdateAfterMovingAPawn()
         {
             fieldFrom.Image = new Bitmap(Properties.Resources.empty_field);
-            ServiceTmp.gameBoard[indexFrom] = Constant.EMPTY_FIELD;
-            fieldTo.Image = new Bitmap(Properties.Resources.pawn_red);
-            ServiceTmp.gameBoard[indexTo] = Constant.PAWN_RED;
+            TypeOfGame.gameBoard[indexFrom] = Constant.EMPTY_FIELD;
+            fieldTo.Image = new Bitmap(Properties.Resources.pawn_white);
+            TypeOfGame.gameBoard[indexTo] = Constant.PAWN_WHITE;
+            TypeOfGame.round = false;
         }
 
         public void CheckerUpdateAfterBeatingAPawn(int indexThrough)
         {
             fieldFrom.Image = new Bitmap(Properties.Resources.empty_field);
-            ServiceTmp.gameBoard[indexFrom] = Constant.EMPTY_FIELD;
+            TypeOfGame.gameBoard[indexFrom] = Constant.EMPTY_FIELD;
             PictureBox fieldThrough = (PictureBox) Application.OpenForms["MainStage"].Controls.Find(Constant.FIELD + indexThrough, true)[0];
             fieldThrough.Image = new Bitmap(Properties.Resources.empty_field);
-            ServiceTmp.gameBoard[indexThrough] = Constant.EMPTY_FIELD;
-            fieldTo.Image = new Bitmap(Properties.Resources.pawn_red);
-            ServiceTmp.gameBoard[indexTo] = Constant.PAWN_RED;
+            TypeOfGame.gameBoard[indexThrough] = Constant.EMPTY_FIELD;
+            fieldTo.Image = new Bitmap(Properties.Resources.pawn_white);
+            TypeOfGame.gameBoard[indexTo] = Constant.PAWN_WHITE;
         }
 
         public void CheckForMoreBeating()
         {
-            ServiceTmp.forcedBeatingForPawnList = checkerLogic.DoesPawnHaveAnyBeating(ServiceTmp.gameBoard, Constant.RED);
-            if (Extend.IsNullOrEmpty(ServiceTmp.forcedBeatingForPawnList))
-                ServiceTmp.round = true;
+            TypeOfGame.forcedBeatingForPawnList = commonLogic.DoesPawnHaveAnyBeating(TypeOfGame.gameBoard, Constant.WHITE);
+            if (Extend.IsNullOrEmpty(TypeOfGame.forcedBeatingForPawnList))
+                TypeOfGame.round = false;
             else
-                ServiceTmp.round = false;
+                TypeOfGame.round = true;
         }
 
         public Boolean MovingAPawnThatHasNoBeating_Condition()
         {
-            return (Extend.IsNullOrEmpty(ServiceTmp.forcedBeatingForPawnList)) && (indexTo == indexFrom - 7 || indexTo == indexFrom - 9) && (ServiceTmp.gameBoard[indexTo].isEmptyField);
+            return (TypeOfGame.gameBoard[indexFrom].color.Equals(Constant.WHITE)) && (Extend.IsNullOrEmpty(TypeOfGame.forcedBeatingForPawnList)) && (indexTo == indexFrom + 7 || indexTo == indexFrom + 9) && (TypeOfGame.gameBoard[indexTo].isEmptyField);
         }
 
         public Boolean MovingAPawnThatHasABeating_Condition()
         {
-            return (!Extend.IsNullOrEmpty(ServiceTmp.forcedBeatingForPawnList)) && (indexTo == indexFrom - 14 || indexTo == indexFrom - 18 || indexTo == indexFrom + 14 || indexTo == indexFrom + 18) && (ServiceTmp.gameBoard[indexTo].isEmptyField);
+            return (TypeOfGame.gameBoard[indexFrom].color.Equals(Constant.WHITE)) && (!Extend.IsNullOrEmpty(TypeOfGame.forcedBeatingForPawnList)) && (indexTo == indexFrom - 14 || indexTo == indexFrom - 18 || indexTo == indexFrom + 14 || indexTo == indexFrom + 18) && (TypeOfGame.gameBoard[indexTo].isEmptyField);
         }
     }
 }

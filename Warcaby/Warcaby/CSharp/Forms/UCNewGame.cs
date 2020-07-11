@@ -13,7 +13,7 @@ namespace Warcaby.Forms
 {
     public partial class UCNewGame : UserControl
     {
-        ServiceTmp serviceTmp = new ServiceTmp();
+        TypeOfGame serviceTmp = new TypeOfGame();
 
         public UCNewGame()
         {
@@ -48,7 +48,7 @@ namespace Warcaby.Forms
             PictureBox fieldTo = (PictureBox)sender;
             PictureBox fieldFrom = (PictureBox)data.Data;
 
-            serviceTmp.AkaMain(fieldFrom, fieldTo);
+            serviceTmp.GameChooser(fieldFrom, fieldTo);
         }
 
         private void MouseDownEvent(object sender, MouseEventArgs e)

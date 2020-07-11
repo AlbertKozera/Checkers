@@ -3,7 +3,7 @@
 
 namespace Warcaby.Service.Human
 {
-    interface IPlayerLogic
+    public interface IPlayerLogic
     {
         void MovingAPawnThatHasNoBeating(); // powtarza sie - niech zostanie ale ---> do przemyślenia
         void MovingAPawnThatHasABeating(); // powtarza sie - niech zostanie ale ---> do przemyślenia
