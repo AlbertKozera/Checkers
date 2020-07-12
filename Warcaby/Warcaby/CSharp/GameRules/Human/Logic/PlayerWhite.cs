@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Warcaby.Forms;
@@ -14,6 +15,7 @@ namespace Warcaby.Service
         PictureBox fieldTo;
         int indexFrom;
         int indexTo;
+        List<int> listOfPromotionalFieldsForWhite = new List<int>(new int[] { 57, 59, 61, 63 });
 
 
         public PlayerWhite(PictureBox fieldFrom, PictureBox fieldTo)
@@ -24,57 +26,39 @@ namespace Warcaby.Service
             indexTo = Int16.Parse(fieldTo.Tag.ToString());
         }
 
-        public void MovingAPawnThatHasNoBeating()
-        {
-            if (MovingAPawnThatHasNoBeating_Condition())
-            {
-                CheckerUpdateAfterMovingAPawn();
-            }
-        }
-
-        public void MovingAPawnThatHasABeating()
-        {
-            if (MovingAPawnThatHasABeating_Condition())
-            {
-                TypeOfGame.forcedBeatingForPawnList.ForEach(delegate (Tuple<int, int, int> forcedBeatingForPawnTuple)
-                {
-                    if (forcedBeatingForPawnTuple.Item2 == indexTo)
-                    {
-                        CheckerUpdateAfterBeatingAPawn(forcedBeatingForPawnTuple.Item3);
-                    }
-                });
-                CheckForMoreBeating();
-                TypeOfGame.forcedBeatingForPawnList.Clear();
-            }
-        }
-
         public void CheckerUpdateAfterMovingAPawn()
         {
-            fieldFrom.Image = new Bitmap(Properties.Resources.empty_field);
-            TypeOfGame.gameBoard[indexFrom] = Constant.EMPTY_FIELD;
-            fieldTo.Image = new Bitmap(Properties.Resources.pawn_white);
-            TypeOfGame.gameBoard[indexTo] = Constant.PAWN_WHITE;
-            TypeOfGame.round = false;
+            common.UpdateFieldTo(fieldTo, fieldFrom, indexTo, indexFrom);
+            common.UpdateFieldFrom(fieldFrom, indexFrom);
+            CheckPromotion();
+            FinishTheTurn();
         }
 
         public void CheckerUpdateAfterBeatingAPawn(int indexThrough)
         {
-            fieldFrom.Image = new Bitmap(Properties.Resources.empty_field);
-            TypeOfGame.gameBoard[indexFrom] = Constant.EMPTY_FIELD;
-            PictureBox fieldThrough = (PictureBox) Application.OpenForms["MainStage"].Controls.Find(Constant.FIELD + indexThrough, true)[0];
-            fieldThrough.Image = new Bitmap(Properties.Resources.empty_field);
-            TypeOfGame.gameBoard[indexThrough] = Constant.EMPTY_FIELD;
-            fieldTo.Image = new Bitmap(Properties.Resources.pawn_white);
-            TypeOfGame.gameBoard[indexTo] = Constant.PAWN_WHITE;
+            PictureBox fieldThrough = Extend.getFieldByName(Constant.FIELD + indexThrough);
+            common.UpdateFieldThrough(fieldThrough, indexThrough);
+            common.UpdateFieldTo(fieldTo, fieldFrom, indexTo, indexFrom);
+            common.UpdateFieldFrom(fieldFrom, indexFrom);
+            CheckPromotion();
         }
 
         public void CheckForMoreBeating()
         {
             TypeOfGame.forcedBeatingForPawnList = common.DoesPawnHaveAnyBeating(TypeOfGame.gameBoard, Constant.WHITE);
             if (Extend.IsNullOrEmpty(TypeOfGame.forcedBeatingForPawnList))
-                TypeOfGame.round = false;
+                FinishTheTurn();
             else
-                TypeOfGame.round = true;
+                RepeatTheTurn();
+        }
+
+        public void CheckPromotion()
+        {
+            if (CheckPromotion_Condition())
+            {
+                fieldTo.Image = new Bitmap(Properties.Resources.dame_white);
+                TypeOfGame.gameBoard[indexTo] = Constant.DAME_WHITE;
+            }
         }
 
         public Boolean MovingAPawnThatHasNoBeating_Condition()
@@ -85,6 +69,21 @@ namespace Warcaby.Service
         public Boolean MovingAPawnThatHasABeating_Condition()
         {
             return (TypeOfGame.gameBoard[indexFrom].color.Equals(Constant.WHITE)) && (!Extend.IsNullOrEmpty(TypeOfGame.forcedBeatingForPawnList)) && (indexTo == indexFrom - 14 || indexTo == indexFrom - 18 || indexTo == indexFrom + 14 || indexTo == indexFrom + 18) && (TypeOfGame.gameBoard[indexTo].isEmptyField);
+        }
+
+        public Boolean CheckPromotion_Condition()
+        {
+            return listOfPromotionalFieldsForWhite.Contains(indexTo);
+        }
+
+        public void FinishTheTurn()
+        {
+            TypeOfGame.whiteTurn = false;
+        }
+
+        public void RepeatTheTurn()
+        {
+            TypeOfGame.whiteTurn = true;
         }
     }
 }

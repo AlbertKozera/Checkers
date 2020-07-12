@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 using Warcaby.Service.Human;
 
 namespace Warcaby.Forms
@@ -38,10 +40,10 @@ namespace Warcaby.Forms
         {
             anyBeating.Clear();
             string enemyPawnColor;
-            
+
             if (currentPawnColor.Equals("white"))
                 enemyPawnColor = "red";
-            else 
+            else
                 enemyPawnColor = "white";
 
             Field fieldData;
@@ -62,14 +64,14 @@ namespace Warcaby.Forms
                         {
                             anyBeating.Add(new Tuple<int, int, int>(i, i - 14, i - 7));
                         }
-                    } 
+                    }
                     if (gameBoard.TryGetValue(i + 9, out fieldData) && fieldData.color.Equals(enemyPawnColor)) //prawy dolny róg
                     {
                         if (gameBoard.TryGetValue(i + 18, out fieldData) && fieldData.isEmptyField)
                         {
                             anyBeating.Add(new Tuple<int, int, int>(i, i + 18, i + 9));
                         }
-                    }  
+                    }
                     if (gameBoard.TryGetValue(i - 9, out fieldData) && fieldData.color.Equals(enemyPawnColor)) //lewy górny róg
                     {
                         if (gameBoard.TryGetValue(i - 18, out fieldData) && fieldData.isEmptyField)
@@ -104,6 +106,24 @@ namespace Warcaby.Forms
                 player.CheckForMoreBeating();
                 TypeOfGame.forcedBeatingForPawnList.Clear();
             }
+        }
+
+        public void UpdateFieldFrom(PictureBox fieldFrom, int indexFrom)
+        {
+            fieldFrom.Image = new Bitmap(Properties.Resources.empty_field);
+            TypeOfGame.gameBoard[indexFrom] = Constant.EMPTY_FIELD;
+        }
+
+        public void UpdateFieldThrough(PictureBox fieldThrough, int indexThrough)
+        {
+            fieldThrough.Image = new Bitmap(Properties.Resources.empty_field);
+            TypeOfGame.gameBoard[indexThrough] = Constant.EMPTY_FIELD;
+        }
+
+        public void UpdateFieldTo(PictureBox fieldTo, PictureBox fieldFrom, int indexTo, int indexFrom)
+        {
+            fieldTo.Image = fieldFrom.Image;
+            TypeOfGame.gameBoard[indexTo] = TypeOfGame.gameBoard[indexFrom];
         }
     }
 }

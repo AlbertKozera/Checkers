@@ -10,21 +10,21 @@ namespace Warcaby.Service.Human
     {
         public static Dictionary<int, Field> gameBoard = new Dictionary<int, Field>();
         public static List<Tuple<int, int, int>> forcedBeatingForPawnList;
-        public static Boolean round;
+        public static Boolean whiteTurn;
         Common commonLogic = new Common();
         
 
         public TypeOfGame()
         {
             commonLogic.CompleteTheDictionary();
-            round = true;
+            whiteTurn = true;
         }
 
         public void GameChooser(PictureBox fieldFrom, PictureBox fieldTo)
         {
             PlayerWhite playerWhite = new PlayerWhite(fieldFrom, fieldTo);
             PlayerRed playerRed = new PlayerRed(fieldFrom, fieldTo);
-            if (round)
+            if (whiteTurn)
                 Gameplay(playerWhite, Constant.WHITE, fieldTo);
             else
                 Gameplay(playerRed, Constant.RED, fieldTo);

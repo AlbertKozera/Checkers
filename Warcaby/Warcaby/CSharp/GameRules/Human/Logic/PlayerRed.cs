@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Warcaby.Forms;
@@ -14,7 +15,9 @@ namespace Warcaby.Service
         PictureBox fieldTo;
         int indexFrom;
         int indexTo;
-        
+        List<int> listOfPromotionalFieldsForRed = new List<int>(new int[] { 2, 4, 6, 8 });
+
+
         public PlayerRed(PictureBox fieldFrom, PictureBox fieldTo)
         {
             this.fieldFrom = fieldFrom;
@@ -25,31 +28,37 @@ namespace Warcaby.Service
 
         public void CheckerUpdateAfterMovingAPawn()
         {
-            fieldFrom.Image = new Bitmap(Properties.Resources.empty_field);
-            TypeOfGame.gameBoard[indexFrom] = Constant.EMPTY_FIELD;
-            fieldTo.Image = new Bitmap(Properties.Resources.pawn_red);
-            TypeOfGame.gameBoard[indexTo] = Constant.PAWN_RED;
-            TypeOfGame.round = true;
+            common.UpdateFieldTo(fieldTo, fieldFrom, indexTo, indexFrom);
+            common.UpdateFieldFrom(fieldFrom, indexFrom);
+            CheckPromotion();
+            FinishTheTurn();
         }
 
         public void CheckerUpdateAfterBeatingAPawn(int indexThrough)
         {
-            fieldFrom.Image = new Bitmap(Properties.Resources.empty_field);
-            TypeOfGame.gameBoard[indexFrom] = Constant.EMPTY_FIELD;
-            PictureBox fieldThrough = (PictureBox) Application.OpenForms["MainStage"].Controls.Find(Constant.FIELD + indexThrough, true)[0];
-            fieldThrough.Image = new Bitmap(Properties.Resources.empty_field);
-            TypeOfGame.gameBoard[indexThrough] = Constant.EMPTY_FIELD;
-            fieldTo.Image = new Bitmap(Properties.Resources.pawn_red);
-            TypeOfGame.gameBoard[indexTo] = Constant.PAWN_RED;
+            PictureBox fieldThrough = Extend.getFieldByName(Constant.FIELD + indexThrough);
+            common.UpdateFieldThrough(fieldThrough, indexThrough);
+            common.UpdateFieldTo(fieldTo, fieldFrom, indexTo, indexFrom);
+            common.UpdateFieldFrom(fieldFrom, indexFrom);
+            CheckPromotion();
         }
 
         public void CheckForMoreBeating()
         {
             TypeOfGame.forcedBeatingForPawnList = common.DoesPawnHaveAnyBeating(TypeOfGame.gameBoard, Constant.RED);
             if (Extend.IsNullOrEmpty(TypeOfGame.forcedBeatingForPawnList))
-                TypeOfGame.round = true;
+                FinishTheTurn();
             else
-                TypeOfGame.round = false;
+                RepeatTheTurn();
+        }
+
+        public void CheckPromotion()
+        {
+            if (CheckPromotion_Condition())
+            {
+                fieldTo.Image = new Bitmap(Properties.Resources.dame_red);
+                TypeOfGame.gameBoard[indexTo] = Constant.DAME_RED;
+            }
         }
 
         public Boolean MovingAPawnThatHasNoBeating_Condition()
@@ -60,6 +69,21 @@ namespace Warcaby.Service
         public Boolean MovingAPawnThatHasABeating_Condition()
         {
             return (TypeOfGame.gameBoard[indexFrom].color.Equals(Constant.RED)) && (!Extend.IsNullOrEmpty(TypeOfGame.forcedBeatingForPawnList)) && (indexTo == indexFrom - 14 || indexTo == indexFrom - 18 || indexTo == indexFrom + 14 || indexTo == indexFrom + 18) && (TypeOfGame.gameBoard[indexTo].isEmptyField);
+        }
+
+        public Boolean CheckPromotion_Condition()
+        {
+            return listOfPromotionalFieldsForRed.Contains(indexTo);
+        }
+
+        public void FinishTheTurn()
+        {
+            TypeOfGame.whiteTurn = true;
+        }
+
+        public void RepeatTheTurn()
+        {
+            TypeOfGame.whiteTurn = false;
         }
     }
 }
