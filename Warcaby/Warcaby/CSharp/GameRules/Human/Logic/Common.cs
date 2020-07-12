@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using Warcaby.CSharp.Dto;
 using Warcaby.Service.Human;
 
 namespace Warcaby.Forms
@@ -86,6 +87,7 @@ namespace Warcaby.Forms
 
         public void MovingAPawnThatHasNoBeating(IPlayer player)
         {
+            MovingDameThatHasNoBeating(TypeOfGame.gameBoard, 29);
             if (player.MovingAPawnThatHasNoBeating_Condition())
             {
                 player.CheckerUpdateAfterMovingAPawn();
@@ -124,6 +126,89 @@ namespace Warcaby.Forms
         {
             fieldTo.Image = fieldFrom.Image;
             TypeOfGame.gameBoard[indexTo] = TypeOfGame.gameBoard[indexFrom];
+        }
+
+        public DameData MovingDameThatHasNoBeating(Dictionary<int, Field> gameBoard, int indexFrom)
+        {
+
+            List<int> freeFieldsList = new List<int>();
+            Dictionary<int, List<int>> anyBeating = new Dictionary<int, List<int>>();
+            Field fieldData;
+            int freeFields = indexFrom;
+            while (gameBoard.TryGetValue(freeFields += 7, out fieldData)) {
+                if (fieldData.isEmptyField)
+                    freeFieldsList.Add(freeFields);
+                else if ((fieldData.isPawn || fieldData.isDame) && fieldData.color.Equals("red"))
+                {
+                    int tmp = freeFields;
+                    List<int> tmpList = new List<int>();
+                    while (gameBoard.TryGetValue(freeFields += 7, out fieldData) && fieldData.isEmptyField)
+                    {
+                        tmpList.Add(freeFields);
+                    }
+                    anyBeating.Add(tmp, tmpList);
+                    break;
+                }
+            }
+
+            freeFields = indexFrom;
+
+            while (gameBoard.TryGetValue(freeFields += 9, out fieldData))
+            {
+                if (fieldData.isEmptyField)
+                    freeFieldsList.Add(freeFields);
+                else if ((fieldData.isPawn || fieldData.isDame) && fieldData.color.Equals("red"))
+                {
+                    int tmp = freeFields;
+                    List<int> tmpList = new List<int>();
+                    while (gameBoard.TryGetValue(freeFields += 9, out fieldData) && fieldData.isEmptyField)
+                    {
+                        tmpList.Add(freeFields);
+                    }
+                    anyBeating.Add(tmp, tmpList);
+                    break;
+                }
+                    
+            }
+
+            freeFields = indexFrom;
+
+            while (gameBoard.TryGetValue(freeFields -= 7, out fieldData))
+            {
+                if (fieldData.isEmptyField)
+                    freeFieldsList.Add(freeFields);
+                else if ((fieldData.isPawn || fieldData.isDame) && fieldData.color.Equals("red"))
+                {
+                    int tmp = freeFields;
+                    List<int> tmpList = new List<int>();
+                    while (gameBoard.TryGetValue(freeFields -= 7, out fieldData) && fieldData.isEmptyField)
+                    {
+                        tmpList.Add(freeFields);
+                    }
+                    anyBeating.Add(tmp, tmpList);
+                    break;
+                }
+            }
+
+            freeFields = indexFrom;
+
+            while (gameBoard.TryGetValue(freeFields -= 9, out fieldData))
+            {
+                if (fieldData.isEmptyField)
+                    freeFieldsList.Add(freeFields);
+                else if ((fieldData.isPawn || fieldData.isDame) && fieldData.color.Equals("red"))
+                {
+                    int tmp = freeFields;
+                    List<int> tmpList = new List<int>();
+                    while (gameBoard.TryGetValue(freeFields -= 9, out fieldData) && fieldData.isEmptyField)
+                    {
+                        tmpList.Add(freeFields);
+                    }
+                    anyBeating.Add(tmp, tmpList);
+                    break;
+                }
+            }
+            return new DameData(freeFieldsList, anyBeating);
         }
     }
 }

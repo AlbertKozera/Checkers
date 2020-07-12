@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CSharp\Dto\DameData.cs" />
     <Compile Include="CSharp\GameRules\Human\Logic\Common.cs" />
     <Compile Include="CSharp\Config\Constant.cs" />
     <Compile Include="CSharp\Config\Extend.cs" />
