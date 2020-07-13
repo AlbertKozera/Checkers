@@ -36,6 +36,9 @@
     <ApplicationIcon>
     </ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Warcaby.EntryPoint</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -145,7 +148,7 @@
     <Content Include="Resources\Image\pawn_white.png" />
     <Content Include="Resources\Image\Icon.ico" />
     <Content Include="Resources\OptionsState.txt">
-    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
