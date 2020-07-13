@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSharp\Config\Initializer.cs" />
-    <Compile Include="CSharp\GameRules\Human\Logic\Common.cs" />
     <Compile Include="CSharp\Config\Constant.cs" />
     <Compile Include="CSharp\Config\Extend.cs" />
     <Compile Include="CSharp\Config\Field.cs" />
@@ -82,6 +81,8 @@
     <Compile Include="CSharp\Forms\UCOptions.Designer.cs">
       <DependentUpon>UCOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="CSharp\GameRules\Human\Logic\Dame.cs" />
+    <Compile Include="CSharp\GameRules\Human\Logic\Pawn.cs" />
     <Compile Include="CSharp\GameRules\Human\Logic\Rule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CSharp\GameRules\Human\Logic\GameLogic.cs" />

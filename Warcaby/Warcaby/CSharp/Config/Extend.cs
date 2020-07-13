@@ -28,12 +28,23 @@ namespace Warcaby.Forms
 
         public static string GetEnemyPlayerColor(string color)
         {
-            return color.Equals(Constant.WHITE) ? Constant.RED : Constant.WHITE;
+            return color.Equals(Constant.WHITE)
+                ? Constant.RED
+                : Constant.WHITE;
+        }
+
+        public static Field GetDameField(string color)
+        {
+            return color.Equals(Constant.WHITE)
+                ? Constant.DAME_WHITE
+                : Constant.DAME_RED;
         }
 
         public static Image GetDameImage(string color)
         {
-            return color.Equals(Constant.WHITE) ? new Bitmap(Properties.Resources.dame_white) : new Bitmap(Properties.Resources.dame_red);
+            return color.Equals(Constant.WHITE)
+                ? new Bitmap(Properties.Resources.dame_white)
+                : new Bitmap(Properties.Resources.dame_red);
         }
     }
 }

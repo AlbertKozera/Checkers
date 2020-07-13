@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Warcaby.CSharp.Config;
+using Warcaby.CSharp.GameRules.Human.Logic;
 using Warcaby.Forms;
 
 
@@ -13,7 +14,8 @@ namespace Warcaby.Service.Human
         public static List<Tuple<int, int, int>> forcedBeatingForPawnsList;
         public static Dictionary<Tuple<int, int>, List<int>> forcedBeatingForDamesList;
         public static Boolean whiteTurn;
-        Common common = new Common();
+        Pawn pawn = new Pawn();
+        Dame dame = new Dame();
         
 
         public GameService()
@@ -37,9 +39,10 @@ namespace Warcaby.Service.Human
 
         public void Gameplay(GameLogic player, string color)
         {
-            forcedBeatingForPawnsList = common.GetDataAboutBeatingsForPawns(gameBoard, color);
-            //forcedBeatingForDamesList = common.GetDataAboutBeatingsForDames(color);
+            forcedBeatingForPawnsList = pawn.GetDataAboutBeatings(color);
+            forcedBeatingForDamesList = dame.GetDataAboutBeatings(color);
             player.MovingAPawnThatHasNoBeating();
+            player.MovingADameThatHasNoBeating();
             player.MovingAPawnThatHasABeating();
         }
     }
