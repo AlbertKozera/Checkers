@@ -81,7 +81,7 @@
             this.Text = "Warcaby";
             this.Load += new System.EventHandler(this.OnLoad);
             this.ResumeLayout(false);
-
+            this.Icon = (Properties.Resources.Icon);
         }
 
         #endregion
