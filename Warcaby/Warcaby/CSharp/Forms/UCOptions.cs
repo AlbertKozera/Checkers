@@ -21,7 +21,7 @@ namespace Warcaby.Forms
         {
             InitializeComponent();
             filePath = Directory.GetParent(Directory.GetParent(filePath).FullName).FullName;
-            filePath += @"\Resources\threadOption.txt";
+            filePath += @"\Resources\OptionsState.txt";
         }
         private void EditLine(string newText, string fileName, int line) //Funkcja odpowiednia za edycje wskazanej linii
         {
@@ -42,7 +42,7 @@ namespace Warcaby.Forms
         {
             if (checkBoxThread.Checked)
             {
-                EditLine("True", filePath, 1);
+                EditLine("Checked", filePath, 1);
             } else 
             {
                 EditLine("False", filePath, 1);
@@ -52,7 +52,7 @@ namespace Warcaby.Forms
         private void UCOptions_Load(object sender, EventArgs e)
         {
             string readFirstLine = File.ReadLines(filePath).First();
-            if (readFirstLine == "True")
+            if (readFirstLine == "Checked")
             {
                 checkBoxThread.Checked = true;
             } 
@@ -61,7 +61,7 @@ namespace Warcaby.Forms
                 checkBoxThread.Checked = false;
             }
             string readSecondLine = File.ReadLines(filePath).Skip(1).First();
-            if (readSecondLine == "First")
+            if (readSecondLine == "Checked")
             {
                 checkBoxStartingGame.Checked = true;
             } else
@@ -74,10 +74,10 @@ namespace Warcaby.Forms
         {
             if (checkBoxStartingGame.Checked)
             {
-                EditLine("First", filePath, 2);
+                EditLine("Checked", filePath, 2);
             } else
             {
-                EditLine("Second", filePath, 2);
+                EditLine("Unchecked", filePath, 2);
             }
         }
     }

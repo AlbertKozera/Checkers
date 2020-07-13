@@ -46,55 +46,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\CheckerLogic.cs" />
-    <Compile Include="Forms\Constant.cs" />
-    <Compile Include="Forms\Extend.cs" />
-    <Compile Include="Forms\Field.cs" />
-    <Compile Include="Forms\UCTypeOfGame.cs">
+    <Compile Include="CSharp\Config\Initializer.cs" />
+    <Compile Include="CSharp\Config\Constant.cs" />
+    <Compile Include="CSharp\Config\Extend.cs" />
+    <Compile Include="CSharp\Config\Field.cs" />
+    <Compile Include="CSharp\Forms\UCTypeOfGame.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\UCTypeOfGame.Designer.cs">
+    <Compile Include="CSharp\Forms\UCTypeOfGame.Designer.cs">
       <DependentUpon>UCTypeOfGame.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainStage.cs">
+    <Compile Include="CSharp\Forms\MainStage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainStage.Designer.cs">
+    <Compile Include="CSharp\Forms\MainStage.Designer.cs">
       <DependentUpon>MainStage.cs</DependentUpon>
     </Compile>
-    <Compile Include="EntryPoint.cs" />
-    <Compile Include="Forms\UCMainMenu.cs">
+    <Compile Include="CSharp\EntryPoint.cs" />
+    <Compile Include="CSharp\Forms\UCMainMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\UCMainMenu.Designer.cs">
+    <Compile Include="CSharp\Forms\UCMainMenu.Designer.cs">
       <DependentUpon>UCMainMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UCNewGame.cs">
+    <Compile Include="CSharp\Forms\UCNewGame.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\UCNewGame.Designer.cs">
+    <Compile Include="CSharp\Forms\UCNewGame.Designer.cs">
       <DependentUpon>UCNewGame.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UCOptions.cs">
+    <Compile Include="CSharp\Forms\UCOptions.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\UCOptions.Designer.cs">
+    <Compile Include="CSharp\Forms\UCOptions.Designer.cs">
       <DependentUpon>UCOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="CSharp\GameRules\Human\Logic\Dame.cs" />
+    <Compile Include="CSharp\GameRules\Human\Logic\Pawn.cs" />
+    <Compile Include="CSharp\GameRules\Human\Logic\Rule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\UCTypeOfGame.resx">
+    <Compile Include="CSharp\GameRules\Human\Logic\GameLogic.cs" />
+    <Compile Include="CSharp\Service\GameService.cs" />
+    <EmbeddedResource Include="CSharp\Forms\UCTypeOfGame.resx">
       <DependentUpon>UCTypeOfGame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainStage.resx">
+    <EmbeddedResource Include="CSharp\Forms\MainStage.resx">
       <DependentUpon>MainStage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UCMainMenu.resx">
+    <EmbeddedResource Include="CSharp\Forms\UCMainMenu.resx">
       <DependentUpon>UCMainMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UCNewGame.resx">
+    <EmbeddedResource Include="CSharp\Forms\UCNewGame.resx">
       <DependentUpon>UCNewGame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UCOptions.resx">
+    <EmbeddedResource Include="CSharp\Forms\UCOptions.resx">
       <DependentUpon>UCOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -121,21 +126,24 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\background.jpg" />
+    <None Include="Resources\Image\background.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\dame_highlighted_red.png" />
-    <Content Include="Resources\dame_highlighted_white.png" />
-    <Content Include="Resources\dame_red.png" />
-    <Content Include="Resources\dame_white.png" />
-    <Content Include="Resources\empty_field.png" />
-    <Content Include="Resources\pawn_highlighted_red.png" />
-    <Content Include="Resources\pawn_highlighted_white.png" />
-    <Content Include="Resources\pawn_red.png" />
-    <Content Include="Resources\pawn_white.png" />
-    <Content Include="Resources\threadOption.txt">
+    <Content Include="Resources\Image\dame_highlighted_red.png" />
+    <Content Include="Resources\Image\dame_highlighted_white.png" />
+    <Content Include="Resources\Image\dame_red.png" />
+    <Content Include="Resources\Image\dame_white.png" />
+    <Content Include="Resources\Image\empty_field.png" />
+    <Content Include="Resources\Image\pawn_highlighted_red.png" />
+    <Content Include="Resources\Image\pawn_highlighted_white.png" />
+    <Content Include="Resources\Image\pawn_red.png" />
+    <Content Include="Resources\Image\pawn_white.png" />
+    <Content Include="Resources\OptionsState.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CSharp\GameRules\Computer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
