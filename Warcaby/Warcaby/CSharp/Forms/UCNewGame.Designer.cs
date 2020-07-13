@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Security.AccessControl;
 using System.Windows.Forms;
 
@@ -67,6 +68,10 @@ namespace Warcaby.Forms
             this.field_59 = new System.Windows.Forms.PictureBox();
             this.field_61 = new System.Windows.Forms.PictureBox();
             this.field_63 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Czas = new System.Windows.Forms.Label();
             this.fieldsContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.field_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_4)).BeginInit();
@@ -100,6 +105,7 @@ namespace Warcaby.Forms
             ((System.ComponentModel.ISupportInitialize)(this.field_59)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_61)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_63)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelNewGame
@@ -578,11 +584,54 @@ namespace Warcaby.Forms
             this.field_63.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
             this.field_63.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Warcaby.Properties.Resources.pawn_white;
+            this.pictureBox1.Location = new System.Drawing.Point(906, 88);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(75, 77);
+            this.pictureBox1.TabIndex = 53;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Tag = "8";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(903, 72);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 13);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "Tura:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.CausesValidation = false;
+            this.label2.Location = new System.Drawing.Point(903, 185);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.TabIndex = 55;
+            this.label2.Text = "Czas:";
+            // 
+            // label4
+            // 
+            this.Czas.AutoSize = true;
+            this.Czas.Location = new System.Drawing.Point(903, 198);
+            this.Czas.Name = "label4";
+            this.Czas.Size = new System.Drawing.Size(0, 13);
+            this.Czas.TabIndex = 57;
+            this.Czas.Click += new System.EventHandler(this.label4_Click);
+            // 
             // UCNewGame
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.Czas);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.fieldsContainer);
             this.Controls.Add(this.buttonBackToMenu);
             this.Controls.Add(this.labelNewGame);
@@ -622,9 +671,20 @@ namespace Warcaby.Forms
             ((System.ComponentModel.ISupportInitialize)(this.field_59)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_61)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_63)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -664,5 +724,9 @@ namespace Warcaby.Forms
         private System.Windows.Forms.PictureBox field_59;
         private System.Windows.Forms.PictureBox field_61;
         private System.Windows.Forms.PictureBox field_63;
+        private PictureBox pictureBox1;
+        private Label label1;
+        private Label label2;
+        private Label Czas;
     }
 }
