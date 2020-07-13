@@ -13,7 +13,7 @@ namespace Warcaby.Forms
 {
     public partial class UCNewGame : UserControl
     {
-        TypeOfGame serviceTmp = new TypeOfGame();
+        GameService serviceTmp = new GameService();
 
         public UCNewGame()
         {
