@@ -45,7 +45,7 @@ namespace Warcaby.Forms
                 EditLine("Checked", filePath, 1);
             } else 
             {
-                EditLine("False", filePath, 1);
+                EditLine("Unchecked", filePath, 1);
             }
         }
 
