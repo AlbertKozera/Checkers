@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Warcaby.CSharp.GameRules.Human.Logic;
 using Warcaby.Forms;
 using Warcaby.Service.Human;
 
 
-namespace Warcaby.Service
+namespace Warcaby.CSharp.GameRules.Human.Logic
 {
     public class GameLogic
     {
         PictureBox fieldFrom;
         PictureBox fieldTo;
         int indexFrom;
+        public static int indexThrough;
         int indexTo;
         string COLOR;
         Pawn pawn = new Pawn();
@@ -49,21 +48,21 @@ namespace Warcaby.Service
 
         public void MovingAPawnThatHasABeating()
         {
-            if (Rule.PawnWantToExecuteBeatProperly(indexFrom, indexTo, COLOR))
+            if (Rule.ThePawnWantToExecuteBeatProperly(indexFrom, indexTo, COLOR))
             {
-                GameService.forcedBeatingForPawnsList.ForEach(delegate (Tuple<int, int, int> forcedBeatingForPawnTuple)
-                {
-                    if (forcedBeatingForPawnTuple.Item2 == indexTo)
-                    {
-                        CheckerUpdateAfterBeat(forcedBeatingForPawnTuple.Item3);
-                        CheckIfThePawnHasReachedThePromotionField();
-                    }
-                });
+                CheckerUpdateAfterBeat();
                 CheckForMoreBeating();
-                GameService.forcedBeatingForPawnsList.Clear();
             }
         }
 
+        public void MovingADameThatHasABeating()
+        {
+            if (Rule.TheDameWantToExecuteBeatProperly(indexFrom, indexTo, COLOR))
+            {
+                CheckerUpdateAfterBeat();
+                CheckForMoreBeating();
+            }
+        }
 
         public void CheckerUpdateAfterMove()
         {
@@ -71,19 +70,21 @@ namespace Warcaby.Service
             UpdateFieldFrom();
         }
 
-        public void CheckerUpdateAfterBeat(int indexThrough)
+        public void CheckerUpdateAfterBeat()
         {
-            PictureBox fieldThrough = Extend.GetFieldByIndex(indexThrough);
-            UpdateFieldThrough(fieldThrough, indexThrough);
+            UpdateFieldThrough();
             UpdateFieldTo();
-            UpdateFieldFrom();       
+            UpdateFieldFrom();
         }
 
         public void CheckForMoreBeating()
         {
             GameService.forcedBeatingForPawnsList = pawn.GetDataAboutBeatings(COLOR);
             if (Extend.IsNullOrEmpty(GameService.forcedBeatingForPawnsList))
+            {
+                CheckIfThePawnHasReachedThePromotionField();
                 FinishTheTurn(COLOR);
+            }
             else
                 RepeatTheTurn(COLOR);
         }
@@ -92,8 +93,7 @@ namespace Warcaby.Service
         {
             if (Rule.ThePawnStoodInThePromotionField(indexTo, COLOR))
             {
-                fieldTo.Image = Extend.GetDameImage(COLOR);
-                GameService.gameBoard[indexTo] = Extend.GetDameField(COLOR);
+                PromoteThePawn();
             }
         }
 
@@ -103,8 +103,9 @@ namespace Warcaby.Service
             GameService.gameBoard[indexFrom] = Constant.EMPTY_FIELD;
         }
 
-        public void UpdateFieldThrough(PictureBox fieldThrough, int indexThrough)
+        public void UpdateFieldThrough()
         {
+            PictureBox fieldThrough = Extend.GetFieldByIndex(indexThrough);
             fieldThrough.Image = new Bitmap(Properties.Resources.empty_field);
             GameService.gameBoard[indexThrough] = Constant.EMPTY_FIELD;
         }
@@ -113,6 +114,12 @@ namespace Warcaby.Service
         {
             fieldTo.Image = fieldFrom.Image;
             GameService.gameBoard[indexTo] = GameService.gameBoard[indexFrom];
+        }
+
+        public void PromoteThePawn()
+        {
+            fieldTo.Image = Extend.GetDameImage(COLOR);
+            GameService.gameBoard[indexTo] = Extend.GetDameField(COLOR);
         }
 
         public void FinishTheTurn(string color)

@@ -44,6 +44,7 @@ namespace Warcaby.Service.Human
             player.MovingAPawnThatHasNoBeating();
             player.MovingADameThatHasNoBeating();
             player.MovingAPawnThatHasABeating();
+            player.MovingADameThatHasABeating();
         }
     }
 }
