@@ -126,19 +126,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\background.jpg" />
+    <None Include="Resources\Image\background.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\dame_highlighted_red.png" />
-    <Content Include="Resources\dame_highlighted_white.png" />
-    <Content Include="Resources\dame_red.png" />
-    <Content Include="Resources\dame_white.png" />
-    <Content Include="Resources\empty_field.png" />
-    <Content Include="Resources\pawn_highlighted_red.png" />
-    <Content Include="Resources\pawn_highlighted_white.png" />
-    <Content Include="Resources\pawn_red.png" />
-    <Content Include="Resources\pawn_white.png" />
-    <Content Include="Resources\threadOption.txt">
+    <Content Include="Resources\Image\dame_highlighted_red.png" />
+    <Content Include="Resources\Image\dame_highlighted_white.png" />
+    <Content Include="Resources\Image\dame_red.png" />
+    <Content Include="Resources\Image\dame_white.png" />
+    <Content Include="Resources\Image\empty_field.png" />
+    <Content Include="Resources\Image\pawn_highlighted_red.png" />
+    <Content Include="Resources\Image\pawn_highlighted_white.png" />
+    <Content Include="Resources\Image\pawn_red.png" />
+    <Content Include="Resources\Image\pawn_white.png" />
+    <Content Include="Resources\OptionsState.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
