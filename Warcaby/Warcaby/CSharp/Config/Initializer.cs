@@ -1,5 +1,5 @@
 ﻿using Warcaby.Forms;
-using Warcaby.Service.Human;
+using Warcaby.Service.Rules;
 
 namespace Warcaby.CSharp.Config
 {

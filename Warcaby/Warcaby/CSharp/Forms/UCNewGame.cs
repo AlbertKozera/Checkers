@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Warcaby.Service.Human;
+using Warcaby.Service.Rules;
 
 namespace Warcaby.Forms
 {

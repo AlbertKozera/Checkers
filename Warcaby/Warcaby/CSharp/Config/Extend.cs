@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
-using Warcaby.Service.Human;
+using Warcaby.Service.Rules;
 
 namespace Warcaby.Forms
 {
