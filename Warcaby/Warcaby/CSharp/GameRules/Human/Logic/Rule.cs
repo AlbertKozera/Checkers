@@ -80,6 +80,11 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
             return false;
         }
 
+        public static Boolean CheckIfAnyPieceIsInTheProcessOfMultipleBeatings(int index)
+        {
+            return index.Equals(0) ? false : true;
+        }
+
         public static Boolean ThePawnHasABeat(string myColor, int index)
         {
             return ThePawnHasABeatOnSpecificDiagonal(myColor, index, Constant.TOP_LEFT)
@@ -122,6 +127,13 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
                 }
             }
             return false;
+        }
+
+        public static Boolean ThePieceHaveABeat(string color, int indexTo)
+        {
+            return GameService.gameBoard[indexTo].isPawn
+            ? Rule.ThePawnHasABeat(color, indexTo)
+            : Rule.TheDameHasABeat(color, indexTo);
         }
 
         public static Boolean ThePawnStoodInThePromotionField(int index, string color)
