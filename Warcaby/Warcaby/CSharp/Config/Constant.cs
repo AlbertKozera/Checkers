@@ -4,6 +4,10 @@ namespace Warcaby.Forms
 {
     public sealed class Constant
     {
+        public static readonly int TOP_LEFT = -9;
+        public static readonly int TOP_RIGHT = -7;
+        public static readonly int DOWN_LEFT = +7;
+        public static readonly int DOWN_RIGHT = +9;
         public static readonly string WHITE = "white";
         public static readonly string RED = "red";
         public static readonly string EMPTY = "";

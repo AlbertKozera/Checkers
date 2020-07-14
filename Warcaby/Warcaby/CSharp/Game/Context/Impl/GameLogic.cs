@@ -1,21 +1,22 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 using Warcaby.Forms;
-using Warcaby.Service.Human;
+using Warcaby.Service.Context;
 
 
-namespace Warcaby.CSharp.GameRules.Human.Logic
+namespace Warcaby.CSharp.Game.Context
 {
     public class GameLogic
     {
         PictureBox fieldFrom;
         PictureBox fieldTo;
         int indexFrom;
+        public static int indexWhichHaveMultipleBeats;
         public static int indexThrough;
         int indexTo;
         string COLOR;
         Pawn pawn = new Pawn();
+        Dame dame = new Dame();
 
 
         public GameLogic(PictureBox fieldFrom, PictureBox fieldTo, int indexFrom, int indexTo, string COLOR)
@@ -48,7 +49,15 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
 
         public void MovingAPawnThatHasABeating()
         {
-            if (Rule.ThePawnWantToExecuteBeatProperly(indexFrom, indexTo, COLOR))
+            if (Rule.CheckIfAnyPieceIsInTheProcessOfMultipleBeatings(indexWhichHaveMultipleBeats))
+            {
+                if (Rule.ThePawnWantToExecuteMultipleBeatProperly(indexFrom, indexTo, indexWhichHaveMultipleBeats, COLOR))
+                {
+                    CheckerUpdateAfterBeat();
+                    CheckForMoreBeating();
+                }
+            }
+            else if (Rule.ThePawnWantToExecuteBeatProperly(indexFrom, indexTo, COLOR))
             {
                 CheckerUpdateAfterBeat();
                 CheckForMoreBeating();
@@ -57,7 +66,15 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
 
         public void MovingADameThatHasABeating()
         {
-            if (Rule.TheDameWantToExecuteBeatProperly(indexFrom, indexTo, COLOR))
+            if (Rule.CheckIfAnyPieceIsInTheProcessOfMultipleBeatings(indexWhichHaveMultipleBeats))
+            {
+                if (Rule.TheDameWantToExecuteMultipleBeatProperly(indexFrom, indexTo, indexWhichHaveMultipleBeats, COLOR))
+                {
+                    CheckerUpdateAfterBeat();
+                    CheckForMoreBeating();
+                }
+            }
+            else if (Rule.TheDameWantToExecuteBeatProperly(indexFrom, indexTo, COLOR))
             {
                 CheckerUpdateAfterBeat();
                 CheckForMoreBeating();
@@ -80,13 +97,19 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
         public void CheckForMoreBeating()
         {
             GameService.forcedBeatingForPawnsList = pawn.GetDataAboutBeatings(COLOR);
-            if (Extend.IsNullOrEmpty(GameService.forcedBeatingForPawnsList))
+            GameService.forcedBeatingForDamesList = dame.GetDataAboutBeatings(COLOR);
+            if (Rule.ThePieceHaveABeat(COLOR, indexTo))
             {
-                CheckIfThePawnHasReachedThePromotionField();
-                FinishTheTurn(COLOR);
+                indexWhichHaveMultipleBeats = indexTo;
+                RepeatTheTurn(COLOR);
             }
             else
-                RepeatTheTurn(COLOR);
+            {
+                if (Rule.SelectedPieceIsPawn(indexTo))
+                    CheckIfThePawnHasReachedThePromotionField();
+                indexWhichHaveMultipleBeats = 0;
+                FinishTheTurn(COLOR);
+            }
         }
 
         public void CheckIfThePawnHasReachedThePromotionField()
