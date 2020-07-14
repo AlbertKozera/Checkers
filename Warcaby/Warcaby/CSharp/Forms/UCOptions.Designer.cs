@@ -99,7 +99,7 @@ namespace Warcaby.Forms
             this.checkBoxStartingGame.Size = new System.Drawing.Size(20, 20);
             this.checkBoxStartingGame.TabIndex = 5;
             this.checkBoxStartingGame.UseVisualStyleBackColor = true;
-            this.checkBoxStartingGame.CheckedChanged += new System.EventHandler(this.checkBoxStartingGame_CheckedChanged_1);
+            this.checkBoxStartingGame.CheckedChanged += new System.EventHandler(this.CheckBoxStartingGame_CheckedChanged);
             this.checkBoxStartingGame.MouseCaptureChanged += new System.EventHandler(this.CheckBoxStartingGame_CheckedChanged);
             // 
             // UCOptions
@@ -120,11 +120,6 @@ namespace Warcaby.Forms
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
-
-        private void checkBoxStartingGame_CheckedChanged_1(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion

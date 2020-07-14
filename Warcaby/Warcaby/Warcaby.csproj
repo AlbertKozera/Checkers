@@ -148,9 +148,6 @@
     <Content Include="Resources\Image\pawn_red.png" />
     <Content Include="Resources\Image\pawn_white.png" />
     <Content Include="Resources\Image\Icon.ico" />
-    <Content Include="Resources\OptionsState.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CSharp\GameRules\Computer\" />
