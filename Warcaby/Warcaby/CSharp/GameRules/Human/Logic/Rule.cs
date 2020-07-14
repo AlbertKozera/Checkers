@@ -56,9 +56,10 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
 
         public static Boolean ThePawnWasBeatingAccordingToTheRules(int indexFrom, int indexTo)
         {
+            Pawn pawn = new Pawn();
             foreach (Tuple<int, int, int> tuple in GameService.forcedBeatingForPawnsList)
             {
-                if (tuple.Item3.Equals(indexTo) && tuple.Item1.Equals(indexFrom))
+                if (tuple.Item1.Equals(indexFrom) && tuple.Item2.Equals(pawn.GetIndexThrough(indexFrom, indexTo)) && tuple.Item3.Equals(indexTo))
                 {
                     GameLogic.indexThrough = tuple.Item2;
                     return true;
@@ -67,11 +68,12 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
             return false;
         }
 
-        public static Boolean TheDameWasBeatingAccordingToTheRules(int indexFrom, int indexTo)
+        public static Boolean TheDameWasBeatingAccordingToTheRules(int indexFrom, int indexTo, string color)
         {
+            Dame dame = new Dame();
             foreach (KeyValuePair<Tuple<int, int>, List<int>> entry in GameService.forcedBeatingForDamesList)
             {
-                if (entry.Value.Contains(indexTo) && entry.Key.Item1.Equals(indexFrom))
+                if (entry.Key.Item1.Equals(indexFrom) && entry.Key.Item2.Equals(dame.GetIndexThrough(color, indexFrom, indexTo)) && entry.Value.Contains(indexTo))
                 {
                     GameLogic.indexThrough = entry.Key.Item2;
                     return true;
@@ -168,8 +170,8 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
             return Rule.SelectedPieceColorIs(indexFrom, color)
                 && Rule.SelectedPieceIsPawn(indexFrom)
                 && Rule.ThereAreForcedBeatingsForPawns()
-                && Rule.ThePawnWasBeatingAccordingToTheRules(indexFrom, indexTo)
-                && Rule.TheFieldWhereThePieceHasBeenDroppedIsEmpty(indexTo);
+                && Rule.ThePawnWasBeatingAccordingToTheRules(indexFrom, indexTo);
+                //&& Rule.TheFieldWhereThePieceHasBeenDroppedIsEmpty(indexTo);
         }
 
         public static Boolean TheDameWantToExecuteBeatProperly(int indexFrom, int indexTo, string color)
@@ -177,8 +179,28 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
             return Rule.SelectedPieceColorIs(indexFrom, color)
                 && Rule.SelectedPieceIsDame(indexFrom)
                 && Rule.ThereAreForcedBeatingsForDames()
-                && Rule.TheDameWasBeatingAccordingToTheRules(indexFrom, indexTo)
-                && Rule.TheFieldWhereThePieceHasBeenDroppedIsEmpty(indexTo);
+                && Rule.TheDameWasBeatingAccordingToTheRules(indexFrom, indexTo, color);
+                //&& Rule.TheFieldWhereThePieceHasBeenDroppedIsEmpty(indexTo);
+        }
+
+        public static Boolean ThePawnWantToExecuteMultipleBeatProperly(int indexFrom, int indexTo, int indexWhichHaveMultipleBeats, string color)
+        {
+            return Rule.SelectedPieceColorIs(indexFrom, color)
+                && Rule.SelectedPieceIsPawn(indexFrom)
+                && Rule.ThereAreForcedBeatingsForPawns()
+                && indexFrom == indexWhichHaveMultipleBeats
+                && Rule.ThePawnWasBeatingAccordingToTheRules(indexFrom, indexTo);
+            //&& Rule.TheFieldWhereThePieceHasBeenDroppedIsEmpty(indexTo);
+        }
+
+        public static Boolean TheDameWantToExecuteMultipleBeatProperly(int indexFrom, int indexTo, int indexWhichHaveMultipleBeats, string color)
+        {
+            return Rule.SelectedPieceColorIs(indexFrom, color)
+                && Rule.SelectedPieceIsDame(indexFrom)
+                && Rule.ThereAreForcedBeatingsForDames()
+                && indexFrom == indexWhichHaveMultipleBeats
+                && Rule.TheDameWasBeatingAccordingToTheRules(indexFrom, indexTo, color);
+            //&& Rule.TheFieldWhereThePieceHasBeenDroppedIsEmpty(indexTo);
         }
     }
 }

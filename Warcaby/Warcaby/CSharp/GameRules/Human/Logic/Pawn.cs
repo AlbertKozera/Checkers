@@ -38,5 +38,16 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
                 }
             }
         }
+
+        public int GetIndexThrough(int indexFrom, int indexTo)
+        {
+            int largerIndex = Math.Max(indexFrom, indexTo);
+            int smallerIndex = Math.Min(indexFrom, indexTo);
+            int difference = (largerIndex - smallerIndex) / 2;
+            if (difference == 9)
+                return largerIndex - 9;
+            else
+                return largerIndex - 7;
+        }
     }
 }

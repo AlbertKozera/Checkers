@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
+using Warcaby.Service.Human;
 
 namespace Warcaby.Forms
 {
@@ -16,6 +17,10 @@ namespace Warcaby.Forms
             return (Dictionary == null || Dictionary.Count < 1);
         }
 
+        public static bool IsEven(int number)
+        {
+            return number % 2 == 0;
+        }
         public static PictureBox GetFieldByIndex(int index)
         {
             return (PictureBox)Application.OpenForms["MainStage"].Controls.Find("field_" + index, true)[0];
@@ -46,5 +51,7 @@ namespace Warcaby.Forms
                 ? new Bitmap(Properties.Resources.dame_white)
                 : new Bitmap(Properties.Resources.dame_red);
         }
+
+
     }
 }

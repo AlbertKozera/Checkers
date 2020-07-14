@@ -76,5 +76,38 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
                 }
             }
         }
+
+        public int GetIndexThrough(string myColor, int indexFrom, int indexTo)
+        {
+            string enemyColor = Extend.GetEnemyPlayerColor(myColor);
+            int largerIndex = Math.Max(indexFrom, indexTo);
+            int smallerIndex = Math.Min(indexFrom, indexTo);
+            int difference = (largerIndex - smallerIndex);
+            if (difference % 9 == 0)
+                difference = 9;
+            else
+                difference = 7;
+
+            if (largerIndex == indexFrom && difference == 9)
+                return GetIndexThroughByDiagonal(enemyColor, indexFrom, Constant.TOP_LEFT);
+            else if (largerIndex == indexFrom && difference == 7)
+                return GetIndexThroughByDiagonal(enemyColor, indexFrom, Constant.TOP_RIGHT);
+            else if (largerIndex == indexTo && difference == 9)
+                return GetIndexThroughByDiagonal(enemyColor, indexFrom, Constant.DOWN_RIGHT);
+            else if (largerIndex == indexTo && difference == 7)
+                return GetIndexThroughByDiagonal(enemyColor, indexFrom, Constant.DOWN_LEFT);
+            return 0;
+        }
+
+        public int GetIndexThroughByDiagonal(string enemyColor, int indexFrom, int diagonal)
+        {
+            while (GameService.gameBoard.ContainsKey(indexFrom))
+            {
+                if (GameService.gameBoard[indexFrom].color.Equals(enemyColor))
+                    return indexFrom;
+                indexFrom += diagonal;
+            }
+            return 0;
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
         PictureBox fieldFrom;
         PictureBox fieldTo;
         int indexFrom;
-        public static int indexFrom_multipleBeatings;
+        public static int indexWhichHaveMultipleBeats;
         public static int indexThrough;
         int indexTo;
         string COLOR;
@@ -49,9 +49,9 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
 
         public void MovingAPawnThatHasABeating()
         {
-            if (Rule.CheckIfAnyPieceIsInTheProcessOfMultipleBeatings(indexFrom_multipleBeatings))
+            if (Rule.CheckIfAnyPieceIsInTheProcessOfMultipleBeatings(indexWhichHaveMultipleBeats))
             {
-                if (Rule.ThePawnWantToExecuteBeatProperly(indexFrom_multipleBeatings, indexTo, COLOR))
+                if (Rule.ThePawnWantToExecuteMultipleBeatProperly(indexFrom, indexTo, indexWhichHaveMultipleBeats, COLOR))
                 {
                     CheckerUpdateAfterBeat();
                     CheckForMoreBeating();
@@ -66,9 +66,9 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
 
         public void MovingADameThatHasABeating()
         {
-            if (Rule.CheckIfAnyPieceIsInTheProcessOfMultipleBeatings(indexFrom_multipleBeatings))
+            if (Rule.CheckIfAnyPieceIsInTheProcessOfMultipleBeatings(indexWhichHaveMultipleBeats))
             {
-                if (Rule.TheDameWantToExecuteBeatProperly(indexFrom_multipleBeatings, indexTo, COLOR))
+                if (Rule.TheDameWantToExecuteMultipleBeatProperly(indexFrom, indexTo, indexWhichHaveMultipleBeats, COLOR))
                 {
                     CheckerUpdateAfterBeat();
                     CheckForMoreBeating();
@@ -100,14 +100,14 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
             GameService.forcedBeatingForDamesList = dame.GetDataAboutBeatings(COLOR);
             if (Rule.ThePieceHaveABeat(COLOR, indexTo))
             {
-                indexFrom_multipleBeatings = indexTo;
+                indexWhichHaveMultipleBeats = indexTo;
                 RepeatTheTurn(COLOR);
             }
             else
             {
                 if (Rule.SelectedPieceIsPawn(indexTo))
                     CheckIfThePawnHasReachedThePromotionField();
-                indexFrom_multipleBeatings = 0;
+                indexWhichHaveMultipleBeats = 0;
                 FinishTheTurn(COLOR);
             }
         }
