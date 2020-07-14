@@ -28,7 +28,7 @@ namespace Warcaby.CSharp.Service
             return optionFilePath;
         }
 
-        private void EditLine(string newText, string fileName, int line) //Funkcja odpowiedziana za edycje wskazanej linii w pliku
+        private void EditLine(string newText, string fileName, int line) //Funkcja odpowiedzialna za edycje wskazanej linii w pliku
         {
             string[] readLine = File.ReadAllLines(fileName);
             readLine[line - 1] = newText;
