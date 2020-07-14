@@ -88,11 +88,11 @@
     <Compile Include="CSharp\Forms\UCOptions.Designer.cs">
       <DependentUpon>UCOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="CSharp\GameRules\Human\Logic\Dame.cs" />
-    <Compile Include="CSharp\GameRules\Human\Logic\Pawn.cs" />
-    <Compile Include="CSharp\GameRules\Human\Logic\Rule.cs" />
+    <Compile Include="CSharp\Game\Context\Impl\Dame.cs" />
+    <Compile Include="CSharp\Game\Context\Impl\Pawn.cs" />
+    <Compile Include="CSharp\Game\Context\Rule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CSharp\GameRules\Human\Logic\GameLogic.cs" />
+    <Compile Include="CSharp\Game\Context\Impl\GameLogic.cs" />
     <Compile Include="CSharp\Service\GameService.cs" />
     <EmbeddedResource Include="CSharp\Forms\UCTypeOfGame.resx">
       <DependentUpon>UCTypeOfGame.cs</DependentUpon>
@@ -152,7 +152,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CSharp\GameRules\Computer\" />
+    <Folder Include="CSharp\Game\Computer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

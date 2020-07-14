@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Warcaby.Forms;
-using Warcaby.Service.Human;
+using Warcaby.Service.Context;
 
-namespace Warcaby.CSharp.GameRules.Human.Logic
+namespace Warcaby.CSharp.Game.Context
 {
     public class Rule
     {
@@ -171,7 +171,6 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
                 && Rule.SelectedPieceIsPawn(indexFrom)
                 && Rule.ThereAreForcedBeatingsForPawns()
                 && Rule.ThePawnWasBeatingAccordingToTheRules(indexFrom, indexTo);
-                //&& Rule.TheFieldWhereThePieceHasBeenDroppedIsEmpty(indexTo);
         }
 
         public static Boolean TheDameWantToExecuteBeatProperly(int indexFrom, int indexTo, string color)
@@ -180,7 +179,6 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
                 && Rule.SelectedPieceIsDame(indexFrom)
                 && Rule.ThereAreForcedBeatingsForDames()
                 && Rule.TheDameWasBeatingAccordingToTheRules(indexFrom, indexTo, color);
-                //&& Rule.TheFieldWhereThePieceHasBeenDroppedIsEmpty(indexTo);
         }
 
         public static Boolean ThePawnWantToExecuteMultipleBeatProperly(int indexFrom, int indexTo, int indexWhichHaveMultipleBeats, string color)
@@ -190,7 +188,6 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
                 && Rule.ThereAreForcedBeatingsForPawns()
                 && indexFrom == indexWhichHaveMultipleBeats
                 && Rule.ThePawnWasBeatingAccordingToTheRules(indexFrom, indexTo);
-            //&& Rule.TheFieldWhereThePieceHasBeenDroppedIsEmpty(indexTo);
         }
 
         public static Boolean TheDameWantToExecuteMultipleBeatProperly(int indexFrom, int indexTo, int indexWhichHaveMultipleBeats, string color)
@@ -200,7 +197,6 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
                 && Rule.ThereAreForcedBeatingsForDames()
                 && indexFrom == indexWhichHaveMultipleBeats
                 && Rule.TheDameWasBeatingAccordingToTheRules(indexFrom, indexTo, color);
-            //&& Rule.TheFieldWhereThePieceHasBeenDroppedIsEmpty(indexTo);
         }
     }
 }

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Warcaby.Forms;
-using Warcaby.Service.Human;
+using Warcaby.Service.Context;
 
-namespace Warcaby.CSharp.GameRules.Human.Logic
+
+namespace Warcaby.CSharp.Game.Context
 {
     public class Dame
     {
@@ -46,7 +44,7 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
             return allowedMoves;
         }
 
-        private void SearchDiagonalForBeatings(string myColor, int diagonal)
+        public void SearchDiagonalForBeatings(string myColor, int diagonal)
         {
             string enemyColor = Extend.GetEnemyPlayerColor(myColor);
             Field field;

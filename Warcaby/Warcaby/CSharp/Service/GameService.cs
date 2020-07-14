@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Warcaby.CSharp.Config;
-using Warcaby.CSharp.GameRules.Human.Logic;
+using Warcaby.CSharp.Game.Context;
 using Warcaby.Forms;
 
 
-namespace Warcaby.Service.Human
+namespace Warcaby.Service.Context
 {
     public class GameService
     {

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Warcaby.Forms;
-using Warcaby.Service.Human;
+using Warcaby.Service.Context;
 
-namespace Warcaby.CSharp.GameRules.Human.Logic
+
+namespace Warcaby.CSharp.Game.Context
 {
     public class Pawn
     {
@@ -20,7 +21,7 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
             return anyBeatings;
         }
 
-        private void SearchDiagonalForBeatings(string myColor, int diagonal)
+        public void SearchDiagonalForBeatings(string myColor, int diagonal)
         {
             Field fieldData;
             string enemyColor = Extend.GetEnemyPlayerColor(myColor);
