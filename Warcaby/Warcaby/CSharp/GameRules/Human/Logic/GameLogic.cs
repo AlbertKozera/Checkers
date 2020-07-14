@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 using Warcaby.Forms;
 using Warcaby.Service.Human;
@@ -16,6 +15,7 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
         int indexTo;
         string COLOR;
         Pawn pawn = new Pawn();
+        Dame dame = new Dame();
 
 
         public GameLogic(PictureBox fieldFrom, PictureBox fieldTo, int indexFrom, int indexTo, string COLOR)
@@ -80,9 +80,11 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
         public void CheckForMoreBeating()
         {
             GameService.forcedBeatingForPawnsList = pawn.GetDataAboutBeatings(COLOR);
-            if (Extend.IsNullOrEmpty(GameService.forcedBeatingForPawnsList))
+            GameService.forcedBeatingForDamesList = dame.GetDataAboutBeatings(COLOR);
+            if (!Rule.ThePawnHasABeat(COLOR, indexTo))
             {
-                CheckIfThePawnHasReachedThePromotionField();
+                if(Rule.SelectedPieceIsPawn(indexTo))
+                    CheckIfThePawnHasReachedThePromotionField();
                 FinishTheTurn(COLOR);
             }
             else

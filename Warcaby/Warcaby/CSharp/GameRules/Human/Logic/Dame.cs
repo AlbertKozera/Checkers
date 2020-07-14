@@ -12,34 +12,31 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
     {
         public Dictionary<Tuple<int, int>, List<int>> anyBeatings = new Dictionary<Tuple<int, int>, List<int>>();
         public List<int> allowedMoves = new List<int>();
-        public const int TOP_LEFT = -9;
-        public const int TOP_RIGHT = -7;
-        public const int DOWN_LEFT = +7;
-        public const int DOWN_RIGHT = +9;
+
 
         public Dictionary<Tuple<int, int>, List<int>> GetDataAboutBeatings(string myColor)
         {
             anyBeatings.Clear();
-            SearchDiagonalForBeatings(myColor, TOP_RIGHT);
-            SearchDiagonalForBeatings(myColor, DOWN_LEFT);
-            SearchDiagonalForBeatings(myColor, TOP_LEFT);
-            SearchDiagonalForBeatings(myColor, DOWN_RIGHT);
+            SearchDiagonalForBeatings(myColor, Constant.TOP_RIGHT);
+            SearchDiagonalForBeatings(myColor, Constant.DOWN_LEFT);
+            SearchDiagonalForBeatings(myColor, Constant.TOP_LEFT);
+            SearchDiagonalForBeatings(myColor, Constant.DOWN_RIGHT);
             return anyBeatings;
         }
 
         public List<int> GetAllowedMoves(int index)
         {
             allowedMoves.Clear();
-            SearchDiagonalForEmptyFields(index, TOP_RIGHT);
-            SearchDiagonalForEmptyFields(index, DOWN_LEFT);
-            SearchDiagonalForEmptyFields(index, TOP_LEFT);
-            SearchDiagonalForEmptyFields(index, DOWN_RIGHT);
+            SearchDiagonalForEmptyFields(index, Constant.TOP_RIGHT);
+            SearchDiagonalForEmptyFields(index, Constant.DOWN_LEFT);
+            SearchDiagonalForEmptyFields(index, Constant.TOP_LEFT);
+            SearchDiagonalForEmptyFields(index, Constant.DOWN_RIGHT);
             return allowedMoves;
         }
 
-        private List<int> SearchDiagonalForEmptyFields(int index, int corner)
+        private List<int> SearchDiagonalForEmptyFields(int index, int diagonal)
         {
-            while (GameService.gameBoard.TryGetValue(index += corner, out Field field))
+            while (GameService.gameBoard.TryGetValue(index += diagonal, out Field field))
             {
                 if (field.isEmptyField)
                     allowedMoves.Add(index);
@@ -49,7 +46,7 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
             return allowedMoves;
         }
 
-        private void SearchDiagonalForBeatings(string myColor, int corner)
+        private void SearchDiagonalForBeatings(string myColor, int diagonal)
         {
             string enemyColor = Extend.GetEnemyPlayerColor(myColor);
             Field field;
@@ -59,15 +56,15 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
                 {
                     int currentIndex = index;
                     int indexFrom = index;
-                    while (GameService.gameBoard.TryGetValue(currentIndex += corner, out field))
+                    while (GameService.gameBoard.TryGetValue(currentIndex += diagonal, out field))
                     {
-                        if (field.color.Equals(enemyColor) && (GameService.gameBoard.TryGetValue(currentIndex + corner, out Field fieldBehind)))
+                        if (field.color.Equals(enemyColor) && (GameService.gameBoard.TryGetValue(currentIndex + diagonal, out Field fieldBehind)))
                         {
                             if (fieldBehind.isEmptyField)
                             {
                                 List<int> indexToList = new List<int>();
                                 int indexThrough = currentIndex;
-                                while (GameService.gameBoard.TryGetValue(currentIndex += corner, out field) && field.isEmptyField)
+                                while (GameService.gameBoard.TryGetValue(currentIndex += diagonal, out field) && field.isEmptyField)
                                     indexToList.Add(currentIndex);
                                 anyBeatings.Add(Tuple.Create(indexFrom, indexThrough), indexToList);
                                 break;

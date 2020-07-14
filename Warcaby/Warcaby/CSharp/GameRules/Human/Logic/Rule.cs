@@ -31,6 +31,11 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
             return !Extend.IsNullOrEmpty(GameService.forcedBeatingForDamesList);
         }
 
+        public static Boolean ThereAreForcedBeatings()
+        {
+            return ThereAreForcedBeatingsForPawns() || ThereAreForcedBeatingsForDames();
+        }
+
         public static Boolean TheFieldWhereThePieceHasBeenDroppedIsEmpty(int index)
         {
             return GameService.gameBoard[index].isEmptyField;
@@ -75,6 +80,50 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
             return false;
         }
 
+        public static Boolean ThePawnHasABeat(string myColor, int index)
+        {
+            return ThePawnHasABeatOnSpecificDiagonal(myColor, index, Constant.TOP_LEFT)
+                || ThePawnHasABeatOnSpecificDiagonal(myColor, index, Constant.TOP_RIGHT)
+                || ThePawnHasABeatOnSpecificDiagonal(myColor, index, Constant.DOWN_LEFT)
+                || ThePawnHasABeatOnSpecificDiagonal(myColor, index, Constant.DOWN_RIGHT);
+        }
+
+        public static Boolean ThePawnHasABeatOnSpecificDiagonal(string myColor, int index, int diagonal)
+        {
+            Field fieldData;
+            string enemyColor = Extend.GetEnemyPlayerColor(myColor);
+            return (GameService.gameBoard.TryGetValue(index, out fieldData) && fieldData.color.Equals(myColor))
+                && (GameService.gameBoard.TryGetValue(index + diagonal, out fieldData) && fieldData.color.Equals(enemyColor))
+                && (GameService.gameBoard.TryGetValue(index + (2 * diagonal), out fieldData) && fieldData.isEmptyField);
+        }
+
+        public static Boolean TheDameHasABeat(string myColor, int index)
+        {
+            return TheDameHasABeatOnSpecificDiagonal(myColor, index, Constant.TOP_LEFT)
+                || TheDameHasABeatOnSpecificDiagonal(myColor, index, Constant.TOP_RIGHT)
+                || TheDameHasABeatOnSpecificDiagonal(myColor, index, Constant.DOWN_LEFT)
+                || TheDameHasABeatOnSpecificDiagonal(myColor, index, Constant.DOWN_RIGHT);
+        }
+
+        public static Boolean TheDameHasABeatOnSpecificDiagonal(string myColor, int index, int diagonal)
+        {
+            Field field;
+            Field fieldData;
+            string enemyColor = Extend.GetEnemyPlayerColor(myColor);
+            if (Rule.SelectedPieceIsDame(index) && Rule.SelectedPieceColorIs(index, myColor))
+            {
+                int currentIndex = index;
+                while (GameService.gameBoard.TryGetValue(currentIndex += diagonal, out field))
+                {
+                    if (field.color.Equals(enemyColor) && (GameService.gameBoard.TryGetValue(currentIndex + diagonal, out Field fieldBehind)))
+                    {
+                        return fieldBehind.isEmptyField ? true : false;
+                    }
+                }
+            }
+            return false;
+        }
+
         public static Boolean ThePawnStoodInThePromotionField(int index, string color)
         {
             List<int> listOfPromotionalFieldsForWhite = new List<int>(new int[] { 57, 59, 61, 63 });
@@ -88,8 +137,7 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
         {
             return Rule.SelectedPieceColorIs(indexFrom, color)
                 && Rule.SelectedPieceIsPawn(indexFrom)
-                && !Rule.ThereAreForcedBeatingsForPawns()
-                && !Rule.ThereAreForcedBeatingsForDames()
+                && !Rule.ThereAreForcedBeatings()
                 && Rule.ThePawnWasMovedAccordingToTheRules(indexFrom, indexTo, color)
                 && Rule.TheFieldWhereThePieceHasBeenDroppedIsEmpty(indexTo);
         }
@@ -98,8 +146,7 @@ namespace Warcaby.CSharp.GameRules.Human.Logic
         {
             return Rule.SelectedPieceColorIs(indexFrom, color)
                 && Rule.SelectedPieceIsDame(indexFrom)
-                && !Rule.ThereAreForcedBeatingsForPawns()
-                && !Rule.ThereAreForcedBeatingsForDames()
+                && !Rule.ThereAreForcedBeatings()
                 && Rule.TheDameWasMovedAccordingToTheRules(indexFrom, indexTo)
                 && Rule.TheFieldWhereThePieceHasBeenDroppedIsEmpty(indexTo);
         }
