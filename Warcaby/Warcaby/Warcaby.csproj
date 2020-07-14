@@ -84,6 +84,7 @@
     <Compile Include="CSharp\GameRules\Human\Logic\Dame.cs" />
     <Compile Include="CSharp\GameRules\Human\Logic\Pawn.cs" />
     <Compile Include="CSharp\GameRules\Human\Logic\Rule.cs" />
+    <Compile Include="CSharp\Service\OptionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CSharp\GameRules\Human\Logic\GameLogic.cs" />
     <Compile Include="CSharp\Service\GameService.cs" />
@@ -138,9 +139,6 @@
     <Content Include="Resources\Image\pawn_highlighted_white.png" />
     <Content Include="Resources\Image\pawn_red.png" />
     <Content Include="Resources\Image\pawn_white.png" />
-    <Content Include="Resources\OptionsState.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CSharp\GameRules\Computer\" />
