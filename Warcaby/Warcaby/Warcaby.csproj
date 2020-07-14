@@ -84,7 +84,7 @@
     <Compile Include="CSharp\GameRules\Human\Logic\Dame.cs" />
     <Compile Include="CSharp\GameRules\Human\Logic\Pawn.cs" />
     <Compile Include="CSharp\GameRules\Human\Logic\Rule.cs" />
-    <Compile Include="CSharp\Service\OptionService.cs" />
+    <Compile Include="CSharp\Service\OptionsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CSharp\GameRules\Human\Logic\GameLogic.cs" />
     <Compile Include="CSharp\Service\GameService.cs" />

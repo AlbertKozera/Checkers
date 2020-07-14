@@ -9,7 +9,7 @@ using Warcaby.Forms;
 
 namespace Warcaby.CSharp.Service
 {
-    public class OptionService
+    public class OptionsService
     {
 
         public string CreateFileAndGetPath(string optionFilePath)
@@ -28,7 +28,7 @@ namespace Warcaby.CSharp.Service
             return optionFilePath;
         }
 
-        private void EditLine(string newText, string fileName, int line) //Funkcja odpowiednia za edycje wskazanej linii
+        private void EditLine(string newText, string fileName, int line) //Funkcja odpowiedziana za edycje wskazanej linii w pliku
         {
             string[] readLine = File.ReadAllLines(fileName);
             readLine[line - 1] = newText;
