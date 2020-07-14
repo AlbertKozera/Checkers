@@ -1,4 +1,6 @@
-﻿namespace Warcaby.Forms
+﻿using System;
+
+namespace Warcaby.Forms
 {
     partial class UCOptions
     {
@@ -61,7 +63,7 @@
             // 
             this.optionsQuestion.AutoSize = true;
             this.optionsQuestion.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.optionsQuestion.Location = new System.Drawing.Point(163, 196);
+            this.optionsQuestion.Location = new System.Drawing.Point(163, 137);
             this.optionsQuestion.Name = "optionsQuestion";
             this.optionsQuestion.Size = new System.Drawing.Size(593, 31);
             this.optionsQuestion.TabIndex = 2;
@@ -69,12 +71,11 @@
             // 
             // checkBoxThread
             // 
-            this.checkBoxThread.AutoSize = true;
             this.checkBoxThread.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBoxThread.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBoxThread.Location = new System.Drawing.Point(782, 209);
+            this.checkBoxThread.Location = new System.Drawing.Point(782, 150);
             this.checkBoxThread.Name = "checkBoxThread";
-            this.checkBoxThread.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxThread.Size = new System.Drawing.Size(20, 20);
             this.checkBoxThread.TabIndex = 3;
             this.checkBoxThread.UseVisualStyleBackColor = true;
             this.checkBoxThread.CheckedChanged += new System.EventHandler(this.checkBoxThreadYes_CheckedChanged);
@@ -84,7 +85,7 @@
             // 
             this.optionsLabel2.AutoSize = true;
             this.optionsLabel2.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.optionsLabel2.Location = new System.Drawing.Point(163, 300);
+            this.optionsLabel2.Location = new System.Drawing.Point(163, 217);
             this.optionsLabel2.Name = "optionsLabel2";
             this.optionsLabel2.Size = new System.Drawing.Size(486, 31);
             this.optionsLabel2.TabIndex = 4;
@@ -92,12 +93,13 @@
             // 
             // checkBoxStartingGame
             // 
-            this.checkBoxStartingGame.AutoSize = true;
-            this.checkBoxStartingGame.Location = new System.Drawing.Point(782, 317);
+            this.checkBoxStartingGame.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBoxStartingGame.Location = new System.Drawing.Point(782, 228);
             this.checkBoxStartingGame.Name = "checkBoxStartingGame";
-            this.checkBoxStartingGame.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxStartingGame.Size = new System.Drawing.Size(20, 20);
             this.checkBoxStartingGame.TabIndex = 5;
             this.checkBoxStartingGame.UseVisualStyleBackColor = true;
+            this.checkBoxStartingGame.CheckedChanged += new System.EventHandler(this.checkBoxStartingGame_CheckedChanged_1);
             this.checkBoxStartingGame.MouseCaptureChanged += new System.EventHandler(this.CheckBoxStartingGame_CheckedChanged);
             // 
             // UCOptions
@@ -105,6 +107,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BackgroundImage = global::Warcaby.Properties.Resources.background;
             this.Controls.Add(this.checkBoxStartingGame);
             this.Controls.Add(this.optionsLabel2);
             this.Controls.Add(this.checkBoxThread);
@@ -117,6 +120,11 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void checkBoxStartingGame_CheckedChanged_1(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

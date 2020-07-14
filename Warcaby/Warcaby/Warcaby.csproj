@@ -32,6 +32,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Warcaby.EntryPoint</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -93,6 +100,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CSharp\Forms\MainStage.resx">
       <DependentUpon>MainStage.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CSharp\Forms\UCMainMenu.resx">
       <DependentUpon>UCMainMenu.cs</DependentUpon>
@@ -139,6 +147,10 @@
     <Content Include="Resources\Image\pawn_highlighted_white.png" />
     <Content Include="Resources\Image\pawn_red.png" />
     <Content Include="Resources\Image\pawn_white.png" />
+    <Content Include="Resources\Image\Icon.ico" />
+    <Content Include="Resources\OptionsState.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CSharp\GameRules\Computer\" />
