@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
+using Warcaby.Service.Context;
 
 namespace Warcaby.Forms
 {
@@ -23,6 +24,11 @@ namespace Warcaby.Forms
         public static PictureBox GetFieldByIndex(int index)
         {
             return (PictureBox)Application.OpenForms["MainStage"].Controls.Find("field_" + index, true)[0];
+        }
+
+        public static Control GetControlByName(string name)
+        {
+            return Application.OpenForms["MainStage"].Controls.Find(name, true)[0];
         }
 
         public static int GetIndexFromField(PictureBox field)
@@ -52,5 +58,48 @@ namespace Warcaby.Forms
         }
 
 
+        public static void ChangeImageOfTurn(string color)
+        {
+            PictureBox pictureBox = (PictureBox)GetControlByName("turn");
+            if (color.Equals(Constant.WHITE))
+                pictureBox.Image = new Bitmap(Properties.Resources.pawn_red);
+            else
+                pictureBox.Image = new Bitmap(Properties.Resources.pawn_white);
+        }
+
+        public static int GetNumberOfPawns(string color)
+        {
+            int i = 0;
+            foreach (Field field in GameService.gameBoard.Values)
+            {
+                if (field.isPawn && field.color.Equals(color))
+                    i++;
+            }
+            return i;
+        }
+
+        public static int GetNumberOfDames(string color)
+        {
+            int i = 0;
+            foreach (Field field in GameService.gameBoard.Values)
+            {
+                if (field.isDame && field.color.Equals(color))
+                    i++;
+            }
+            return i;
+        }
+
+        public static void UpdateGuiCounters()
+        {
+            Label label;
+            label = (Label)GetControlByName("numberOfPawnsForWhite");
+            label.Text = GetNumberOfPawns(Constant.WHITE).ToString();
+            label = (Label)GetControlByName("numberOfPawnsForRed");
+            label.Text = GetNumberOfPawns(Constant.RED).ToString();
+            label = (Label)GetControlByName("numberOfDamesForWhite");
+            label.Text = GetNumberOfDames(Constant.WHITE).ToString();
+            label = (Label)GetControlByName("numberOfDamesForRed");
+            label.Text = GetNumberOfDames(Constant.RED).ToString();
+        }
     }
 }

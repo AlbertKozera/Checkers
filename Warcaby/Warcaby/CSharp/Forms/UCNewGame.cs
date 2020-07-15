@@ -55,6 +55,6 @@ namespace Warcaby.Forms
         private void DragEnteEvent(object sender, DragEventArgs e)
         {
             e.Effect = e.AllowedEffect;
-        }                   
+        }
     }
 }
