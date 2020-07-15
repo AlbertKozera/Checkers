@@ -32,7 +32,7 @@ namespace Warcaby.CSharp.Game.Context
             return allowedMoves;
         }
 
-        private List<int> SearchDiagonalForEmptyFields(int index, int diagonal)
+        public List<int> SearchDiagonalForEmptyFields(int index, int diagonal)
         {
             while (GameService.gameBoard.TryGetValue(index += diagonal, out Field field))
             {
