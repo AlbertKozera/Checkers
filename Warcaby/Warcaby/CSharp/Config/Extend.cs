@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
+using Warcaby.CSharp.Game.Context;
 using Warcaby.Service.Context;
 
 namespace Warcaby.Forms
@@ -100,6 +101,23 @@ namespace Warcaby.Forms
             label.Text = GetNumberOfDames(Constant.WHITE).ToString();
             label = (Label)GetControlByName("numberOfDamesForRed");
             label.Text = GetNumberOfDames(Constant.RED).ToString();
+        }
+
+        public static void CheckIfAnyoneAlreadyWon()
+        {
+            Label label = (Label)GetControlByName("winner");
+            if (Rule.WhoIsTheWinner().Equals(Constant.WHITE))
+            {
+                label.Text = "WYGRYWA BIAŁY";
+                label.Left = 79;
+                label.BringToFront();
+            }
+            else if (Rule.WhoIsTheWinner().Equals(Constant.RED))
+            {
+                label.Text = "WYGRYWA CZERWONY";
+                label.Left = 9;
+                label.BringToFront();
+            }
         }
     }
 }

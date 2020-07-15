@@ -132,6 +132,7 @@ namespace Warcaby.CSharp.Game.Context
             fieldThrough.Image = new Bitmap(Properties.Resources.empty_field);
             GameService.gameBoard[indexThrough] = Constant.EMPTY_FIELD;
             Extend.UpdateGuiCounters();
+            Extend.CheckIfAnyoneAlreadyWon();
         }
 
         public void UpdateFieldTo()

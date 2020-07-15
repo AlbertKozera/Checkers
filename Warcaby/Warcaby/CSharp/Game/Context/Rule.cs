@@ -147,6 +147,20 @@ namespace Warcaby.CSharp.Game.Context
                 : listOfPromotionalFieldsForRed.Contains(index);
         }
 
+        public static string WhoIsTheWinner()
+        {
+            int numberOfWhitePawns = Convert.ToInt16(Extend.GetControlByName("numberOfPawnsForWhite").Text);
+            int numberOfRedPawns = Convert.ToInt16(Extend.GetControlByName("numberOfPawnsForRed").Text);
+            int numberOfWhiteDames = Convert.ToInt16(Extend.GetControlByName("numberOfDamesForWhite").Text);
+            int numberOfRedDames = Convert.ToInt16(Extend.GetControlByName("numberOfDamesForRed").Text);
+
+            if (numberOfRedPawns == 0 && numberOfRedDames == 0)
+                return Constant.WHITE;
+            else if (numberOfWhitePawns == 0 && numberOfWhiteDames == 0)
+                return Constant.RED;
+            return Constant.EMPTY;
+        }
+
         public static Boolean ThePawnWantsToMoveProperly(int indexFrom, int indexTo, string color)
         {
             return Rule.SelectedPieceColorIs(indexFrom, color)

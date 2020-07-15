@@ -36,6 +36,15 @@ namespace Warcaby.Forms
             this.labelNewGame = new System.Windows.Forms.Label();
             this.buttonBackToMenu = new System.Windows.Forms.Button();
             this.fieldsContainer = new System.Windows.Forms.Panel();
+            this.field_40 = new System.Windows.Forms.PictureBox();
+            this.field_36 = new System.Windows.Forms.PictureBox();
+            this.field_38 = new System.Windows.Forms.PictureBox();
+            this.field_47 = new System.Windows.Forms.PictureBox();
+            this.field_50 = new System.Windows.Forms.PictureBox();
+            this.field_57 = new System.Windows.Forms.PictureBox();
+            this.field_59 = new System.Windows.Forms.PictureBox();
+            this.field_61 = new System.Windows.Forms.PictureBox();
+            this.field_63 = new System.Windows.Forms.PictureBox();
             this.field_2 = new System.Windows.Forms.PictureBox();
             this.field_4 = new System.Windows.Forms.PictureBox();
             this.field_6 = new System.Windows.Forms.PictureBox();
@@ -53,21 +62,13 @@ namespace Warcaby.Forms
             this.field_29 = new System.Windows.Forms.PictureBox();
             this.field_31 = new System.Windows.Forms.PictureBox();
             this.field_34 = new System.Windows.Forms.PictureBox();
-            this.field_36 = new System.Windows.Forms.PictureBox();
-            this.field_38 = new System.Windows.Forms.PictureBox();
-            this.field_40 = new System.Windows.Forms.PictureBox();
             this.field_41 = new System.Windows.Forms.PictureBox();
             this.field_43 = new System.Windows.Forms.PictureBox();
             this.field_45 = new System.Windows.Forms.PictureBox();
-            this.field_47 = new System.Windows.Forms.PictureBox();
-            this.field_50 = new System.Windows.Forms.PictureBox();
             this.field_52 = new System.Windows.Forms.PictureBox();
             this.field_54 = new System.Windows.Forms.PictureBox();
             this.field_56 = new System.Windows.Forms.PictureBox();
-            this.field_57 = new System.Windows.Forms.PictureBox();
-            this.field_59 = new System.Windows.Forms.PictureBox();
-            this.field_61 = new System.Windows.Forms.PictureBox();
-            this.field_63 = new System.Windows.Forms.PictureBox();
+            this.winner = new System.Windows.Forms.Label();
             this.turn = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -85,6 +86,15 @@ namespace Warcaby.Forms
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.fieldsContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.field_40)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_36)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_38)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_47)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_50)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_57)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_59)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_61)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_63)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_6)).BeginInit();
@@ -102,21 +112,12 @@ namespace Warcaby.Forms
             ((System.ComponentModel.ISupportInitialize)(this.field_29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_31)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_34)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_36)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_38)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_41)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_43)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_45)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_47)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_50)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_52)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_54)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_56)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_57)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_59)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_61)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_63)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.turn)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -145,6 +146,15 @@ namespace Warcaby.Forms
             // 
             this.fieldsContainer.AllowDrop = true;
             this.fieldsContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.fieldsContainer.Controls.Add(this.field_40);
+            this.fieldsContainer.Controls.Add(this.field_36);
+            this.fieldsContainer.Controls.Add(this.field_38);
+            this.fieldsContainer.Controls.Add(this.field_47);
+            this.fieldsContainer.Controls.Add(this.field_50);
+            this.fieldsContainer.Controls.Add(this.field_57);
+            this.fieldsContainer.Controls.Add(this.field_59);
+            this.fieldsContainer.Controls.Add(this.field_61);
+            this.fieldsContainer.Controls.Add(this.field_63);
             this.fieldsContainer.Controls.Add(this.field_2);
             this.fieldsContainer.Controls.Add(this.field_4);
             this.fieldsContainer.Controls.Add(this.field_6);
@@ -162,25 +172,134 @@ namespace Warcaby.Forms
             this.fieldsContainer.Controls.Add(this.field_29);
             this.fieldsContainer.Controls.Add(this.field_31);
             this.fieldsContainer.Controls.Add(this.field_34);
-            this.fieldsContainer.Controls.Add(this.field_36);
-            this.fieldsContainer.Controls.Add(this.field_38);
-            this.fieldsContainer.Controls.Add(this.field_40);
             this.fieldsContainer.Controls.Add(this.field_41);
             this.fieldsContainer.Controls.Add(this.field_43);
             this.fieldsContainer.Controls.Add(this.field_45);
-            this.fieldsContainer.Controls.Add(this.field_47);
-            this.fieldsContainer.Controls.Add(this.field_50);
             this.fieldsContainer.Controls.Add(this.field_52);
             this.fieldsContainer.Controls.Add(this.field_54);
             this.fieldsContainer.Controls.Add(this.field_56);
-            this.fieldsContainer.Controls.Add(this.field_57);
-            this.fieldsContainer.Controls.Add(this.field_59);
-            this.fieldsContainer.Controls.Add(this.field_61);
-            this.fieldsContainer.Controls.Add(this.field_63);
+            this.fieldsContainer.Controls.Add(this.winner);
             this.fieldsContainer.Location = new System.Drawing.Point(181, 35);
             this.fieldsContainer.Name = "fieldsContainer";
             this.fieldsContainer.Size = new System.Drawing.Size(601, 601);
             this.fieldsContainer.TabIndex = 7;
+            // 
+            // field_40
+            // 
+            this.field_40.Image = global::Warcaby.Properties.Resources.empty_field;
+            this.field_40.Location = new System.Drawing.Point(525, 300);
+            this.field_40.Name = "field_40";
+            this.field_40.Size = new System.Drawing.Size(75, 75);
+            this.field_40.TabIndex = 46;
+            this.field_40.TabStop = false;
+            this.field_40.Tag = "40";
+            this.field_40.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_40.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_40.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
+            // 
+            // field_36
+            // 
+            this.field_36.Image = global::Warcaby.Properties.Resources.empty_field;
+            this.field_36.Location = new System.Drawing.Point(225, 300);
+            this.field_36.Name = "field_36";
+            this.field_36.Size = new System.Drawing.Size(75, 75);
+            this.field_36.TabIndex = 45;
+            this.field_36.TabStop = false;
+            this.field_36.Tag = "36";
+            this.field_36.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_36.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_36.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
+            // 
+            // field_38
+            // 
+            this.field_38.Image = global::Warcaby.Properties.Resources.empty_field;
+            this.field_38.Location = new System.Drawing.Point(375, 300);
+            this.field_38.Name = "field_38";
+            this.field_38.Size = new System.Drawing.Size(75, 75);
+            this.field_38.TabIndex = 47;
+            this.field_38.TabStop = false;
+            this.field_38.Tag = "38";
+            this.field_38.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_38.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_38.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
+            // 
+            // field_47
+            // 
+            this.field_47.Image = global::Warcaby.Properties.Resources.pawn_red;
+            this.field_47.Location = new System.Drawing.Point(450, 375);
+            this.field_47.Name = "field_47";
+            this.field_47.Size = new System.Drawing.Size(75, 75);
+            this.field_47.TabIndex = 38;
+            this.field_47.TabStop = false;
+            this.field_47.Tag = "47";
+            this.field_47.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_47.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_47.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
+            // 
+            // field_50
+            // 
+            this.field_50.Image = global::Warcaby.Properties.Resources.pawn_red;
+            this.field_50.Location = new System.Drawing.Point(75, 450);
+            this.field_50.Name = "field_50";
+            this.field_50.Size = new System.Drawing.Size(75, 75);
+            this.field_50.TabIndex = 44;
+            this.field_50.TabStop = false;
+            this.field_50.Tag = "50";
+            this.field_50.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_50.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_50.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
+            // 
+            // field_57
+            // 
+            this.field_57.Image = global::Warcaby.Properties.Resources.pawn_red;
+            this.field_57.Location = new System.Drawing.Point(0, 525);
+            this.field_57.Name = "field_57";
+            this.field_57.Size = new System.Drawing.Size(75, 75);
+            this.field_57.TabIndex = 36;
+            this.field_57.TabStop = false;
+            this.field_57.Tag = "57";
+            this.field_57.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_57.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_57.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
+            // 
+            // field_59
+            // 
+            this.field_59.Image = global::Warcaby.Properties.Resources.pawn_red;
+            this.field_59.Location = new System.Drawing.Point(150, 525);
+            this.field_59.Name = "field_59";
+            this.field_59.Size = new System.Drawing.Size(75, 75);
+            this.field_59.TabIndex = 33;
+            this.field_59.TabStop = false;
+            this.field_59.Tag = "59";
+            this.field_59.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_59.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_59.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
+            // 
+            // field_61
+            // 
+            this.field_61.Image = global::Warcaby.Properties.Resources.pawn_red;
+            this.field_61.Location = new System.Drawing.Point(300, 525);
+            this.field_61.Name = "field_61";
+            this.field_61.Size = new System.Drawing.Size(75, 75);
+            this.field_61.TabIndex = 35;
+            this.field_61.TabStop = false;
+            this.field_61.Tag = "61";
+            this.field_61.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_61.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_61.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
+            // 
+            // field_63
+            // 
+            this.field_63.Image = global::Warcaby.Properties.Resources.pawn_red;
+            this.field_63.Location = new System.Drawing.Point(450, 525);
+            this.field_63.Name = "field_63";
+            this.field_63.Size = new System.Drawing.Size(75, 75);
+            this.field_63.TabIndex = 34;
+            this.field_63.TabStop = false;
+            this.field_63.Tag = "63";
+            this.field_63.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
+            this.field_63.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
+            this.field_63.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_2
             // 
@@ -403,45 +522,6 @@ namespace Warcaby.Forms
             this.field_34.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
             this.field_34.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
-            // field_36
-            // 
-            this.field_36.Image = global::Warcaby.Properties.Resources.empty_field;
-            this.field_36.Location = new System.Drawing.Point(225, 300);
-            this.field_36.Name = "field_36";
-            this.field_36.Size = new System.Drawing.Size(75, 75);
-            this.field_36.TabIndex = 45;
-            this.field_36.TabStop = false;
-            this.field_36.Tag = "36";
-            this.field_36.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
-            this.field_36.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
-            this.field_36.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
-            // 
-            // field_38
-            // 
-            this.field_38.Image = global::Warcaby.Properties.Resources.empty_field;
-            this.field_38.Location = new System.Drawing.Point(375, 300);
-            this.field_38.Name = "field_38";
-            this.field_38.Size = new System.Drawing.Size(75, 75);
-            this.field_38.TabIndex = 47;
-            this.field_38.TabStop = false;
-            this.field_38.Tag = "38";
-            this.field_38.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
-            this.field_38.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
-            this.field_38.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
-            // 
-            // field_40
-            // 
-            this.field_40.Image = global::Warcaby.Properties.Resources.empty_field;
-            this.field_40.Location = new System.Drawing.Point(525, 300);
-            this.field_40.Name = "field_40";
-            this.field_40.Size = new System.Drawing.Size(75, 75);
-            this.field_40.TabIndex = 46;
-            this.field_40.TabStop = false;
-            this.field_40.Tag = "40";
-            this.field_40.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
-            this.field_40.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
-            this.field_40.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
-            // 
             // field_41
             // 
             this.field_41.Image = global::Warcaby.Properties.Resources.pawn_red;
@@ -480,32 +560,6 @@ namespace Warcaby.Forms
             this.field_45.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
             this.field_45.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
             this.field_45.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
-            // 
-            // field_47
-            // 
-            this.field_47.Image = global::Warcaby.Properties.Resources.pawn_red;
-            this.field_47.Location = new System.Drawing.Point(450, 375);
-            this.field_47.Name = "field_47";
-            this.field_47.Size = new System.Drawing.Size(75, 75);
-            this.field_47.TabIndex = 38;
-            this.field_47.TabStop = false;
-            this.field_47.Tag = "47";
-            this.field_47.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
-            this.field_47.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
-            this.field_47.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
-            // 
-            // field_50
-            // 
-            this.field_50.Image = global::Warcaby.Properties.Resources.pawn_red;
-            this.field_50.Location = new System.Drawing.Point(75, 450);
-            this.field_50.Name = "field_50";
-            this.field_50.Size = new System.Drawing.Size(75, 75);
-            this.field_50.TabIndex = 44;
-            this.field_50.TabStop = false;
-            this.field_50.Tag = "50";
-            this.field_50.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
-            this.field_50.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
-            this.field_50.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
             // field_52
             // 
@@ -546,57 +600,18 @@ namespace Warcaby.Forms
             this.field_56.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
             this.field_56.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
-            // field_57
+            // winner
             // 
-            this.field_57.Image = global::Warcaby.Properties.Resources.pawn_red;
-            this.field_57.Location = new System.Drawing.Point(0, 525);
-            this.field_57.Name = "field_57";
-            this.field_57.Size = new System.Drawing.Size(75, 75);
-            this.field_57.TabIndex = 36;
-            this.field_57.TabStop = false;
-            this.field_57.Tag = "57";
-            this.field_57.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
-            this.field_57.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
-            this.field_57.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
-            // 
-            // field_59
-            // 
-            this.field_59.Image = global::Warcaby.Properties.Resources.pawn_red;
-            this.field_59.Location = new System.Drawing.Point(150, 525);
-            this.field_59.Name = "field_59";
-            this.field_59.Size = new System.Drawing.Size(75, 75);
-            this.field_59.TabIndex = 33;
-            this.field_59.TabStop = false;
-            this.field_59.Tag = "59";
-            this.field_59.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
-            this.field_59.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
-            this.field_59.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
-            // 
-            // field_61
-            // 
-            this.field_61.Image = global::Warcaby.Properties.Resources.pawn_red;
-            this.field_61.Location = new System.Drawing.Point(300, 525);
-            this.field_61.Name = "field_61";
-            this.field_61.Size = new System.Drawing.Size(75, 75);
-            this.field_61.TabIndex = 35;
-            this.field_61.TabStop = false;
-            this.field_61.Tag = "61";
-            this.field_61.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
-            this.field_61.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
-            this.field_61.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
-            // 
-            // field_63
-            // 
-            this.field_63.Image = global::Warcaby.Properties.Resources.pawn_red;
-            this.field_63.Location = new System.Drawing.Point(450, 525);
-            this.field_63.Name = "field_63";
-            this.field_63.Size = new System.Drawing.Size(75, 75);
-            this.field_63.TabIndex = 34;
-            this.field_63.TabStop = false;
-            this.field_63.Tag = "63";
-            this.field_63.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropEvent);
-            this.field_63.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
-            this.field_63.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
+            this.winner.AutoSize = true;
+            this.winner.BackColor = System.Drawing.Color.Black;
+            this.winner.Font = new System.Drawing.Font("Book Antiqua", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.winner.ForeColor = System.Drawing.Color.White;
+            this.winner.Location = new System.Drawing.Point(175, 272);
+            this.winner.Name = "winner";
+            this.winner.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.winner.Size = new System.Drawing.Size(0, 58);
+            this.winner.TabIndex = 53;
+            this.winner.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // turn
             // 
@@ -773,6 +788,16 @@ namespace Warcaby.Forms
             this.Size = new System.Drawing.Size(984, 661);
             this.Load += new System.EventHandler(this.UCNewGame_Load);
             this.fieldsContainer.ResumeLayout(false);
+            this.fieldsContainer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.field_40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_36)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_38)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_47)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_50)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_57)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_59)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_61)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.field_63)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_6)).EndInit();
@@ -790,21 +815,12 @@ namespace Warcaby.Forms
             ((System.ComponentModel.ISupportInitialize)(this.field_29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_31)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_34)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_36)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_38)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_40)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_41)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_43)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_45)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_47)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_50)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_52)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_54)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_56)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_57)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_59)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_61)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.field_63)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.turn)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -878,5 +894,6 @@ namespace Warcaby.Forms
         private Label numberOfPawnsForRed;
         private Label label11;
         private Label label12;
+        private Label winner;
     }
 }
