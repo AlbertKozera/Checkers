@@ -32,7 +32,8 @@ namespace Warcaby.Forms.Tests
             GameService.gameBoard[45] = Constant.PAWN_RED;
             GameService.gameBoard[47] = Constant.PAWN_RED;
             GameService.gameBoard[34] = Constant.DAME_WHITE;
-            GameService.gameBoard[63] = Constant.PAWN_WHITE;
+            GameService.gameBoard[2] = Constant.DAME_RED;
+            GameService.gameBoard[4] = Constant.DAME_RED;
         }
         [TestMethod()]
         public void IsNullOrEmptyListTest_Null()
@@ -161,5 +162,60 @@ namespace Warcaby.Forms.Tests
             //then
             Assert.ReferenceEquals(new Bitmap(Properties.Resources.dame_white), Extend.GetDameImage(color));
         }
-    }
+
+        [TestMethod()]
+        public void GetNumberOfPawnsWhiteTest()
+        {
+            //given
+            CompleteBoardTest();
+            string color;
+            int expectedResult;
+            //when
+            color = Constant.WHITE;
+            expectedResult = 5;
+            //then
+            Assert.AreEqual(expectedResult, Extend.GetNumberOfPawns(color));
+        }
+
+        [TestMethod()]
+        public void GetNumberOfPawnsRedTest()
+        {
+            //given
+            CompleteBoardTest();
+            string color;
+            int expectedResult;
+            //when
+            color = Constant.RED;
+            expectedResult = 4;
+            //then
+            Assert.AreEqual(expectedResult, Extend.GetNumberOfPawns(color));
+        }
+
+        [TestMethod()]
+        public void GetNumberOfWhiteDamesTest()
+        {
+            //given
+            CompleteBoardTest();
+            string color;
+            int expectedResult;
+            //when
+            color = Constant.WHITE;
+            expectedResult = 1;
+            //then
+            Assert.AreEqual(expectedResult, Extend.GetNumberOfDames(color));
+        }
+
+        [TestMethod()]
+        public void GetNumberOfRedDamesTest()
+        {
+            //given
+            CompleteBoardTest();
+            string color;
+            int expectedResult;
+            //when
+            color = Constant.RED;
+            expectedResult = 2;
+            //then
+            Assert.AreEqual(expectedResult, Extend.GetNumberOfDames(color));
+        }
 }
