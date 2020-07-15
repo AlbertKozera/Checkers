@@ -37,7 +37,7 @@
             // buttonNewGame
             // 
             this.buttonNewGame.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonNewGame.Location = new System.Drawing.Point(422, 279);
+            this.buttonNewGame.Location = new System.Drawing.Point(328, 194);
             this.buttonNewGame.Name = "buttonNewGame";
             this.buttonNewGame.Size = new System.Drawing.Size(160, 60);
             this.buttonNewGame.TabIndex = 0;
@@ -48,7 +48,7 @@
             // buttonOption
             // 
             this.buttonOption.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonOption.Location = new System.Drawing.Point(422, 367);
+            this.buttonOption.Location = new System.Drawing.Point(328, 287);
             this.buttonOption.Name = "buttonOption";
             this.buttonOption.Size = new System.Drawing.Size(160, 60);
             this.buttonOption.TabIndex = 1;
@@ -59,7 +59,7 @@
             // buttonExit
             // 
             this.buttonExit.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonExit.Location = new System.Drawing.Point(422, 458);
+            this.buttonExit.Location = new System.Drawing.Point(328, 385);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(160, 60);
             this.buttonExit.TabIndex = 2;
@@ -72,7 +72,7 @@
             this.labelWarcaby.AutoSize = true;
             this.labelWarcaby.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.labelWarcaby.Font = new System.Drawing.Font("Microsoft YaHei UI", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelWarcaby.Location = new System.Drawing.Point(413, 0);
+            this.labelWarcaby.Location = new System.Drawing.Point(319, 44);
             this.labelWarcaby.Name = "labelWarcaby";
             this.labelWarcaby.Size = new System.Drawing.Size(185, 50);
             this.labelWarcaby.TabIndex = 3;
@@ -88,7 +88,7 @@
             this.Controls.Add(this.buttonOption);
             this.Controls.Add(this.buttonNewGame);
             this.Name = "UCMainMenu";
-            this.Size = new System.Drawing.Size(984, 661);
+            this.Size = new System.Drawing.Size(819, 602);
             this.ResumeLayout(false);
             this.PerformLayout();
 

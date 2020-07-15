@@ -42,7 +42,7 @@ namespace Warcaby.Forms
             // 
             this.labelOptions.AutoSize = true;
             this.labelOptions.Font = new System.Drawing.Font("Microsoft YaHei UI", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelOptions.Location = new System.Drawing.Point(433, 3);
+            this.labelOptions.Location = new System.Drawing.Point(348, 19);
             this.labelOptions.Name = "labelOptions";
             this.labelOptions.Size = new System.Drawing.Size(129, 50);
             this.labelOptions.TabIndex = 0;
@@ -50,8 +50,8 @@ namespace Warcaby.Forms
             // 
             // buttonBackToMenu
             // 
-            this.buttonBackToMenu.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBackToMenu.Location = new System.Drawing.Point(451, 404);
+            this.buttonBackToMenu.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBackToMenu.Location = new System.Drawing.Point(357, 404);
             this.buttonBackToMenu.Name = "buttonBackToMenu";
             this.buttonBackToMenu.Size = new System.Drawing.Size(100, 50);
             this.buttonBackToMenu.TabIndex = 1;
@@ -63,7 +63,7 @@ namespace Warcaby.Forms
             // 
             this.optionsQuestion.AutoSize = true;
             this.optionsQuestion.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.optionsQuestion.Location = new System.Drawing.Point(163, 137);
+            this.optionsQuestion.Location = new System.Drawing.Point(106, 117);
             this.optionsQuestion.Name = "optionsQuestion";
             this.optionsQuestion.Size = new System.Drawing.Size(593, 31);
             this.optionsQuestion.TabIndex = 2;
@@ -73,7 +73,7 @@ namespace Warcaby.Forms
             // 
             this.checkBoxThread.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBoxThread.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBoxThread.Location = new System.Drawing.Point(782, 150);
+            this.checkBoxThread.Location = new System.Drawing.Point(744, 127);
             this.checkBoxThread.Name = "checkBoxThread";
             this.checkBoxThread.Size = new System.Drawing.Size(20, 20);
             this.checkBoxThread.TabIndex = 3;
@@ -85,7 +85,7 @@ namespace Warcaby.Forms
             // 
             this.optionsLabel2.AutoSize = true;
             this.optionsLabel2.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.optionsLabel2.Location = new System.Drawing.Point(163, 217);
+            this.optionsLabel2.Location = new System.Drawing.Point(106, 195);
             this.optionsLabel2.Name = "optionsLabel2";
             this.optionsLabel2.Size = new System.Drawing.Size(486, 31);
             this.optionsLabel2.TabIndex = 4;
@@ -94,7 +94,7 @@ namespace Warcaby.Forms
             // checkBoxStartingGame
             // 
             this.checkBoxStartingGame.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBoxStartingGame.Location = new System.Drawing.Point(782, 228);
+            this.checkBoxStartingGame.Location = new System.Drawing.Point(744, 206);
             this.checkBoxStartingGame.Name = "checkBoxStartingGame";
             this.checkBoxStartingGame.Size = new System.Drawing.Size(20, 20);
             this.checkBoxStartingGame.TabIndex = 5;
@@ -115,7 +115,7 @@ namespace Warcaby.Forms
             this.Controls.Add(this.buttonBackToMenu);
             this.Controls.Add(this.labelOptions);
             this.Name = "UCOptions";
-            this.Size = new System.Drawing.Size(984, 661);
+            this.Size = new System.Drawing.Size(819, 602);
             this.Load += new System.EventHandler(this.UCOptions_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

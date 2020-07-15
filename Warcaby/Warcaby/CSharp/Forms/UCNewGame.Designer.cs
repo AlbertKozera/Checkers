@@ -33,7 +33,6 @@ namespace Warcaby.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelNewGame = new System.Windows.Forms.Label();
             this.buttonBackToMenu = new System.Windows.Forms.Button();
             this.fieldsContainer = new System.Windows.Forms.Panel();
             this.field_40 = new System.Windows.Forms.PictureBox();
@@ -71,7 +70,6 @@ namespace Warcaby.Forms
             this.winner = new System.Windows.Forms.Label();
             this.turn = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.Czas = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.numberOfDamesForWhite = new System.Windows.Forms.Label();
@@ -123,22 +121,13 @@ namespace Warcaby.Forms
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // labelNewGame
-            // 
-            this.labelNewGame.AutoSize = true;
-            this.labelNewGame.Location = new System.Drawing.Point(468, 8);
-            this.labelNewGame.Name = "labelNewGame";
-            this.labelNewGame.Size = new System.Drawing.Size(53, 13);
-            this.labelNewGame.TabIndex = 0;
-            this.labelNewGame.Text = "Nowa gra";
-            // 
             // buttonBackToMenu
             // 
-            this.buttonBackToMenu.Location = new System.Drawing.Point(906, 3);
+            this.buttonBackToMenu.Location = new System.Drawing.Point(714, 316);
             this.buttonBackToMenu.Name = "buttonBackToMenu";
             this.buttonBackToMenu.Size = new System.Drawing.Size(75, 23);
             this.buttonBackToMenu.TabIndex = 1;
-            this.buttonBackToMenu.Text = "Powrót";
+            this.buttonBackToMenu.Text = "Zakończ grę";
             this.buttonBackToMenu.UseVisualStyleBackColor = true;
             this.buttonBackToMenu.Click += new System.EventHandler(this.backToMenu);
             // 
@@ -179,7 +168,7 @@ namespace Warcaby.Forms
             this.fieldsContainer.Controls.Add(this.field_54);
             this.fieldsContainer.Controls.Add(this.field_56);
             this.fieldsContainer.Controls.Add(this.winner);
-            this.fieldsContainer.Location = new System.Drawing.Point(181, 35);
+            this.fieldsContainer.Location = new System.Drawing.Point(0, 0);
             this.fieldsContainer.Name = "fieldsContainer";
             this.fieldsContainer.Size = new System.Drawing.Size(601, 601);
             this.fieldsContainer.TabIndex = 7;
@@ -616,7 +605,7 @@ namespace Warcaby.Forms
             // turn
             // 
             this.turn.Image = global::Warcaby.Properties.Resources.pawn_white;
-            this.turn.Location = new System.Drawing.Point(906, 52);
+            this.turn.Location = new System.Drawing.Point(612, 288);
             this.turn.Name = "turn";
             this.turn.Size = new System.Drawing.Size(75, 77);
             this.turn.TabIndex = 53;
@@ -626,22 +615,12 @@ namespace Warcaby.Forms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(903, 36);
+            this.label1.Location = new System.Drawing.Point(614, 272);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 54;
             this.label1.Text = "Tura:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.CausesValidation = false;
-            this.label2.Location = new System.Drawing.Point(903, 149);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
-            this.label2.TabIndex = 55;
-            this.label2.Text = "Czas:";
             // 
             // Czas
             // 
@@ -659,10 +638,11 @@ namespace Warcaby.Forms
             this.panel1.Controls.Add(this.numberOfPawnsForWhite);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Location = new System.Drawing.Point(787, 183);
+            this.panel1.Location = new System.Drawing.Point(606, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(194, 77);
             this.panel1.TabIndex = 58;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // numberOfDamesForWhite
             // 
@@ -695,7 +675,7 @@ namespace Warcaby.Forms
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 36);
+            this.label4.Location = new System.Drawing.Point(3, 36);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 13);
             this.label4.TabIndex = 1;
@@ -718,7 +698,7 @@ namespace Warcaby.Forms
             this.panel2.Controls.Add(this.numberOfPawnsForRed);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.label12);
-            this.panel2.Location = new System.Drawing.Point(787, 408);
+            this.panel2.Location = new System.Drawing.Point(606, 523);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(194, 77);
             this.panel2.TabIndex = 59;
@@ -778,14 +758,12 @@ namespace Warcaby.Forms
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.Czas);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.turn);
             this.Controls.Add(this.fieldsContainer);
             this.Controls.Add(this.buttonBackToMenu);
-            this.Controls.Add(this.labelNewGame);
             this.Name = "UCNewGame";
-            this.Size = new System.Drawing.Size(984, 661);
+            this.Size = new System.Drawing.Size(819, 602);
             this.Load += new System.EventHandler(this.UCNewGame_Load);
             this.fieldsContainer.ResumeLayout(false);
             this.fieldsContainer.PerformLayout();
@@ -842,8 +820,6 @@ namespace Warcaby.Forms
         }
 
         #endregion
-
-        private System.Windows.Forms.Label labelNewGame;
         private System.Windows.Forms.Button buttonBackToMenu;
         private System.Windows.Forms.Panel fieldsContainer;
         public System.Windows.Forms.PictureBox field_2;
@@ -880,7 +856,6 @@ namespace Warcaby.Forms
         public System.Windows.Forms.PictureBox field_63;
         public PictureBox turn;
         private Label label1;
-        private Label label2;
         private Label Czas;
         private Panel panel1;
         private Label label5;
