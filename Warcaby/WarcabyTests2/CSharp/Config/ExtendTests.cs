@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Warcaby.Service.Context;
 using System.Drawing;
 using System.Windows.Forms;
+using System;
+using Warcaby.CSharp.Game.Context;
 
 namespace Warcaby.Forms.Tests
 {
@@ -34,6 +36,40 @@ namespace Warcaby.Forms.Tests
             GameService.gameBoard[34] = Constant.DAME_WHITE;
             GameService.gameBoard[2] = Constant.DAME_RED;
             GameService.gameBoard[4] = Constant.DAME_RED;
+        }
+
+        public void CompleteBoardWhiteWinTest()
+        {
+            GameService.gameBoard.Clear();
+            for (int i = 2; i <= 63; i += 2)
+            {
+                GameService.gameBoard.Add(i, Constant.EMPTY_FIELD);
+                if (i == 8) i--;
+                if (i == 15) i++;
+                if (i == 24) i--;
+                if (i == 31) i++;
+                if (i == 40) i--;
+                if (i == 47) i++;
+                if (i == 56) i--;
+            }
+            GameService.gameBoard[18] = Constant.PAWN_WHITE;
+        }
+
+        public void CompleteBoardRedWinTest()
+        {
+            GameService.gameBoard.Clear();
+            for (int i = 2; i <= 63; i += 2)
+            {
+                GameService.gameBoard.Add(i, Constant.EMPTY_FIELD);
+                if (i == 8) i--;
+                if (i == 15) i++;
+                if (i == 24) i--;
+                if (i == 31) i++;
+                if (i == 40) i--;
+                if (i == 47) i++;
+                if (i == 56) i--;
+            }
+            GameService.gameBoard[18] = Constant.PAWN_RED;
         }
         [TestMethod()]
         public void IsNullOrEmptyListTest_Null()
@@ -218,4 +254,5 @@ namespace Warcaby.Forms.Tests
             //then
             Assert.AreEqual(expectedResult, Extend.GetNumberOfDames(color));
         }
+    }
 }
