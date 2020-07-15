@@ -131,6 +131,7 @@ namespace Warcaby.CSharp.Game.Context
             PictureBox fieldThrough = Extend.GetFieldByIndex(indexThrough);
             fieldThrough.Image = new Bitmap(Properties.Resources.empty_field);
             GameService.gameBoard[indexThrough] = Constant.EMPTY_FIELD;
+            Extend.UpdateGuiCounters();
         }
 
         public void UpdateFieldTo()
@@ -143,6 +144,7 @@ namespace Warcaby.CSharp.Game.Context
         {
             fieldTo.Image = Extend.GetDameImage(COLOR);
             GameService.gameBoard[indexTo] = Extend.GetDameField(COLOR);
+            Extend.UpdateGuiCounters();
         }
 
         public void FinishTheTurn(string color)
@@ -151,6 +153,7 @@ namespace Warcaby.CSharp.Game.Context
                 GameService.whiteTurn = false;
             else
                 GameService.whiteTurn = true;
+            Extend.ChangeImageOfTurn(color);
         }
 
         public void RepeatTheTurn(string color)

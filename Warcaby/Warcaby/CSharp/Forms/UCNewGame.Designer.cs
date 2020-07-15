@@ -68,10 +68,22 @@ namespace Warcaby.Forms
             this.field_59 = new System.Windows.Forms.PictureBox();
             this.field_61 = new System.Windows.Forms.PictureBox();
             this.field_63 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.turn = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Czas = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.numberOfDamesForWhite = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numberOfPawnsForWhite = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.numberOfDamesForRed = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.numberOfPawnsForRed = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.fieldsContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.field_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_4)).BeginInit();
@@ -105,7 +117,9 @@ namespace Warcaby.Forms
             ((System.ComponentModel.ISupportInitialize)(this.field_59)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_61)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_63)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.turn)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelNewGame
@@ -584,20 +598,20 @@ namespace Warcaby.Forms
             this.field_63.DragEnter += new System.Windows.Forms.DragEventHandler(this.DragEnteEvent);
             this.field_63.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownEvent);
             // 
-            // pictureBox1
+            // turn
             // 
-            this.pictureBox1.Image = global::Warcaby.Properties.Resources.pawn_white;
-            this.pictureBox1.Location = new System.Drawing.Point(906, 88);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(75, 77);
-            this.pictureBox1.TabIndex = 53;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Tag = "8";
+            this.turn.Image = global::Warcaby.Properties.Resources.pawn_white;
+            this.turn.Location = new System.Drawing.Point(906, 52);
+            this.turn.Name = "turn";
+            this.turn.Size = new System.Drawing.Size(75, 77);
+            this.turn.TabIndex = 53;
+            this.turn.TabStop = false;
+            this.turn.Tag = "8";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(903, 72);
+            this.label1.Location = new System.Drawing.Point(903, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 54;
@@ -608,30 +622,150 @@ namespace Warcaby.Forms
             // 
             this.label2.AutoSize = true;
             this.label2.CausesValidation = false;
-            this.label2.Location = new System.Drawing.Point(903, 185);
+            this.label2.Location = new System.Drawing.Point(903, 149);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 13);
             this.label2.TabIndex = 55;
             this.label2.Text = "Czas:";
             // 
-            // label4
+            // Czas
             // 
             this.Czas.AutoSize = true;
-            this.Czas.Location = new System.Drawing.Point(903, 198);
-            this.Czas.Name = "label4";
+            this.Czas.Location = new System.Drawing.Point(903, 162);
+            this.Czas.Name = "Czas";
             this.Czas.Size = new System.Drawing.Size(0, 13);
             this.Czas.TabIndex = 57;
             this.Czas.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.numberOfDamesForWhite);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.numberOfPawnsForWhite);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Location = new System.Drawing.Point(787, 183);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(194, 77);
+            this.panel1.TabIndex = 58;
+            // 
+            // numberOfDamesForWhite
+            // 
+            this.numberOfDamesForWhite.AutoSize = true;
+            this.numberOfDamesForWhite.Location = new System.Drawing.Point(82, 56);
+            this.numberOfDamesForWhite.Name = "numberOfDamesForWhite";
+            this.numberOfDamesForWhite.Size = new System.Drawing.Size(13, 13);
+            this.numberOfDamesForWhite.TabIndex = 4;
+            this.numberOfDamesForWhite.Text = "0";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 56);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(75, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "liczba damek -";
+            // 
+            // numberOfPawnsForWhite
+            // 
+            this.numberOfPawnsForWhite.AutoSize = true;
+            this.numberOfPawnsForWhite.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numberOfPawnsForWhite.Location = new System.Drawing.Point(88, 36);
+            this.numberOfPawnsForWhite.Name = "numberOfPawnsForWhite";
+            this.numberOfPawnsForWhite.Size = new System.Drawing.Size(19, 13);
+            this.numberOfPawnsForWhite.TabIndex = 3;
+            this.numberOfPawnsForWhite.Text = "12";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 36);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "liczba pionków -";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(3, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(131, 25);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Gracz biały";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.numberOfDamesForRed);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.numberOfPawnsForRed);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Location = new System.Drawing.Point(787, 408);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(194, 77);
+            this.panel2.TabIndex = 59;
+            // 
+            // numberOfDamesForRed
+            // 
+            this.numberOfDamesForRed.AutoSize = true;
+            this.numberOfDamesForRed.Location = new System.Drawing.Point(82, 56);
+            this.numberOfDamesForRed.Name = "numberOfDamesForRed";
+            this.numberOfDamesForRed.Size = new System.Drawing.Size(13, 13);
+            this.numberOfDamesForRed.TabIndex = 4;
+            this.numberOfDamesForRed.Text = "0";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(8, 56);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(75, 13);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "liczba damek -";
+            // 
+            // numberOfPawnsForRed
+            // 
+            this.numberOfPawnsForRed.AutoSize = true;
+            this.numberOfPawnsForRed.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numberOfPawnsForRed.Location = new System.Drawing.Point(88, 36);
+            this.numberOfPawnsForRed.Name = "numberOfPawnsForRed";
+            this.numberOfPawnsForRed.Size = new System.Drawing.Size(19, 13);
+            this.numberOfPawnsForRed.TabIndex = 3;
+            this.numberOfPawnsForRed.Text = "12";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(8, 36);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(83, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "liczba pionków -";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label12.Location = new System.Drawing.Point(3, 3);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(180, 25);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Gracz czerwony";
             // 
             // UCNewGame
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.Czas);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.turn);
             this.Controls.Add(this.fieldsContainer);
             this.Controls.Add(this.buttonBackToMenu);
             this.Controls.Add(this.labelNewGame);
@@ -671,7 +805,11 @@ namespace Warcaby.Forms
             ((System.ComponentModel.ISupportInitialize)(this.field_59)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_61)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_63)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.turn)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -724,9 +862,21 @@ namespace Warcaby.Forms
         public System.Windows.Forms.PictureBox field_59;
         public System.Windows.Forms.PictureBox field_61;
         public System.Windows.Forms.PictureBox field_63;
-        private PictureBox pictureBox1;
+        public PictureBox turn;
         private Label label1;
         private Label label2;
         private Label Czas;
+        private Panel panel1;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Label numberOfDamesForWhite;
+        private Label numberOfPawnsForWhite;
+        private Panel panel2;
+        private Label numberOfDamesForRed;
+        private Label label9;
+        private Label numberOfPawnsForRed;
+        private Label label11;
+        private Label label12;
     }
 }
