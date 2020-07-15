@@ -40,14 +40,14 @@
             this.ucOptions.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ucOptions.Location = new System.Drawing.Point(0, 0);
             this.ucOptions.Name = "ucOptions";
-            this.ucOptions.Size = new System.Drawing.Size(819, 602);
+            this.ucOptions.Size = new System.Drawing.Size(762, 600);
             this.ucOptions.TabIndex = 0;
             // 
             // ucNewGame
             // 
             this.ucNewGame.Location = new System.Drawing.Point(0, 0);
             this.ucNewGame.Name = "ucNewGame";
-            this.ucNewGame.Size = new System.Drawing.Size(819, 602);
+            this.ucNewGame.Size = new System.Drawing.Size(762, 600);
             this.ucNewGame.TabIndex = 1;
             // 
             // ucMainMenu
@@ -55,7 +55,7 @@
             this.ucMainMenu.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucMainMenu.BackgroundImage")));
             this.ucMainMenu.Location = new System.Drawing.Point(0, 0);
             this.ucMainMenu.Name = "ucMainMenu";
-            this.ucMainMenu.Size = new System.Drawing.Size(819, 602);
+            this.ucMainMenu.Size = new System.Drawing.Size(762, 600);
             this.ucMainMenu.TabIndex = 2;
             // 
             // ucTypeOfGame
@@ -63,14 +63,14 @@
             this.ucTypeOfGame.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ucTypeOfGame.BackgroundImage")));
             this.ucTypeOfGame.Location = new System.Drawing.Point(0, 0);
             this.ucTypeOfGame.Name = "ucTypeOfGame";
-            this.ucTypeOfGame.Size = new System.Drawing.Size(819, 602);
+            this.ucTypeOfGame.Size = new System.Drawing.Size(762, 600);
             this.ucTypeOfGame.TabIndex = 3;
             // 
             // MainStage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 602);
+            this.ClientSize = new System.Drawing.Size(762, 600);
             this.Controls.Add(this.ucTypeOfGame);
             this.Controls.Add(this.ucMainMenu);
             this.Controls.Add(this.ucNewGame);

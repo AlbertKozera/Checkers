@@ -123,7 +123,7 @@ namespace Warcaby.Forms
             // 
             // buttonBackToMenu
             // 
-            this.buttonBackToMenu.Location = new System.Drawing.Point(714, 316);
+            this.buttonBackToMenu.Location = new System.Drawing.Point(687, 307);
             this.buttonBackToMenu.Name = "buttonBackToMenu";
             this.buttonBackToMenu.Size = new System.Drawing.Size(75, 23);
             this.buttonBackToMenu.TabIndex = 1;
@@ -605,7 +605,7 @@ namespace Warcaby.Forms
             // turn
             // 
             this.turn.Image = global::Warcaby.Properties.Resources.pawn_white;
-            this.turn.Location = new System.Drawing.Point(612, 288);
+            this.turn.Location = new System.Drawing.Point(607, 288);
             this.turn.Name = "turn";
             this.turn.Size = new System.Drawing.Size(75, 77);
             this.turn.TabIndex = 53;
@@ -615,7 +615,7 @@ namespace Warcaby.Forms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(614, 272);
+            this.label1.Location = new System.Drawing.Point(609, 272);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 54;
@@ -640,7 +640,7 @@ namespace Warcaby.Forms
             this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(606, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(194, 77);
+            this.panel1.Size = new System.Drawing.Size(144, 77);
             this.panel1.TabIndex = 58;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -684,10 +684,10 @@ namespace Warcaby.Forms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.Location = new System.Drawing.Point(3, 3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(131, 25);
+            this.label3.Size = new System.Drawing.Size(110, 22);
             this.label3.TabIndex = 0;
             this.label3.Text = "Gracz biały";
             // 
@@ -700,7 +700,7 @@ namespace Warcaby.Forms
             this.panel2.Controls.Add(this.label12);
             this.panel2.Location = new System.Drawing.Point(606, 523);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(194, 77);
+            this.panel2.Size = new System.Drawing.Size(152, 77);
             this.panel2.TabIndex = 59;
             // 
             // numberOfDamesForRed
@@ -743,10 +743,10 @@ namespace Warcaby.Forms
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label12.Location = new System.Drawing.Point(3, 3);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(180, 25);
+            this.label12.Size = new System.Drawing.Size(151, 22);
             this.label12.TabIndex = 0;
             this.label12.Text = "Gracz czerwony";
             // 
@@ -763,7 +763,7 @@ namespace Warcaby.Forms
             this.Controls.Add(this.fieldsContainer);
             this.Controls.Add(this.buttonBackToMenu);
             this.Name = "UCNewGame";
-            this.Size = new System.Drawing.Size(819, 602);
+            this.Size = new System.Drawing.Size(762, 600);
             this.Load += new System.EventHandler(this.UCNewGame_Load);
             this.fieldsContainer.ResumeLayout(false);
             this.fieldsContainer.PerformLayout();

@@ -28,28 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelTypeOfGame = new System.Windows.Forms.Label();
             this.buttonComputerVSComputer = new System.Windows.Forms.Button();
             this.buttonPlayerVSComputer = new System.Windows.Forms.Button();
             this.buttonPlayerVSPlayer = new System.Windows.Forms.Button();
             this.buttonBackToMenu = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // labelTypeOfGame
-            // 
-            this.labelTypeOfGame.AutoSize = true;
-            this.labelTypeOfGame.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelTypeOfGame.Font = new System.Drawing.Font("Microsoft YaHei UI", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelTypeOfGame.Location = new System.Drawing.Point(308, 30);
-            this.labelTypeOfGame.Name = "labelTypeOfGame";
-            this.labelTypeOfGame.Size = new System.Drawing.Size(221, 50);
-            this.labelTypeOfGame.TabIndex = 0;
-            this.labelTypeOfGame.Text = "Rodzaj gry";
-            // 
             // buttonComputerVSComputer
             // 
             this.buttonComputerVSComputer.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonComputerVSComputer.Location = new System.Drawing.Point(328, 133);
+            this.buttonComputerVSComputer.Location = new System.Drawing.Point(291, 110);
             this.buttonComputerVSComputer.Name = "buttonComputerVSComputer";
             this.buttonComputerVSComputer.Size = new System.Drawing.Size(180, 65);
             this.buttonComputerVSComputer.TabIndex = 1;
@@ -60,7 +48,7 @@
             // buttonPlayerVSComputer
             // 
             this.buttonPlayerVSComputer.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonPlayerVSComputer.Location = new System.Drawing.Point(328, 228);
+            this.buttonPlayerVSComputer.Location = new System.Drawing.Point(291, 206);
             this.buttonPlayerVSComputer.Name = "buttonPlayerVSComputer";
             this.buttonPlayerVSComputer.Size = new System.Drawing.Size(180, 65);
             this.buttonPlayerVSComputer.TabIndex = 2;
@@ -71,7 +59,7 @@
             // buttonPlayerVSPlayer
             // 
             this.buttonPlayerVSPlayer.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonPlayerVSPlayer.Location = new System.Drawing.Point(328, 323);
+            this.buttonPlayerVSPlayer.Location = new System.Drawing.Point(291, 302);
             this.buttonPlayerVSPlayer.Name = "buttonPlayerVSPlayer";
             this.buttonPlayerVSPlayer.Size = new System.Drawing.Size(180, 65);
             this.buttonPlayerVSPlayer.TabIndex = 3;
@@ -82,7 +70,7 @@
             // buttonBackToMenu
             // 
             this.buttonBackToMenu.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonBackToMenu.Location = new System.Drawing.Point(328, 463);
+            this.buttonBackToMenu.Location = new System.Drawing.Point(291, 463);
             this.buttonBackToMenu.Name = "buttonBackToMenu";
             this.buttonBackToMenu.Size = new System.Drawing.Size(180, 65);
             this.buttonBackToMenu.TabIndex = 4;
@@ -99,17 +87,13 @@
             this.Controls.Add(this.buttonPlayerVSPlayer);
             this.Controls.Add(this.buttonPlayerVSComputer);
             this.Controls.Add(this.buttonComputerVSComputer);
-            this.Controls.Add(this.labelTypeOfGame);
             this.Name = "UCTypeOfGame";
-            this.Size = new System.Drawing.Size(819, 602);
+            this.Size = new System.Drawing.Size(762, 600);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label labelTypeOfGame;
         private System.Windows.Forms.Button buttonComputerVSComputer;
         private System.Windows.Forms.Button buttonPlayerVSComputer;
         private System.Windows.Forms.Button buttonPlayerVSPlayer;
