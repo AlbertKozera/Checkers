@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Security.AccessControl;
 using System.Windows.Forms;
 
@@ -596,37 +595,6 @@ namespace Warcaby.Forms
             this.winner.TabIndex = 53;
             this.winner.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // turn
-            // 
-            this.turn.BackgroundImage = global::Warcaby.Properties.Resources.pawn_white;
-            this.turn.Location = new System.Drawing.Point(906, 52);
-            this.turn.Name = "turn";
-            this.turn.Size = new System.Drawing.Size(75, 77);
-            this.turn.TabIndex = 53;
-            this.turn.TabStop = false;
-            this.turn.Tag = "8";
-            this.turn.BackgroundImageChanged += new System.EventHandler(this.TimerTurnEvent);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(903, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 54;
-            this.label1.Text = "Tura:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.CausesValidation = false;
-            this.label2.Location = new System.Drawing.Point(903, 149);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
-            this.label2.TabIndex = 55;
-            this.label2.Text = "Czas:";
-            // 
             // Czas
             // 
             this.Czas.AutoSize = true;
@@ -785,13 +753,14 @@ namespace Warcaby.Forms
             // 
             // turn
             // 
-            this.turn.Image = global::Warcaby.Properties.Resources.pawn_white;
+            this.turn.BackgroundImage = global::Warcaby.Properties.Resources.pawn_white;
             this.turn.Location = new System.Drawing.Point(43, 257);
             this.turn.Name = "turn";
             this.turn.Size = new System.Drawing.Size(75, 77);
             this.turn.TabIndex = 64;
             this.turn.TabStop = false;
             this.turn.Tag = "8";
+            this.turn.BackgroundImageChanged += new System.EventHandler(this.TimerTurnEvent);
             // 
             // UCNewGame
             // 
@@ -848,6 +817,7 @@ namespace Warcaby.Forms
             ((System.ComponentModel.ISupportInitialize)(this.turn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private void label4_Click(object sender, EventArgs e)
