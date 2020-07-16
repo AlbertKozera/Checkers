@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Drawing;
+using System.Timers;
 using System.Windows.Forms;
 using Warcaby.CSharp.Game.Context;
 using Warcaby.Service.Context;
@@ -9,6 +10,8 @@ namespace Warcaby.Forms
 {
     public static class Extend
     {
+        public static System.Timers.Timer timer;
+
         public static bool IsNullOrEmpty(this IList List)
         {
             return (List == null || List.Count < 1);
@@ -118,6 +121,22 @@ namespace Warcaby.Forms
                 label.Left = 9;
                 label.BringToFront();
             }
+        }
+
+        public static void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}",
+                              e.SignalTime);
+        }
+
+        public static void SetTimer()
+        {
+            // Create a timer with a two second interval.
+            timer = new System.Timers.Timer(2000);
+            // Hook up the Elapsed event for the timer. 
+            timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            timer.AutoReset = true;
+            timer.Enabled = true;
         }
     }
 }

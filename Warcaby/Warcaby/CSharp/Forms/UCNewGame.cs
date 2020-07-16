@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
+using Warcaby.CSharp.Service;
 using Warcaby.Service.Context;
 
 namespace Warcaby.Forms
 {
     public partial class UCNewGame : UserControl
     {
-        GameService serviceTmp = new GameService();
+        GameService gameService = new GameService();
 
         public UCNewGame()
         {
@@ -40,8 +41,7 @@ namespace Warcaby.Forms
             MyDraggedData data = (MyDraggedData)e.Data.GetData(typeof(MyDraggedData));
             PictureBox fieldTo = (PictureBox)sender;
             PictureBox fieldFrom = (PictureBox)data.Data;
-
-            serviceTmp.GameChooser(fieldFrom, fieldTo);
+            gameService.GameChooser(fieldFrom, fieldTo);
         }
 
         private void MouseDownEvent(object sender, MouseEventArgs e)
