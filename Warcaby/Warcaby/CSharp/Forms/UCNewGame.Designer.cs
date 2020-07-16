@@ -830,6 +830,7 @@ namespace Warcaby.Forms
         }
 
         #endregion
+        public System.Windows.Forms.Label labelNewGame;
         private System.Windows.Forms.Panel fieldsContainer;
         public System.Windows.Forms.PictureBox field_2;
         public System.Windows.Forms.PictureBox field_4;
