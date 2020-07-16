@@ -56,5 +56,6 @@ namespace Warcaby.Forms
         {
             e.Effect = e.AllowedEffect;
         }
+
     }
 }
