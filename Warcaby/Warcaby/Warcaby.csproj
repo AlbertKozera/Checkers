@@ -164,6 +164,8 @@
     <Content Include="Resources\Image\pawn_red.png" />
     <Content Include="Resources\Image\pawn_white.png" />
     <Content Include="Resources\Image\Icon.ico" />
+    <None Include="Resources\Image\white.png" />
+    <None Include="Resources\Image\red.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CSharp\Game\Computer\" />

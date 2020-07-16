@@ -40,7 +40,12 @@ namespace Warcaby.Forms
             GoToNewGame();
         }
 
-        private void ButtonBackToMenu_Click(object sender, EventArgs e)
+        private void UCTypeOfGame_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void backToMenu(object sender, EventArgs e)
         {
             Controls.Clear();
             UCMainMenu ucMainMenu = new UCMainMenu();
