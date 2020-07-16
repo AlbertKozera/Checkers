@@ -30,23 +30,12 @@ namespace Warcaby.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonBackToMenu = new System.Windows.Forms.Button();
             this.optionsQuestion = new System.Windows.Forms.Label();
             this.checkBoxThread = new System.Windows.Forms.CheckBox();
             this.optionsLabel2 = new System.Windows.Forms.Label();
             this.checkBoxStartingGame = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // buttonBackToMenu
-            // 
-            this.buttonBackToMenu.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBackToMenu.Location = new System.Drawing.Point(331, 463);
-            this.buttonBackToMenu.Name = "buttonBackToMenu";
-            this.buttonBackToMenu.Size = new System.Drawing.Size(100, 50);
-            this.buttonBackToMenu.TabIndex = 1;
-            this.buttonBackToMenu.Text = "Powrót";
-            this.buttonBackToMenu.UseVisualStyleBackColor = true;
-            this.buttonBackToMenu.Click += new System.EventHandler(this.backToMenu);
             // 
             // optionsQuestion
             // 
@@ -91,17 +80,28 @@ namespace Warcaby.Forms
             this.checkBoxStartingGame.CheckedChanged += new System.EventHandler(this.CheckBoxStartingGame_CheckedChanged);
             this.checkBoxStartingGame.MouseCaptureChanged += new System.EventHandler(this.CheckBoxStartingGame_CheckedChanged);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button1.Location = new System.Drawing.Point(327, 495);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 42);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Powrót";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.backToMenu);
+            // 
             // UCOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.BackgroundImage = global::Warcaby.Properties.Resources.background;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBoxStartingGame);
             this.Controls.Add(this.optionsLabel2);
             this.Controls.Add(this.checkBoxThread);
             this.Controls.Add(this.optionsQuestion);
-            this.Controls.Add(this.buttonBackToMenu);
             this.Name = "UCOptions";
             this.Size = new System.Drawing.Size(762, 600);
             this.Load += new System.EventHandler(this.UCOptions_Load);
@@ -111,10 +111,10 @@ namespace Warcaby.Forms
         }
 
         #endregion
-        private System.Windows.Forms.Button buttonBackToMenu;
         private System.Windows.Forms.Label optionsQuestion;
         private System.Windows.Forms.CheckBox checkBoxThread;
         private System.Windows.Forms.Label optionsLabel2;
         private System.Windows.Forms.CheckBox checkBoxStartingGame;
+        private System.Windows.Forms.Button button1;
     }
 }

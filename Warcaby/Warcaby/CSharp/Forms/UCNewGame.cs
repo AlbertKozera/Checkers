@@ -57,9 +57,5 @@ namespace Warcaby.Forms
             e.Effect = e.AllowedEffect;
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

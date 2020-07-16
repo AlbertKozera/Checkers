@@ -33,7 +33,6 @@ namespace Warcaby.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonBackToMenu = new System.Windows.Forms.Button();
             this.fieldsContainer = new System.Windows.Forms.Panel();
             this.field_40 = new System.Windows.Forms.PictureBox();
             this.field_36 = new System.Windows.Forms.PictureBox();
@@ -68,21 +67,22 @@ namespace Warcaby.Forms
             this.field_54 = new System.Windows.Forms.PictureBox();
             this.field_56 = new System.Windows.Forms.PictureBox();
             this.winner = new System.Windows.Forms.Label();
-            this.turn = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.Czas = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.numberOfDamesForWhite = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.numberOfPawnsForWhite = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonBackToMenu = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.numberOfDamesForRed = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.numberOfPawnsForRed = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.numberOfDamesForWhite = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.numberOfPawnsForWhite = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.turn = new System.Windows.Forms.PictureBox();
             this.fieldsContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.field_40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_36)).BeginInit();
@@ -116,20 +116,13 @@ namespace Warcaby.Forms
             ((System.ComponentModel.ISupportInitialize)(this.field_52)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_54)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_56)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turn)).BeginInit();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.turn)).BeginInit();
             this.SuspendLayout();
-            // 
-            // buttonBackToMenu
-            // 
-            this.buttonBackToMenu.Location = new System.Drawing.Point(687, 307);
-            this.buttonBackToMenu.Name = "buttonBackToMenu";
-            this.buttonBackToMenu.Size = new System.Drawing.Size(75, 23);
-            this.buttonBackToMenu.TabIndex = 1;
-            this.buttonBackToMenu.Text = "Zakończ grę";
-            this.buttonBackToMenu.UseVisualStyleBackColor = true;
-            this.buttonBackToMenu.Click += new System.EventHandler(this.backToMenu);
             // 
             // fieldsContainer
             // 
@@ -602,26 +595,6 @@ namespace Warcaby.Forms
             this.winner.TabIndex = 53;
             this.winner.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // turn
-            // 
-            this.turn.Image = global::Warcaby.Properties.Resources.pawn_white;
-            this.turn.Location = new System.Drawing.Point(607, 288);
-            this.turn.Name = "turn";
-            this.turn.Size = new System.Drawing.Size(75, 77);
-            this.turn.TabIndex = 53;
-            this.turn.TabStop = false;
-            this.turn.Tag = "8";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(609, 272);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 54;
-            this.label1.Text = "Tura:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
             // Czas
             // 
             this.Czas.AutoSize = true;
@@ -631,124 +604,162 @@ namespace Warcaby.Forms
             this.Czas.TabIndex = 57;
             this.Czas.Click += new System.EventHandler(this.label4_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.numberOfDamesForWhite);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.numberOfPawnsForWhite);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Location = new System.Drawing.Point(606, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(144, 77);
-            this.panel1.TabIndex = 58;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // numberOfDamesForWhite
-            // 
-            this.numberOfDamesForWhite.AutoSize = true;
-            this.numberOfDamesForWhite.Location = new System.Drawing.Point(82, 56);
-            this.numberOfDamesForWhite.Name = "numberOfDamesForWhite";
-            this.numberOfDamesForWhite.Size = new System.Drawing.Size(13, 13);
-            this.numberOfDamesForWhite.TabIndex = 4;
-            this.numberOfDamesForWhite.Text = "0";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 56);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "liczba damek -";
-            // 
-            // numberOfPawnsForWhite
-            // 
-            this.numberOfPawnsForWhite.AutoSize = true;
-            this.numberOfPawnsForWhite.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numberOfPawnsForWhite.Location = new System.Drawing.Point(88, 36);
-            this.numberOfPawnsForWhite.Name = "numberOfPawnsForWhite";
-            this.numberOfPawnsForWhite.Size = new System.Drawing.Size(19, 13);
-            this.numberOfPawnsForWhite.TabIndex = 3;
-            this.numberOfPawnsForWhite.Text = "12";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 36);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "liczba pionków -";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(3, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 22);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Gracz biały";
-            // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.numberOfDamesForRed);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.numberOfPawnsForRed);
-            this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.label12);
-            this.panel2.Location = new System.Drawing.Point(606, 523);
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.BackgroundImage = global::Warcaby.Properties.Resources.background;
+            this.panel2.Controls.Add(this.buttonBackToMenu);
+            this.panel2.Controls.Add(this.panel1);
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.turn);
+            this.panel2.Location = new System.Drawing.Point(600, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(152, 77);
-            this.panel2.TabIndex = 59;
+            this.panel2.Size = new System.Drawing.Size(162, 600);
+            this.panel2.TabIndex = 63;
+            // 
+            // buttonBackToMenu
+            // 
+            this.buttonBackToMenu.Location = new System.Drawing.Point(42, 332);
+            this.buttonBackToMenu.Name = "buttonBackToMenu";
+            this.buttonBackToMenu.Size = new System.Drawing.Size(77, 23);
+            this.buttonBackToMenu.TabIndex = 63;
+            this.buttonBackToMenu.Text = "Zakończ grę";
+            this.buttonBackToMenu.UseVisualStyleBackColor = true;
+            this.buttonBackToMenu.Click += new System.EventHandler(this.backToMenu);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.panel1.Controls.Add(this.numberOfDamesForRed);
+            this.panel1.Controls.Add(this.pictureBox5);
+            this.panel1.Controls.Add(this.numberOfPawnsForRed);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Location = new System.Drawing.Point(0, 525);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(162, 76);
+            this.panel1.TabIndex = 66;
             // 
             // numberOfDamesForRed
             // 
             this.numberOfDamesForRed.AutoSize = true;
-            this.numberOfDamesForRed.Location = new System.Drawing.Point(82, 56);
+            this.numberOfDamesForRed.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numberOfDamesForRed.Location = new System.Drawing.Point(127, 29);
             this.numberOfDamesForRed.Name = "numberOfDamesForRed";
-            this.numberOfDamesForRed.Size = new System.Drawing.Size(13, 13);
+            this.numberOfDamesForRed.Size = new System.Drawing.Size(14, 13);
             this.numberOfDamesForRed.TabIndex = 4;
             this.numberOfDamesForRed.Text = "0";
             // 
-            // label9
+            // pictureBox5
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 56);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(75, 13);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "liczba damek -";
+            this.pictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(28)))), ((int)(((byte)(36)))));
+            this.pictureBox5.Location = new System.Drawing.Point(0, 49);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(162, 26);
+            this.pictureBox5.TabIndex = 60;
+            this.pictureBox5.TabStop = false;
             // 
             // numberOfPawnsForRed
             // 
             this.numberOfPawnsForRed.AutoSize = true;
-            this.numberOfPawnsForRed.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numberOfPawnsForRed.Location = new System.Drawing.Point(88, 36);
+            this.numberOfPawnsForRed.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numberOfPawnsForRed.Location = new System.Drawing.Point(125, 9);
             this.numberOfPawnsForRed.Name = "numberOfPawnsForRed";
-            this.numberOfPawnsForRed.Size = new System.Drawing.Size(19, 13);
+            this.numberOfPawnsForRed.Size = new System.Drawing.Size(21, 13);
             this.numberOfPawnsForRed.TabIndex = 3;
             this.numberOfPawnsForRed.Text = "12";
             // 
-            // label11
+            // label3
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(8, 36);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(83, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "liczba pionków -";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label3.Location = new System.Drawing.Point(12, 27);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(118, 16);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "liczba damek ----->";
             // 
-            // label12
+            // label4
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label12.Location = new System.Drawing.Point(3, 3);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(151, 22);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Gracz czerwony";
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(12, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(118, 16);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "liczba pionków --->";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.panel3.Controls.Add(this.numberOfDamesForWhite);
+            this.panel3.Controls.Add(this.pictureBox2);
+            this.panel3.Controls.Add(this.numberOfPawnsForWhite);
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.label8);
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(162, 75);
+            this.panel3.TabIndex = 65;
+            // 
+            // numberOfDamesForWhite
+            // 
+            this.numberOfDamesForWhite.AutoSize = true;
+            this.numberOfDamesForWhite.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numberOfDamesForWhite.Location = new System.Drawing.Point(127, 55);
+            this.numberOfDamesForWhite.Name = "numberOfDamesForWhite";
+            this.numberOfDamesForWhite.Size = new System.Drawing.Size(14, 13);
+            this.numberOfDamesForWhite.TabIndex = 4;
+            this.numberOfDamesForWhite.Text = "0";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.White;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(162, 26);
+            this.pictureBox2.TabIndex = 60;
+            this.pictureBox2.TabStop = false;
+            // 
+            // numberOfPawnsForWhite
+            // 
+            this.numberOfPawnsForWhite.AutoSize = true;
+            this.numberOfPawnsForWhite.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.numberOfPawnsForWhite.Location = new System.Drawing.Point(126, 34);
+            this.numberOfPawnsForWhite.Name = "numberOfPawnsForWhite";
+            this.numberOfPawnsForWhite.Size = new System.Drawing.Size(21, 13);
+            this.numberOfPawnsForWhite.TabIndex = 3;
+            this.numberOfPawnsForWhite.Text = "12";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label6.Location = new System.Drawing.Point(12, 53);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(118, 16);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "liczba damek ----->";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.Location = new System.Drawing.Point(12, 32);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(118, 16);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "liczba pionków --->";
+            // 
+            // turn
+            // 
+            this.turn.Image = global::Warcaby.Properties.Resources.pawn_white;
+            this.turn.Location = new System.Drawing.Point(43, 257);
+            this.turn.Name = "turn";
+            this.turn.Size = new System.Drawing.Size(75, 77);
+            this.turn.TabIndex = 64;
+            this.turn.TabStop = false;
+            this.turn.Tag = "8";
             // 
             // UCNewGame
             // 
@@ -756,12 +767,8 @@ namespace Warcaby.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.Czas);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.turn);
             this.Controls.Add(this.fieldsContainer);
-            this.Controls.Add(this.buttonBackToMenu);
             this.Name = "UCNewGame";
             this.Size = new System.Drawing.Size(762, 600);
             this.Load += new System.EventHandler(this.UCNewGame_Load);
@@ -799,11 +806,14 @@ namespace Warcaby.Forms
             ((System.ComponentModel.ISupportInitialize)(this.field_52)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_54)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_56)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turn)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.turn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -820,7 +830,6 @@ namespace Warcaby.Forms
         }
 
         #endregion
-        private System.Windows.Forms.Button buttonBackToMenu;
         private System.Windows.Forms.Panel fieldsContainer;
         public System.Windows.Forms.PictureBox field_2;
         public System.Windows.Forms.PictureBox field_4;
@@ -854,21 +863,22 @@ namespace Warcaby.Forms
         public System.Windows.Forms.PictureBox field_59;
         public System.Windows.Forms.PictureBox field_61;
         public System.Windows.Forms.PictureBox field_63;
-        public PictureBox turn;
-        private Label label1;
         private Label Czas;
-        private Panel panel1;
-        private Label label5;
-        private Label label4;
-        private Label label3;
-        private Label numberOfDamesForWhite;
-        private Label numberOfPawnsForWhite;
-        private Panel panel2;
-        private Label numberOfDamesForRed;
-        private Label label9;
-        private Label numberOfPawnsForRed;
-        private Label label11;
-        private Label label12;
         private Label winner;
+        private Panel panel2;
+        private Button buttonBackToMenu;
+        private Panel panel1;
+        private Label numberOfDamesForRed;
+        private PictureBox pictureBox5;
+        private Label numberOfPawnsForRed;
+        private Label label3;
+        private Label label4;
+        private Panel panel3;
+        private Label numberOfDamesForWhite;
+        private PictureBox pictureBox2;
+        private Label numberOfPawnsForWhite;
+        private Label label6;
+        private Label label8;
+        public PictureBox turn;
     }
 }
