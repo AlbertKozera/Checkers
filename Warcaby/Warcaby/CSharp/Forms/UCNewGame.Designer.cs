@@ -843,7 +843,7 @@ namespace Warcaby.Forms
 
         #endregion
 
-        private System.Windows.Forms.Label labelNewGame;
+        public System.Windows.Forms.Label labelNewGame;
         private System.Windows.Forms.Button buttonBackToMenu;
         private System.Windows.Forms.Panel fieldsContainer;
         public System.Windows.Forms.PictureBox field_2;
@@ -879,21 +879,21 @@ namespace Warcaby.Forms
         public System.Windows.Forms.PictureBox field_61;
         public System.Windows.Forms.PictureBox field_63;
         public PictureBox turn;
-        private Label label1;
-        private Label label2;
-        private Label Czas;
-        private Panel panel1;
-        private Label label5;
-        private Label label4;
-        private Label label3;
-        private Label numberOfDamesForWhite;
-        private Label numberOfPawnsForWhite;
-        private Panel panel2;
-        private Label numberOfDamesForRed;
-        private Label label9;
-        private Label numberOfPawnsForRed;
-        private Label label11;
-        private Label label12;
-        private Label winner;
+        public Label label1;
+        public Label label2;
+        public Label Czas;
+        public Panel panel1;
+        public Label label5;
+        public Label label4;
+        public Label label3;
+        public Label numberOfDamesForWhite;
+        public Label numberOfPawnsForWhite;
+        public Panel panel2;
+        public Label numberOfDamesForRed;
+        public Label label9;
+        public Label numberOfPawnsForRed;
+        public Label label11;
+        public Label label12;
+        public Label winner;
     }
 }

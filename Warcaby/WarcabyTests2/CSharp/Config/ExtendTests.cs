@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Warcaby.Service.Context;
 using System.Drawing;
 using System.Windows.Forms;
+using System;
+using Warcaby.CSharp.Game.Context;
 
 namespace Warcaby.Forms.Tests
 {
@@ -32,7 +34,42 @@ namespace Warcaby.Forms.Tests
             GameService.gameBoard[45] = Constant.PAWN_RED;
             GameService.gameBoard[47] = Constant.PAWN_RED;
             GameService.gameBoard[34] = Constant.DAME_WHITE;
-            GameService.gameBoard[63] = Constant.PAWN_WHITE;
+            GameService.gameBoard[2] = Constant.DAME_RED;
+            GameService.gameBoard[4] = Constant.DAME_RED;
+        }
+
+        public void CompleteBoardWhiteWinTest()
+        {
+            GameService.gameBoard.Clear();
+            for (int i = 2; i <= 63; i += 2)
+            {
+                GameService.gameBoard.Add(i, Constant.EMPTY_FIELD);
+                if (i == 8) i--;
+                if (i == 15) i++;
+                if (i == 24) i--;
+                if (i == 31) i++;
+                if (i == 40) i--;
+                if (i == 47) i++;
+                if (i == 56) i--;
+            }
+            GameService.gameBoard[18] = Constant.PAWN_WHITE;
+        }
+
+        public void CompleteBoardRedWinTest()
+        {
+            GameService.gameBoard.Clear();
+            for (int i = 2; i <= 63; i += 2)
+            {
+                GameService.gameBoard.Add(i, Constant.EMPTY_FIELD);
+                if (i == 8) i--;
+                if (i == 15) i++;
+                if (i == 24) i--;
+                if (i == 31) i++;
+                if (i == 40) i--;
+                if (i == 47) i++;
+                if (i == 56) i--;
+            }
+            GameService.gameBoard[18] = Constant.PAWN_RED;
         }
         [TestMethod()]
         public void IsNullOrEmptyListTest_Null()
@@ -160,6 +197,62 @@ namespace Warcaby.Forms.Tests
             color = Constant.WHITE;
             //then
             Assert.ReferenceEquals(new Bitmap(Properties.Resources.dame_white), Extend.GetDameImage(color));
+        }
+
+        [TestMethod()]
+        public void GetNumberOfPawnsWhiteTest()
+        {
+            //given
+            CompleteBoardTest();
+            string color;
+            int expectedResult;
+            //when
+            color = Constant.WHITE;
+            expectedResult = 5;
+            //then
+            Assert.AreEqual(expectedResult, Extend.GetNumberOfPawns(color));
+        }
+
+        [TestMethod()]
+        public void GetNumberOfPawnsRedTest()
+        {
+            //given
+            CompleteBoardTest();
+            string color;
+            int expectedResult;
+            //when
+            color = Constant.RED;
+            expectedResult = 4;
+            //then
+            Assert.AreEqual(expectedResult, Extend.GetNumberOfPawns(color));
+        }
+
+        [TestMethod()]
+        public void GetNumberOfWhiteDamesTest()
+        {
+            //given
+            CompleteBoardTest();
+            string color;
+            int expectedResult;
+            //when
+            color = Constant.WHITE;
+            expectedResult = 1;
+            //then
+            Assert.AreEqual(expectedResult, Extend.GetNumberOfDames(color));
+        }
+
+        [TestMethod()]
+        public void GetNumberOfRedDamesTest()
+        {
+            //given
+            CompleteBoardTest();
+            string color;
+            int expectedResult;
+            //when
+            color = Constant.RED;
+            expectedResult = 2;
+            //then
+            Assert.AreEqual(expectedResult, Extend.GetNumberOfDames(color));
         }
     }
 }
