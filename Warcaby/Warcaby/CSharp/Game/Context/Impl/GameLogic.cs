@@ -151,9 +151,13 @@ namespace Warcaby.CSharp.Game.Context
         public void FinishTheTurn(string color)
         {
             if (color.Equals(Constant.WHITE))
+            {
                 GameService.whiteTurn = false;
+            }
             else
+            {
                 GameService.whiteTurn = true;
+            }
             Extend.ChangeImageOfTurn(color);
         }
 

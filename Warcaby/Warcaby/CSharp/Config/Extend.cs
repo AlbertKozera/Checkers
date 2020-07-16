@@ -66,9 +66,9 @@ namespace Warcaby.Forms
         {
             PictureBox pictureBox = (PictureBox)GetControlByName("turn");
             if (color.Equals(Constant.WHITE))
-                pictureBox.Image = new Bitmap(Properties.Resources.pawn_red);
+                pictureBox.BackgroundImage = new Bitmap(Properties.Resources.pawn_red);
             else
-                pictureBox.Image = new Bitmap(Properties.Resources.pawn_white);
+                pictureBox.BackgroundImage = new Bitmap(Properties.Resources.pawn_white);
         }
 
         public static int GetNumberOfPawns(string color)
@@ -121,22 +121,6 @@ namespace Warcaby.Forms
                 label.Left = 9;
                 label.BringToFront();
             }
-        }
-
-        public static void OnTimedEvent(Object source, ElapsedEventArgs e)
-        {
-            Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}",
-                              e.SignalTime);
-        }
-
-        public static void SetTimer()
-        {
-            // Create a timer with a two second interval.
-            timer = new System.Timers.Timer(2000);
-            // Hook up the Elapsed event for the timer. 
-            timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            timer.AutoReset = true;
-            timer.Enabled = true;
         }
     }
 }

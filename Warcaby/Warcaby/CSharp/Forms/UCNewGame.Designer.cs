@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Security.AccessControl;
 using System.Windows.Forms;
 
@@ -615,13 +616,14 @@ namespace Warcaby.Forms
             // 
             // turn
             // 
-            this.turn.Image = global::Warcaby.Properties.Resources.pawn_white;
+            this.turn.BackgroundImage = global::Warcaby.Properties.Resources.pawn_white;
             this.turn.Location = new System.Drawing.Point(906, 52);
             this.turn.Name = "turn";
             this.turn.Size = new System.Drawing.Size(75, 77);
             this.turn.TabIndex = 53;
             this.turn.TabStop = false;
             this.turn.Tag = "8";
+            this.turn.BackgroundImageChanged += new System.EventHandler(this.TimerTurnEvent);
             // 
             // label1
             // 
@@ -828,7 +830,6 @@ namespace Warcaby.Forms
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         private void label4_Click(object sender, EventArgs e)

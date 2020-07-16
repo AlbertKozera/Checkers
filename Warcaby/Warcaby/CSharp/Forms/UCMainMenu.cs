@@ -23,6 +23,7 @@ namespace Warcaby.Forms
             UCTypeOfGame ucTypeOfGame = new UCTypeOfGame();
             Controls.Add(ucTypeOfGame);
             ucTypeOfGame.Show();
+
         }
 
         private void OptionsEvent(object sender, EventArgs e)

@@ -104,7 +104,6 @@
     <Compile Include="CSharp\Game\Context\Impl\GameLogic.cs" />
     <Compile Include="CSharp\Service\GameService.cs" />
     <Compile Include="CSharp\Service\OptionsService.cs" />
-    <Content Include="Resources\Logs.txt" />
     <EmbeddedResource Include="CSharp\Forms\UCTypeOfGame.resx">
       <DependentUpon>UCTypeOfGame.cs</DependentUpon>
     </EmbeddedResource>

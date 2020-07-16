@@ -12,16 +12,13 @@ namespace Warcaby.CSharp.Service
 {
     public class LoggerService
     {
+        public static long timer;
         public static Logger logger = LogManager.GetCurrentClassLogger();
         
-        public void WriteLogger(bool whiteTurn, int indexFrom, int indexThrough, int indexTo, PictureBox fieldFrom, PictureBox fieldTo, long timer)
+        public void WriteLogger(bool whiteTurn, int indexFrom, int indexThrough, int indexTo, PictureBox fieldFrom, PictureBox fieldTo)
         {
-            if (indexThrough == 0)
-            {
-                var fieldThrough = 0;
-            }
             string round;
-            if (whiteTurn)
+            if (!whiteTurn)
                 round = Constant.WHITE;
             else
                 round = Constant.RED;
