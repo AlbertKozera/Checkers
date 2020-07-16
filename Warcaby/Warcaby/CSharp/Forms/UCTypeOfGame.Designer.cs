@@ -37,7 +37,7 @@
             // buttonComputerVSComputer
             // 
             this.buttonComputerVSComputer.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonComputerVSComputer.Location = new System.Drawing.Point(291, 148);
+            this.buttonComputerVSComputer.Location = new System.Drawing.Point(291, 344);
             this.buttonComputerVSComputer.Name = "buttonComputerVSComputer";
             this.buttonComputerVSComputer.Size = new System.Drawing.Size(180, 65);
             this.buttonComputerVSComputer.TabIndex = 1;
@@ -48,7 +48,7 @@
             // buttonPlayerVSComputer
             // 
             this.buttonPlayerVSComputer.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonPlayerVSComputer.Location = new System.Drawing.Point(291, 244);
+            this.buttonPlayerVSComputer.Location = new System.Drawing.Point(291, 259);
             this.buttonPlayerVSComputer.Name = "buttonPlayerVSComputer";
             this.buttonPlayerVSComputer.Size = new System.Drawing.Size(180, 65);
             this.buttonPlayerVSComputer.TabIndex = 2;
@@ -59,7 +59,7 @@
             // buttonPlayerVSPlayer
             // 
             this.buttonPlayerVSPlayer.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonPlayerVSPlayer.Location = new System.Drawing.Point(291, 340);
+            this.buttonPlayerVSPlayer.Location = new System.Drawing.Point(291, 174);
             this.buttonPlayerVSPlayer.Name = "buttonPlayerVSPlayer";
             this.buttonPlayerVSPlayer.Size = new System.Drawing.Size(180, 65);
             this.buttonPlayerVSPlayer.TabIndex = 3;
