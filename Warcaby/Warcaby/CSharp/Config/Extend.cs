@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Drawing;
+using System.Timers;
 using System.Windows.Forms;
 using Warcaby.CSharp.Game.Context;
 using Warcaby.Service.Context;
@@ -9,6 +10,8 @@ namespace Warcaby.Forms
 {
     public static class Extend
     {
+        public static System.Timers.Timer timer;
+
         public static bool IsNullOrEmpty(this IList List)
         {
             return (List == null || List.Count < 1);
@@ -63,9 +66,9 @@ namespace Warcaby.Forms
         {
             PictureBox pictureBox = (PictureBox)GetControlByName("turn");
             if (color.Equals(Constant.WHITE))
-                pictureBox.Image = new Bitmap(Properties.Resources.pawn_red);
+                pictureBox.BackgroundImage = new Bitmap(Properties.Resources.pawn_red);
             else
-                pictureBox.Image = new Bitmap(Properties.Resources.pawn_white);
+                pictureBox.BackgroundImage = new Bitmap(Properties.Resources.pawn_white);
         }
 
         public static int GetNumberOfPawns(string color)
