@@ -28,42 +28,68 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonNewGame = new System.Windows.Forms.Button();
-            this.buttonOption = new System.Windows.Forms.Button();
-            this.buttonExit = new System.Windows.Forms.Button();
+            this.buttonNewGame = new FontAwesome.Sharp.IconButton();
+            this.buttonOption = new FontAwesome.Sharp.IconButton();
+            this.buttonExit = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
             // 
             // buttonNewGame
             // 
-            this.buttonNewGame.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonNewGame.Location = new System.Drawing.Point(301, 144);
+            this.buttonNewGame.BackColor = System.Drawing.Color.White;
+            this.buttonNewGame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonNewGame.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.buttonNewGame.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonNewGame.IconChar = FontAwesome.Sharp.IconChar.Gamepad;
+            this.buttonNewGame.IconColor = System.Drawing.Color.Black;
+            this.buttonNewGame.IconSize = 35;
+            this.buttonNewGame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonNewGame.Location = new System.Drawing.Point(301, 158);
             this.buttonNewGame.Name = "buttonNewGame";
+            this.buttonNewGame.Rotation = 0D;
             this.buttonNewGame.Size = new System.Drawing.Size(160, 60);
-            this.buttonNewGame.TabIndex = 0;
+            this.buttonNewGame.TabIndex = 3;
             this.buttonNewGame.Text = "Nowa gra";
-            this.buttonNewGame.UseVisualStyleBackColor = true;
+            this.buttonNewGame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonNewGame.UseVisualStyleBackColor = false;
             this.buttonNewGame.Click += new System.EventHandler(this.TypeOfGameEvent);
             // 
             // buttonOption
             // 
-            this.buttonOption.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonOption.Location = new System.Drawing.Point(301, 267);
+            this.buttonOption.BackColor = System.Drawing.Color.White;
+            this.buttonOption.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOption.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.buttonOption.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonOption.IconChar = FontAwesome.Sharp.IconChar.Cogs;
+            this.buttonOption.IconColor = System.Drawing.Color.Black;
+            this.buttonOption.IconSize = 30;
+            this.buttonOption.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonOption.Location = new System.Drawing.Point(301, 269);
             this.buttonOption.Name = "buttonOption";
+            this.buttonOption.Rotation = 0D;
             this.buttonOption.Size = new System.Drawing.Size(160, 60);
-            this.buttonOption.TabIndex = 1;
+            this.buttonOption.TabIndex = 4;
             this.buttonOption.Text = "Opcje";
-            this.buttonOption.UseVisualStyleBackColor = true;
+            this.buttonOption.UseVisualStyleBackColor = false;
             this.buttonOption.Click += new System.EventHandler(this.OptionsEvent);
             // 
             // buttonExit
             // 
-            this.buttonExit.Font = new System.Drawing.Font("Microsoft YaHei UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonExit.Location = new System.Drawing.Point(301, 390);
+            this.buttonExit.BackColor = System.Drawing.Color.White;
+            this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonExit.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.buttonExit.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonExit.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
+            this.buttonExit.IconColor = System.Drawing.Color.Black;
+            this.buttonExit.IconSize = 35;
+            this.buttonExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonExit.Location = new System.Drawing.Point(301, 387);
             this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Rotation = 0D;
             this.buttonExit.Size = new System.Drawing.Size(160, 60);
-            this.buttonExit.TabIndex = 2;
+            this.buttonExit.TabIndex = 5;
             this.buttonExit.Text = "Wyjście";
-            this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonExit.UseVisualStyleBackColor = false;
             this.buttonExit.Click += new System.EventHandler(this.ExitEvent);
             // 
             // UCMainMenu
@@ -82,8 +108,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonNewGame;
-        private System.Windows.Forms.Button buttonOption;
-        private System.Windows.Forms.Button buttonExit;
+        private FontAwesome.Sharp.IconButton buttonNewGame;
+        private FontAwesome.Sharp.IconButton buttonOption;
+        private FontAwesome.Sharp.IconButton buttonExit;
     }
 }

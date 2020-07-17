@@ -31,51 +31,67 @@
             this.buttonComputerVSComputer = new System.Windows.Forms.Button();
             this.buttonPlayerVSComputer = new System.Windows.Forms.Button();
             this.buttonPlayerVSPlayer = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button1 = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
             // 
             // buttonComputerVSComputer
             // 
+            this.buttonComputerVSComputer.BackColor = System.Drawing.Color.White;
+            this.buttonComputerVSComputer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonComputerVSComputer.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonComputerVSComputer.Location = new System.Drawing.Point(291, 344);
             this.buttonComputerVSComputer.Name = "buttonComputerVSComputer";
             this.buttonComputerVSComputer.Size = new System.Drawing.Size(180, 65);
             this.buttonComputerVSComputer.TabIndex = 1;
             this.buttonComputerVSComputer.Text = "komputer vs komputer";
-            this.buttonComputerVSComputer.UseVisualStyleBackColor = true;
+            this.buttonComputerVSComputer.UseVisualStyleBackColor = false;
             this.buttonComputerVSComputer.Click += new System.EventHandler(this.ButtonComputerVSComputer_Click);
             // 
             // buttonPlayerVSComputer
             // 
+            this.buttonPlayerVSComputer.BackColor = System.Drawing.Color.White;
+            this.buttonPlayerVSComputer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPlayerVSComputer.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonPlayerVSComputer.Location = new System.Drawing.Point(291, 259);
             this.buttonPlayerVSComputer.Name = "buttonPlayerVSComputer";
             this.buttonPlayerVSComputer.Size = new System.Drawing.Size(180, 65);
             this.buttonPlayerVSComputer.TabIndex = 2;
             this.buttonPlayerVSComputer.Text = "gracz vs komputer";
-            this.buttonPlayerVSComputer.UseVisualStyleBackColor = true;
+            this.buttonPlayerVSComputer.UseVisualStyleBackColor = false;
             this.buttonPlayerVSComputer.Click += new System.EventHandler(this.ButtonPlayerVSComputer_Click);
             // 
             // buttonPlayerVSPlayer
             // 
+            this.buttonPlayerVSPlayer.BackColor = System.Drawing.Color.White;
+            this.buttonPlayerVSPlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPlayerVSPlayer.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonPlayerVSPlayer.Location = new System.Drawing.Point(291, 174);
             this.buttonPlayerVSPlayer.Name = "buttonPlayerVSPlayer";
             this.buttonPlayerVSPlayer.Size = new System.Drawing.Size(180, 65);
             this.buttonPlayerVSPlayer.TabIndex = 3;
             this.buttonPlayerVSPlayer.Text = "gracz vs gracz";
-            this.buttonPlayerVSPlayer.UseVisualStyleBackColor = true;
+            this.buttonPlayerVSPlayer.UseVisualStyleBackColor = false;
             this.buttonPlayerVSPlayer.Click += new System.EventHandler(this.ButtonPlayerVSPlayer_Click);
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(327, 495);
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button1.IconChar = FontAwesome.Sharp.IconChar.ArrowCircleLeft;
+            this.button1.IconColor = System.Drawing.Color.Black;
+            this.button1.IconSize = 25;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(322, 496);
             this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.button1.Rotation = 0D;
             this.button1.Size = new System.Drawing.Size(110, 42);
-            this.button1.TabIndex = 7;
+            this.button1.TabIndex = 8;
             this.button1.Text = "Powrót";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.backToMenu);
             // 
             // UCTypeOfGame
@@ -98,6 +114,6 @@
         private System.Windows.Forms.Button buttonComputerVSComputer;
         private System.Windows.Forms.Button buttonPlayerVSComputer;
         private System.Windows.Forms.Button buttonPlayerVSPlayer;
-        private System.Windows.Forms.Button button1;
+        private FontAwesome.Sharp.IconButton button1;
     }
 }
