@@ -50,5 +50,6 @@ namespace Warcaby.CSharp.Game.Context
             else
                 return largerIndex - 7;
         }
+
     }
 }

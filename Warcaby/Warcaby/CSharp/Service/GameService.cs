@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Warcaby.CSharp.Config;
+using Warcaby.CSharp.Game;
+using Warcaby.CSharp.Game.Computer;
 using Warcaby.CSharp.Game.Context;
 using Warcaby.CSharp.Service;
 using Warcaby.Forms;
@@ -51,6 +53,12 @@ namespace Warcaby.Service.Context
 
         public void Gameplay(GameLogic player, string color)
         {
+            ComputerLogic computerLogic = new ComputerLogic();
+            List<Move> list = computerLogic.GetPossibleMoves(gameBoard, color);
+
+
+
+
             forcedBeatingForPawnsList = pawn.GetDataAboutBeatings(color);
             forcedBeatingForDamesList = dame.GetDataAboutBeatings(color);
             player.MovingAPawnThatHasNoBeating();

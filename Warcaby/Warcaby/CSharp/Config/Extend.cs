@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Timers;
 using System.Windows.Forms;
@@ -71,10 +72,10 @@ namespace Warcaby.Forms
                 pictureBox.BackgroundImage = new Bitmap(Properties.Resources.pawn_white);
         }
 
-        public static int GetNumberOfPawns(string color)
+        public static int GetNumberOfPawns(Dictionary<int, Field> gameBoard, string color)
         {
             int i = 0;
-            foreach (Field field in GameService.gameBoard.Values)
+            foreach (Field field in gameBoard.Values)
             {
                 if (field.isPawn && field.color.Equals(color))
                     i++;
@@ -82,10 +83,10 @@ namespace Warcaby.Forms
             return i;
         }
 
-        public static int GetNumberOfDames(string color)
+        public static int GetNumberOfDames(Dictionary<int, Field> gameBoard, string color)
         {
             int i = 0;
-            foreach (Field field in GameService.gameBoard.Values)
+            foreach (Field field in gameBoard.Values)
             {
                 if (field.isDame && field.color.Equals(color))
                     i++;
@@ -93,17 +94,22 @@ namespace Warcaby.Forms
             return i;
         }
 
+        public static int GetNumberOfPieces(Dictionary<int, Field> gameBoard, string color)
+        {
+            return GetNumberOfPawns(gameBoard, color) + GetNumberOfDames(gameBoard, color);
+        }
+
         public static void UpdateGuiCounters()
         {
             Label label;
             label = (Label)GetControlByName("numberOfPawnsForWhite");
-            label.Text = GetNumberOfPawns(Constant.WHITE).ToString();
+            label.Text = GetNumberOfPawns(GameService.gameBoard, Constant.WHITE).ToString();
             label = (Label)GetControlByName("numberOfPawnsForRed");
-            label.Text = GetNumberOfPawns(Constant.RED).ToString();
+            label.Text = GetNumberOfPawns(GameService.gameBoard, Constant.RED).ToString();
             label = (Label)GetControlByName("numberOfDamesForWhite");
-            label.Text = GetNumberOfDames(Constant.WHITE).ToString();
+            label.Text = GetNumberOfDames(GameService.gameBoard, Constant.WHITE).ToString();
             label = (Label)GetControlByName("numberOfDamesForRed");
-            label.Text = GetNumberOfDames(Constant.RED).ToString();
+            label.Text = GetNumberOfDames(GameService.gameBoard, Constant.RED).ToString();
         }
 
         public static void CheckIfAnyoneAlreadyWon()
