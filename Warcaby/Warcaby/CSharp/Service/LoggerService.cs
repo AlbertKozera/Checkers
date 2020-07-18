@@ -26,25 +26,26 @@ namespace Warcaby.CSharp.Service
 
             if (indexThrough == 0)
             {
-                logger.Info("===> turn: {0} " +
-                "|| indexFrom: {1} " +
-                "|| indexThrough: {2} " +
-                "|| indexTo: {3} " +
-                "|| fieldFrom: {4} " +
-                "|| fieldTo: {5} " +
-                "|| timer: {6} <===|", round, indexFrom, indexThrough, indexTo, fieldFrom.Name,  fieldTo.Name, timer);
+                logger.Info("===> indexFrom: {0} " +
+                    "|| indexThrough: - " +
+                    "|| indexTo: {1} " +
+                    "|| fieldFrom: {2} " +
+                    "|| fieldThrough: -" +
+                    "|| fieldTo: {3} " +
+                    "|| turn: {4} " +
+                    "|| timer: {5} <===|", indexFrom, indexTo, fieldFrom.Name, fieldTo.Name, round, timer);
             }
             else
             {
                 fieldThrough = Extend.GetFieldByIndex(indexThrough);
-                logger.Info("===> turn: {0} " +
-                    "|| indexFrom: {1} " +
-                    "|| indexThrough: {2} " +
-                    "|| indexTo: {3} " +
-                    "|| fieldFrom: {4} " +
-                    "|| fieldThrough: {5}" +
-                    "|| fieldTo: {6} " +
-                    "|| timer: {7} <===|", round, indexFrom, indexThrough, indexTo, fieldFrom.Name, fieldThrough.Name, fieldTo.Name, timer);
+                logger.Info("===> indexFrom: {0} " +
+                    "|| indexThrough: {1} " +
+                    "|| indexTo: {2} " +
+                    "|| fieldFrom: {3} " +
+                    "|| fieldThrough: {4}" +
+                    "|| fieldTo: {5} " +
+                    "|| turn: {6} " +
+                    "|| timer: {7} <===|", indexFrom, indexThrough, indexTo, fieldFrom.Name, fieldThrough.Name, fieldTo.Name, round, timer);
             }
         }
     }
