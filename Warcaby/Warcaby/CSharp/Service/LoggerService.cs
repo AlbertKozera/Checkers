@@ -26,26 +26,55 @@ namespace Warcaby.CSharp.Service
 
             if (indexThrough == 0)
             {
-                logger.Info("===> indexFrom: {0} " +
-                    "|| indexThrough: - " +
+                if(round == Constant.WHITE)
+                {
+                    logger.Info("===> indexFrom: {0} " +
+                    "|| indexThrough:  - " +
                     "|| indexTo: {1} " +
                     "|| fieldFrom: {2} " +
-                    "|| fieldThrough: -" +
+                    "|| fieldThrough:     -    " +
                     "|| fieldTo: {3} " +
                     "|| turn: {4} " +
-                    "|| timer: {5} <===|", indexFrom, indexTo, fieldFrom.Name, fieldTo.Name, round, timer);
-            }
+                    "|| timer: {5}", indexFrom, indexTo, fieldFrom.Name, fieldTo.Name, round, timer);
+                } 
+                else
+                {
+                    logger.Info("===> indexFrom: {0} " +
+                    "|| indexThrough:  - " +
+                    "|| indexTo: {1} " +
+                    "|| fieldFrom: {2} " +
+                    "|| fieldThrough:     -    " +
+                    "|| fieldTo: {3} " +
+                    "|| turn: {4}   " +
+                    "|| timer: {5}", indexFrom, indexTo, fieldFrom.Name, fieldTo.Name, round, timer);
+                }
+                
+            } 
             else
             {
                 fieldThrough = Extend.GetFieldByIndex(indexThrough);
-                logger.Info("===> indexFrom: {0} " +
+                if (round == Constant.WHITE)
+                {
+                    logger.Info("===> indexFrom: {0} " +
                     "|| indexThrough: {1} " +
                     "|| indexTo: {2} " +
                     "|| fieldFrom: {3} " +
-                    "|| fieldThrough: {4}" +
+                    "|| fieldThrough: {4} " +
                     "|| fieldTo: {5} " +
                     "|| turn: {6} " +
-                    "|| timer: {7} <===|", indexFrom, indexThrough, indexTo, fieldFrom.Name, fieldThrough.Name, fieldTo.Name, round, timer);
+                    "|| timer: {7}", indexFrom, indexThrough, indexTo, fieldFrom.Name, fieldThrough.Name, fieldTo.Name, round, timer);
+                }
+                 else
+                {
+                    logger.Info("===> indexFrom: {0} " +
+                    "|| indexThrough: {1} " +
+                    "|| indexTo: {2} " +
+                    "|| fieldFrom: {3} " +
+                    "|| fieldThrough: {4} " +
+                    "|| fieldTo: {5} " +
+                    "|| turn: {6}   " +
+                    "|| timer: {7}", indexFrom, indexThrough, indexTo, fieldFrom.Name, fieldThrough.Name, fieldTo.Name, round, timer);
+                }
             }
         }
     }
