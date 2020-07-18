@@ -56,6 +56,13 @@ namespace Warcaby.Service.Context
             ComputerLogic computerLogic = new ComputerLogic();
             List<Move> list = computerLogic.GetPossibleMoves(gameBoard, color);
 
+            int lisc;
+
+            Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
+
+            lisc = computerLogic.MinMax(gameBoardCopy, color, true, 2);
+
+
 
 
 

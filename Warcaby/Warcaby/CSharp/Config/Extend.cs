@@ -128,5 +128,11 @@ namespace Warcaby.Forms
                 label.BringToFront();
             }
         }
+
+        public static Dictionary<int, Field> CloneGameBoard(Dictionary<int, Field> gameBoard)
+        {
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(gameBoard);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<int, Field>>(json);
+        }
     }
 }

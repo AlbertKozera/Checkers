@@ -15,16 +15,17 @@ namespace Warcaby.CSharp.Game.Computer
         PawnComputer pawn = new PawnComputer();
         DameComputer dame = new DameComputer();
 
+        string myColor = Constant.WHITE;
 
 
-
-        /*
+        
 
         public int MinMax(Dictionary<int, Field> gameBoard, string color, Boolean maximizingPlayer, int depth)
         {
+            Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
             int bestValue;
             if (0 == depth)
-                return evaluateGameBoard(gameBoard, color);
+                return ((color == myColor) ? 1: -1) * evaluateGameBoard(gameBoard, color);
 
             int val;
             if (maximizingPlayer)
@@ -32,32 +33,52 @@ namespace Warcaby.CSharp.Game.Computer
                 bestValue = int.MinValue;
                 foreach(Move move in GetPossibleMoves(gameBoard, color))
                 {
-                    gameBoard = Apply(gameBoard, move);
+                    gameBoardCopy = ApplyMove(gameBoard, move);
+                    val = MinMax(gameBoardCopy,  color, false, depth - 1);
+                    bestValue = Math.Max(bestValue, val);
                 }
-
-
+                return bestValue;
+            }
+            else
+            {
+                bestValue = int.MaxValue;
+                foreach (Move move in GetPossibleMoves(gameBoard, Extend.GetEnemyPlayerColor(color)))
+                {
+                    gameBoardCopy = ApplyMove(gameBoard, move);
+                    val = MinMax(gameBoardCopy, color, true, depth - 1);
+                    bestValue = Math.Min(bestValue, val);
+                }
+                return bestValue;
             }
         }
 
         public int evaluateGameBoard(Dictionary<int, Field> gameBoard, string color)
         {
-            return Extend.GetNumberOfPieces(color)
+            return Extend.GetNumberOfPieces(gameBoard, color) - Extend.GetNumberOfPieces(gameBoard, Extend.GetEnemyPlayerColor(color));
         }
 
 
 
 
-        public Dictionary<int, Field> Apply(Dictionary<int, Field> gameBoard, Move move)
+        public Dictionary<int, Field> ApplyMove(Dictionary<int, Field> gameBoard, Move move)
         {
             if(move.indexThrough == 0)
             {
-
+                gameBoard = UpdateFieldFrom(gameBoard, move);
+                gameBoard = UpdateFieldTo(gameBoard, move);
             }
+            else
+            {
+                gameBoard = UpdateFieldFrom(gameBoard, move);
+                gameBoard = UpdateFieldThrough(gameBoard, move);
+                gameBoard = UpdateFieldTo(gameBoard, move);
+            }
+            return gameBoard;
         }
 
 
 
-    */
+    
 
 
 
@@ -112,25 +133,28 @@ namespace Warcaby.CSharp.Game.Computer
 
 
 
-        public void UpdateFieldFrom(Dictionary<int, Field> gameBoard, Move move)
+        public Dictionary<int, Field> UpdateFieldFrom(Dictionary<int, Field> gameBoard, Move move)
         {
             //Extend.GetFieldByIndex(move.indexFrom).Image = new Bitmap(Properties.Resources.empty_field);
             gameBoard[move.indexFrom] = Constant.EMPTY_FIELD;
+            return gameBoard;
         }
 
-        public void UpdateFieldThrough(Dictionary<int, Field> gameBoard, Move move)
+        public Dictionary<int, Field> UpdateFieldThrough(Dictionary<int, Field> gameBoard, Move move)
         {
             //PictureBox fieldThrough = Extend.GetFieldByIndex(indexThrough);
             //fieldThrough.Image = new Bitmap(Properties.Resources.empty_field);
             gameBoard[move.indexThrough] = Constant.EMPTY_FIELD;
+            return gameBoard;
             //Extend.UpdateGuiCounters();
             //Extend.CheckIfAnyoneAlreadyWon();
         }
 
-        public void UpdateFieldTo(Dictionary<int, Field> gameBoard, Move move)
+        public Dictionary<int, Field> UpdateFieldTo(Dictionary<int, Field> gameBoard, Move move)
         {
             //fieldTo.Image = fieldFrom.Image;
             gameBoard[move.indexTo] = gameBoard[move.indexFrom];
+            return gameBoard;
         }
     }
 }
