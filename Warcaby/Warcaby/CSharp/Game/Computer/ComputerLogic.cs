@@ -64,14 +64,15 @@ namespace Warcaby.CSharp.Game.Computer
         {
             if(move.indexThrough == 0)
             {
-                gameBoard = UpdateFieldFrom(gameBoard, move);
                 gameBoard = UpdateFieldTo(gameBoard, move);
+                gameBoard = UpdateFieldFrom(gameBoard, move);
             }
             else
             {
-                gameBoard = UpdateFieldFrom(gameBoard, move);
-                gameBoard = UpdateFieldThrough(gameBoard, move);
                 gameBoard = UpdateFieldTo(gameBoard, move);
+                gameBoard = UpdateFieldThrough(gameBoard, move);
+                gameBoard = UpdateFieldFrom(gameBoard, move);
+
             }
             return gameBoard;
         }
