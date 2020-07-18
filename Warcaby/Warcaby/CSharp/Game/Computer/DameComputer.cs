@@ -75,7 +75,7 @@ namespace Warcaby.CSharp.Game.Context
             while (gameBoard.TryGetValue(iDiagonal += diagonal, out Field field))
             {
                 if (field.isEmptyField)
-                    possibleMovesList.Add(new Move(i, iDiagonal));
+                    possibleMovesList.Add(new Move(i, iDiagonal, gameBoard[i], gameBoard[iDiagonal]));
                 else
                     break;
             }
@@ -96,7 +96,7 @@ namespace Warcaby.CSharp.Game.Context
                         List<Move> possibleMovesList = new List<Move>();
                         int indexThrough = i;
                         while (gameBoard.TryGetValue(i += diagonal, out field) && field.isEmptyField)
-                            possibleMovesList.Add(new Move(indexFrom, indexThrough, i));
+                            possibleMovesList.Add(new Move(indexFrom, indexThrough, i, gameBoard[indexFrom], gameBoard[indexThrough], gameBoard[i]));
                         return possibleMovesList;
                     }
                     else

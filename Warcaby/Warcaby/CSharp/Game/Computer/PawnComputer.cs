@@ -17,18 +17,18 @@ namespace Warcaby.CSharp.Game.Context
             if (enemyColor.Equals(Constant.WHITE))
             {
                 if (gameBoard.TryGetValue(i + Constant.TOP_RIGHT, out field) && field.isEmptyField)
-                    possibleMovesList.Add(new Move(i, i + Constant.TOP_RIGHT));
+                    possibleMovesList.Add(new Move(i, i + Constant.TOP_RIGHT, gameBoard[i], gameBoard[i + Constant.TOP_RIGHT]));
                 if (gameBoard.TryGetValue(i + Constant.TOP_LEFT, out field) && field.isEmptyField)
-                    possibleMovesList.Add(new Move(i, i + Constant.TOP_LEFT));
+                    possibleMovesList.Add(new Move(i, i + Constant.TOP_LEFT, gameBoard[i], gameBoard[i + Constant.TOP_LEFT]));
 
                     return possibleMovesList;
             }
             else
             {
                 if (gameBoard.TryGetValue(i + Constant.DOWN_RIGHT, out field) && field.isEmptyField)
-                    possibleMovesList.Add(new Move(i, i + Constant.DOWN_RIGHT));
+                    possibleMovesList.Add(new Move(i, i + Constant.DOWN_RIGHT, gameBoard[i], gameBoard[i + Constant.DOWN_RIGHT]));
                 if (gameBoard.TryGetValue(i + Constant.DOWN_LEFT, out field) && field.isEmptyField)
-                    possibleMovesList.Add(new Move(i, i + Constant.DOWN_LEFT));
+                    possibleMovesList.Add(new Move(i, i + Constant.DOWN_LEFT, gameBoard[i], gameBoard[i + Constant.DOWN_LEFT]));
                 if (!possibleMovesList.IsNullOrEmpty())
 
                     return possibleMovesList;
@@ -43,7 +43,7 @@ namespace Warcaby.CSharp.Game.Context
             {
                 if (gameBoard.TryGetValue(i + (2 * diagonal), out fieldData) && fieldData.isEmptyField)
                 {
-                    return new Move(i, i + diagonal, i + (2 * diagonal));
+                    return new Move(i, i + diagonal, i + (2 * diagonal), gameBoard[i], gameBoard[i + diagonal], gameBoard[i + (2 * diagonal)]);
                 }
             }
             return null;

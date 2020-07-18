@@ -14,39 +14,39 @@ namespace Warcaby.CSharp.Game.Computer
     {
         PawnComputer pawn = new PawnComputer();
         DameComputer dame = new DameComputer();
-
         string myColor = Constant.WHITE;
 
 
-        
+
 
         public int MinMax(Dictionary<int, Field> gameBoard, string color, Boolean maximizingPlayer, int depth)
         {
-            Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
             int bestValue;
             if (0 == depth)
-                return ((color == myColor) ? 1: -1) * evaluateGameBoard(gameBoard, color);
+                return ((color == myColor) ? 1 : -1) * evaluateGameBoard(gameBoard, color);
 
             int val;
             if (maximizingPlayer)
             {
                 bestValue = int.MinValue;
-                foreach(Move move in GetPossibleMoves(gameBoard, color))
+                foreach (Move move in GetPossibleMoves(gameBoard, color))
                 {
-                    gameBoardCopy = ApplyMove(gameBoard, move);
-                    val = MinMax(gameBoardCopy,  color, false, depth - 1);
+                    gameBoard = ApplyMove(gameBoard, move);
+                    val = MinMax(gameBoard, Extend.GetEnemyPlayerColor(color), false, depth - 1);
                     bestValue = Math.Max(bestValue, val);
+                    gameBoard = RevertMove(gameBoard, move);
                 }
                 return bestValue;
             }
             else
             {
                 bestValue = int.MaxValue;
-                foreach (Move move in GetPossibleMoves(gameBoard, Extend.GetEnemyPlayerColor(color)))
+                foreach (Move move in GetPossibleMoves(gameBoard, color))
                 {
-                    gameBoardCopy = ApplyMove(gameBoard, move);
-                    val = MinMax(gameBoardCopy, color, true, depth - 1);
+                    gameBoard = ApplyMove(gameBoard, move);
+                    val = MinMax(gameBoard, Extend.GetEnemyPlayerColor(color), true, depth - 1);
                     bestValue = Math.Min(bestValue, val);
+                    gameBoard = RevertMove(gameBoard, move);
                 }
                 return bestValue;
             }
@@ -62,24 +62,41 @@ namespace Warcaby.CSharp.Game.Computer
 
         public Dictionary<int, Field> ApplyMove(Dictionary<int, Field> gameBoard, Move move)
         {
-            if(move.indexThrough == 0)
-            {
-                gameBoard = UpdateFieldTo(gameBoard, move);
-                gameBoard = UpdateFieldFrom(gameBoard, move);
-            }
-            else
-            {
-                gameBoard = UpdateFieldTo(gameBoard, move);
+            gameBoard = UpdateFieldTo(gameBoard, move);
+            if (move.indexThrough != 0)
                 gameBoard = UpdateFieldThrough(gameBoard, move);
-                gameBoard = UpdateFieldFrom(gameBoard, move);
+            gameBoard = UpdateFieldFrom(gameBoard, move);
+            return gameBoard;
+        }
 
+        public Dictionary<int, Field> RevertMove(Dictionary<int, Field> gameBoard, Move move)
+        {
+            gameBoard[move.indexFrom] = move.fieldFrom;
+            if (move.indexThrough != 0)
+            {
+                gameBoard[move.indexThrough] = move.fieldThrough;
             }
+            gameBoard[move.indexTo] = move.fieldTo;
             return gameBoard;
         }
 
 
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -104,15 +121,15 @@ namespace Warcaby.CSharp.Game.Computer
                     list.AddRange(dame.GetPossibleMovesForField(i, color, gameBoard));
                 }
             }
-            for(int i = 0; i < list.Count(); i++)
+            for (int i = 0; i < list.Count(); i++)
             {
-                if(list[i].indexThrough != 0)
+                if (list[i].indexThrough != 0)
                 {
                     playerHaveABeat = true;
                     break;
                 }
             }
-            if(playerHaveABeat)
+            if (playerHaveABeat)
             {
                 list.RemoveAll(m => m.indexThrough == 0);
             }
@@ -122,9 +139,8 @@ namespace Warcaby.CSharp.Game.Computer
 
 
             return list;
-
-
         }
+
 
 
 
@@ -154,10 +170,9 @@ namespace Warcaby.CSharp.Game.Computer
         public Dictionary<int, Field> UpdateFieldTo(Dictionary<int, Field> gameBoard, Move move)
         {
             //fieldTo.Image = fieldFrom.Image;
-            gameBoard[move.indexTo] = gameBoard[move.indexFrom];
+            gameBoard[move.indexTo] = move.fieldFrom;
             return gameBoard;
         }
     }
 }
 
-  

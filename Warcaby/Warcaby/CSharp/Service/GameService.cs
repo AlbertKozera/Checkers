@@ -60,7 +60,7 @@ namespace Warcaby.Service.Context
 
             Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
 
-            lisc = computerLogic.MinMax(gameBoardCopy, color, true, 2);
+            lisc = computerLogic.MinMax(gameBoardCopy, color, true, 6);
 
 
 
