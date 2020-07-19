@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Warcaby.Service.Context;
 using Warcaby.Forms;
+using Warcaby.CSharp.Config;
+using Warcaby.CSharp.Game.Context.Impl;
 
 namespace Warcaby.CSharp.Game.Context.Tests
 {
@@ -129,7 +131,7 @@ namespace Warcaby.CSharp.Game.Context.Tests
             int indexFrom = 34;
             string myColor = "white";
             //then
-            Assert.AreEqual(34, dame.GetIndexThroughByDiagonal(myColor, indexFrom, Constant.DOWN_RIGHT));
+            Assert.AreEqual(43, dame.GetIndexThroughByDiagonal(myColor, indexFrom, Constant.DOWN_RIGHT));
         }
     }
 }

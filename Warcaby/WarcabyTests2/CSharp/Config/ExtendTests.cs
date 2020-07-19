@@ -5,6 +5,9 @@ using System.Drawing;
 using System.Windows.Forms;
 using System;
 using Warcaby.CSharp.Game.Context;
+using Warcaby.CSharp.Config;
+using Warcaby.CSharp.Forms;
+using Warcaby.CSharp.Dto;
 
 namespace Warcaby.Forms.Tests
 {
@@ -208,9 +211,9 @@ namespace Warcaby.Forms.Tests
             int expectedResult;
             //when
             color = Constant.WHITE;
-            expectedResult = 5;
+            expectedResult = 4;
             //then
-            Assert.AreEqual(expectedResult, Extend.GetNumberOfPawns(color));
+           Assert.AreEqual(expectedResult, Extend.GetNumberOfPawns(GameService.gameBoard, color));
         }
 
         [TestMethod()]
@@ -224,7 +227,7 @@ namespace Warcaby.Forms.Tests
             color = Constant.RED;
             expectedResult = 4;
             //then
-            Assert.AreEqual(expectedResult, Extend.GetNumberOfPawns(color));
+           Assert.AreEqual(expectedResult, Extend.GetNumberOfPawns(GameService.gameBoard, color));
         }
 
         [TestMethod()]
@@ -238,7 +241,7 @@ namespace Warcaby.Forms.Tests
             color = Constant.WHITE;
             expectedResult = 1;
             //then
-            Assert.AreEqual(expectedResult, Extend.GetNumberOfDames(color));
+           Assert.AreEqual(expectedResult, Extend.GetNumberOfDames(GameService.gameBoard, color));
         }
 
         [TestMethod()]
@@ -252,7 +255,7 @@ namespace Warcaby.Forms.Tests
             color = Constant.RED;
             expectedResult = 2;
             //then
-            Assert.AreEqual(expectedResult, Extend.GetNumberOfDames(color));
+           Assert.AreEqual(expectedResult, Extend.GetNumberOfDames(GameService.gameBoard, color));
         }
     }
 }
