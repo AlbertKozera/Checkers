@@ -131,6 +131,27 @@ namespace Warcaby.Forms
             }
         }
 
+        public static void FinishTheTurn(string color)
+        {
+            if (color.Equals(Constant.WHITE))
+            {
+                GameService.whiteTurn = false;
+            }
+            else
+            {
+                GameService.whiteTurn = true;
+            }
+            Extend.ChangeImageOfTurn(color);
+        }
+
+        public static void RepeatTheTurn(string color)
+        {
+            if (color.Equals(Constant.WHITE))
+                GameService.whiteTurn = true;
+            else
+                GameService.whiteTurn = false;
+        }
+
         public static Dictionary<int, Field> CloneGameBoard(Dictionary<int, Field> gameBoard)
         {
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(gameBoard);

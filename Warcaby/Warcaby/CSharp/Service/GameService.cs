@@ -23,6 +23,7 @@ namespace Warcaby.Service.Context
         public static PictureBox fieldTo;
         Pawn pawn = new Pawn();
         Dame dame = new Dame();
+        AI ai = new AI();
 
         public GameService()
         {
@@ -48,17 +49,26 @@ namespace Warcaby.Service.Context
             PlayerVsComputer(playerWhite);
         }
 
-        public void Gameplay(GameLogic player, string color)
+
+
+        public void PlayerVsPlayer(GameLogic playerWhite, GameLogic playerRed)
         {
-            AI ai = new AI();
-            List<Move> list = ai.GetPossibleMoves(gameBoard, color);
+            if (whiteTurn)
+                Human(playerWhite, Constant.WHITE);
+            else
+                Human(playerRed, Constant.RED);
+        }
 
+        public void PlayerVsComputer(GameLogic playerWhite)
+        {
+            if (whiteTurn)
+                Human(playerWhite, Constant.WHITE);
+            else
+                Computer(Constant.RED);
+        }
 
-
-            
-
-            //var lisc = computerLogic.MinMax(gameBoardCopy, color, true, 3); // 9 - 20 sekund czekania
-
+        public void Human(GameLogic player, string color)
+        {
             forcedBeatingForPawnsList = pawn.GetDataAboutBeatings(color);
             forcedBeatingForDamesList = dame.GetDataAboutBeatings(color);
             player.MovingAPawnThatHasNoBeating();
@@ -67,44 +77,28 @@ namespace Warcaby.Service.Context
             player.MovingADameThatHasABeating();
         }
 
-        public void PlayerVsPlayer(GameLogic playerWhite, GameLogic playerRed)
+        public void Computer(string color)
         {
-            if (whiteTurn)
-                Gameplay(playerWhite, Constant.WHITE);
-            else
-                Gameplay(playerRed, Constant.RED);
-        }
+            Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
+            MoveAndPoints moveAndPoints = ai.MinMax(gameBoardCopy, color, true, 3);
 
-        public void PlayerVsComputer(GameLogic playerWhite)
-        {
-            AI ai = new AI();
-            if (whiteTurn)
+            gameBoard[moveAndPoints.move.indexTo] = gameBoard[moveAndPoints.move.indexFrom];
+            Extend.GetFieldByIndex(moveAndPoints.move.indexTo).Image = Extend.GetFieldByIndex(moveAndPoints.move.indexFrom).Image;
+
+            if (moveAndPoints.move.indexThrough != 0)
             {
-                Gameplay(playerWhite, Constant.WHITE);
-            }
-            else
-            {
-                Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
-                MoveAndPoints moveAndPoints = ai.MinMax(gameBoardCopy, Constant.RED, true, 3);
-
-
-                gameBoard[moveAndPoints.move.indexTo] = gameBoard[moveAndPoints.move.indexFrom];
-                Extend.GetFieldByIndex(moveAndPoints.move.indexTo).Image = Extend.GetFieldByIndex(moveAndPoints.move.indexFrom).Image;
-
-                if (moveAndPoints.move.indexThrough != 0)
-                {
-                    gameBoard[moveAndPoints.move.indexThrough] = Constant.EMPTY_FIELD;
-                    Extend.GetFieldByIndex(moveAndPoints.move.indexThrough).Image = new Bitmap(Properties.Resources.empty_field);
-                }
-
-                gameBoard[moveAndPoints.move.indexFrom] = Constant.EMPTY_FIELD;
-                Extend.GetFieldByIndex(moveAndPoints.move.indexFrom).Image = new Bitmap(Properties.Resources.empty_field);
-                whiteTurn = true;
-                Extend.ChangeImageOfTurn(Constant.WHITE);
+                gameBoard[moveAndPoints.move.indexThrough] = Constant.EMPTY_FIELD;
+                Extend.GetFieldByIndex(moveAndPoints.move.indexThrough).Image = new Bitmap(Properties.Resources.empty_field);
             }
 
+            gameBoard[moveAndPoints.move.indexFrom] = Constant.EMPTY_FIELD;
+            Extend.GetFieldByIndex(moveAndPoints.move.indexFrom).Image = new Bitmap(Properties.Resources.empty_field);
 
-                
+
+
+
+            Extend.FinishTheTurn(color);
+            Extend.ChangeImageOfTurn(Extend.GetEnemyPlayerColor(color));
         }
     }
 }
