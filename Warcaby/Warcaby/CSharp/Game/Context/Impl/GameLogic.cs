@@ -1,10 +1,11 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using Warcaby.CSharp.Config;
 using Warcaby.Forms;
 using Warcaby.Service.Context;
 
 
-namespace Warcaby.CSharp.Game.Context
+namespace Warcaby.CSharp.Game.Context.Impl
 {
     public class GameLogic
     {
@@ -34,7 +35,7 @@ namespace Warcaby.CSharp.Game.Context
             {
                 CheckerUpdateAfterMove();
                 CheckIfThePawnHasReachedThePromotionField();
-                FinishTheTurn(COLOR);
+                Extend.FinishTheTurn(COLOR);
             }
         }
 
@@ -43,7 +44,7 @@ namespace Warcaby.CSharp.Game.Context
             if (Rule.TheDameWantsToMoveProperly(indexFrom, indexTo, COLOR))
             {
                 CheckerUpdateAfterMove();
-                FinishTheTurn(COLOR);
+                Extend.FinishTheTurn(COLOR);
             }
         }
 
@@ -101,14 +102,14 @@ namespace Warcaby.CSharp.Game.Context
             if (Rule.ThePieceHaveABeat(COLOR, indexTo))
             {
                 indexWhichHaveMultipleBeats = indexTo;
-                RepeatTheTurn(COLOR);
+                Extend.RepeatTheTurn(COLOR);
             }
             else
             {
                 if (Rule.SelectedPieceIsPawn(indexTo))
                     CheckIfThePawnHasReachedThePromotionField();
                 indexWhichHaveMultipleBeats = 0;
-                FinishTheTurn(COLOR);
+                Extend.FinishTheTurn(COLOR);
             }
         }
 
@@ -146,27 +147,6 @@ namespace Warcaby.CSharp.Game.Context
             fieldTo.Image = Extend.GetDameImage(COLOR);
             GameService.gameBoard[indexTo] = Extend.GetDameField(COLOR);
             Extend.UpdateGuiCounters();
-        }
-
-        public void FinishTheTurn(string color)
-        {
-            if (color.Equals(Constant.WHITE))
-            {
-                GameService.whiteTurn = false;
-            }
-            else
-            {
-                GameService.whiteTurn = true;
-            }
-            Extend.ChangeImageOfTurn(color);
-        }
-
-        public void RepeatTheTurn(string color)
-        {
-            if (color.Equals(Constant.WHITE))
-                GameService.whiteTurn = true;
-            else
-                GameService.whiteTurn = false;
         }
     }
 }

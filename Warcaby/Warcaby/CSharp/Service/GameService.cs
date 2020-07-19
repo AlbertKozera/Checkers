@@ -1,10 +1,11 @@
-﻿using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Warcaby.CSharp.Config;
-using Warcaby.CSharp.Game.Context;
-using Warcaby.CSharp.Service;
+using Warcaby.CSharp.Dto;
+using Warcaby.CSharp.Game.Computer;
+using Warcaby.CSharp.Game.Computer.Impl;
+using Warcaby.CSharp.Game.Context.Impl;
 using Warcaby.Forms;
 
 
@@ -20,6 +21,7 @@ namespace Warcaby.Service.Context
         public static int indexTo;
         public static PictureBox fieldFrom;
         public static PictureBox fieldTo;
+        GameLogicComputer gameLogicComputer = new GameLogicComputer();
         Pawn pawn = new Pawn();
         Dame dame = new Dame();
 
@@ -28,6 +30,7 @@ namespace Warcaby.Service.Context
             Initializer.SpaceThePawns();
             whiteTurn = true;
         }
+
 
         public void GameConstructor(PictureBox fieldFrom, PictureBox fieldTo)
         {
@@ -43,13 +46,27 @@ namespace Warcaby.Service.Context
             GameLogic playerWhite = new GameLogic(fieldFrom, fieldTo, indexFrom, indexTo, Constant.WHITE);
             GameLogic playerRed = new GameLogic(fieldFrom, fieldTo, indexFrom, indexTo, Constant.RED);
 
-            if (whiteTurn)
-                Gameplay(playerWhite, Constant.WHITE);
-            else
-                Gameplay(playerRed, Constant.RED);
+            //PlayerVsPlayer(playerWhite, playerRed);
+            PlayerVsComputer(playerWhite);
         }
 
-        public void Gameplay(GameLogic player, string color)
+        public void PlayerVsPlayer(GameLogic playerWhite, GameLogic playerRed)
+        {
+            if (whiteTurn)
+                Human(playerWhite, Constant.WHITE);
+            else
+                Human(playerRed, Constant.RED);
+        }
+
+        public void PlayerVsComputer(GameLogic playerWhite)
+        {
+            if (whiteTurn)
+                Human(playerWhite, Constant.WHITE);
+            else
+                Computer(Constant.RED);
+        }
+
+        public void Human(GameLogic player, string color)
         {
             forcedBeatingForPawnsList = pawn.GetDataAboutBeatings(color);
             forcedBeatingForDamesList = dame.GetDataAboutBeatings(color);
@@ -57,6 +74,18 @@ namespace Warcaby.Service.Context
             player.MovingADameThatHasNoBeating();
             player.MovingAPawnThatHasABeating();
             player.MovingADameThatHasABeating();
+        }
+
+        public void Computer(string color)
+        {
+            AI ai = new AI(color);
+            Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
+            MoveAndPoints moveAndPoints = ai.MinMax(gameBoardCopy, color, true, 3);
+
+            gameLogicComputer.UpdateFields(moveAndPoints);
+
+            Extend.FinishTheTurn(color);
+            Extend.ChangeImageOfTurn(Extend.GetEnemyPlayerColor(color));
         }
     }
 }

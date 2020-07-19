@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.AccessControl;
 using System.Windows.Forms;
 
-namespace Warcaby.Forms
+
+namespace Warcaby.CSharp.Forms
 {
     partial class UCNewGame
     {

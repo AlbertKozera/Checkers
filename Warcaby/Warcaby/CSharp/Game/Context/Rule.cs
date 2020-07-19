@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Warcaby.CSharp.Config;
+using Warcaby.CSharp.Dto;
+using Warcaby.CSharp.Game.Context.Impl;
 using Warcaby.Forms;
 using Warcaby.Service.Context;
 

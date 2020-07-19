@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Warcaby.Forms
+
+namespace Warcaby.CSharp.Dto
 {
     public class Field : IEquatable<Field>
     {

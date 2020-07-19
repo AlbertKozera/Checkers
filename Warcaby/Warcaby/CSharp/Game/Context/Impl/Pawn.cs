@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Warcaby.CSharp.Config;
+using Warcaby.CSharp.Dto;
 using Warcaby.Forms;
 using Warcaby.Service.Context;
 
 
-namespace Warcaby.CSharp.Game.Context
+namespace Warcaby.CSharp.Game.Context.Impl
 {
     public class Pawn
     {
