@@ -68,6 +68,7 @@ namespace Warcaby.CSharp.Forms
             this.winner = new System.Windows.Forms.Label();
             this.Czas = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonBackToMenu = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.numberOfDamesForRed = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -81,7 +82,7 @@ namespace Warcaby.CSharp.Forms
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.turn = new System.Windows.Forms.PictureBox();
-            this.buttonBackToMenu = new FontAwesome.Sharp.IconButton();
+            this.computersDuration = new System.Windows.Forms.Label();
             this.fieldsContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.field_40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.field_36)).BeginInit();
@@ -160,6 +161,7 @@ namespace Warcaby.CSharp.Forms
             this.fieldsContainer.Controls.Add(this.field_54);
             this.fieldsContainer.Controls.Add(this.field_56);
             this.fieldsContainer.Controls.Add(this.winner);
+            this.fieldsContainer.Controls.Add(this.computersDuration);
             this.fieldsContainer.Location = new System.Drawing.Point(0, 0);
             this.fieldsContainer.Name = "fieldsContainer";
             this.fieldsContainer.Size = new System.Drawing.Size(601, 601);
@@ -616,6 +618,26 @@ namespace Warcaby.CSharp.Forms
             this.panel2.Size = new System.Drawing.Size(162, 600);
             this.panel2.TabIndex = 63;
             // 
+            // buttonBackToMenu
+            // 
+            this.buttonBackToMenu.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonBackToMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonBackToMenu.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.buttonBackToMenu.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonBackToMenu.IconChar = FontAwesome.Sharp.IconChar.Times;
+            this.buttonBackToMenu.IconColor = System.Drawing.Color.Black;
+            this.buttonBackToMenu.IconSize = 22;
+            this.buttonBackToMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonBackToMenu.Location = new System.Drawing.Point(26, 345);
+            this.buttonBackToMenu.Name = "buttonBackToMenu";
+            this.buttonBackToMenu.Rotation = 0D;
+            this.buttonBackToMenu.Size = new System.Drawing.Size(115, 30);
+            this.buttonBackToMenu.TabIndex = 67;
+            this.buttonBackToMenu.Text = " Zakończ grę";
+            this.buttonBackToMenu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonBackToMenu.UseVisualStyleBackColor = false;
+            this.buttonBackToMenu.Click += new System.EventHandler(this.backToMenu);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaption;
@@ -751,25 +773,15 @@ namespace Warcaby.CSharp.Forms
             this.turn.Tag = "8";
             this.turn.BackgroundImageChanged += new System.EventHandler(this.TimerTurnEvent);
             // 
-            // buttonBackToMenu
+            // computersDuration
             // 
-            this.buttonBackToMenu.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonBackToMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonBackToMenu.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.buttonBackToMenu.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonBackToMenu.IconChar = FontAwesome.Sharp.IconChar.Times;
-            this.buttonBackToMenu.IconColor = System.Drawing.Color.Black;
-            this.buttonBackToMenu.IconSize = 22;
-            this.buttonBackToMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonBackToMenu.Location = new System.Drawing.Point(26, 345);
-            this.buttonBackToMenu.Name = "buttonBackToMenu";
-            this.buttonBackToMenu.Rotation = 0D;
-            this.buttonBackToMenu.Size = new System.Drawing.Size(115, 30);
-            this.buttonBackToMenu.TabIndex = 67;
-            this.buttonBackToMenu.Text = " Zakończ grę";
-            this.buttonBackToMenu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonBackToMenu.UseVisualStyleBackColor = false;
-            this.buttonBackToMenu.Click += new System.EventHandler(this.backToMenu);
+            this.computersDuration.AutoSize = true;
+            this.computersDuration.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.computersDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.computersDuration.Location = new System.Drawing.Point(0, 576);
+            this.computersDuration.Name = "computersDuration";
+            this.computersDuration.Size = new System.Drawing.Size(0, 24);
+            this.computersDuration.TabIndex = 68;
             // 
             // UCNewGame
             // 
@@ -891,5 +903,6 @@ namespace Warcaby.CSharp.Forms
         private Label label8;
         public PictureBox turn;
         private FontAwesome.Sharp.IconButton buttonBackToMenu;
+        private Label computersDuration;
     }
 }

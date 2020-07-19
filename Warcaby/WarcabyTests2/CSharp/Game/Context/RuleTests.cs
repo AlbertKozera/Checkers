@@ -1,8 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Warcaby.CSharp.Game.Context;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Warcaby.Service.Context;
-using Warcaby.Forms;
+using Warcaby.CSharp.Config;
+using Warcaby.CSharp.Game.Context.Impl;
 
 namespace Warcaby.CSharp.Game.Context.Tests
 {

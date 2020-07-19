@@ -42,7 +42,7 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-	</Reference>
+    </Reference>
     <Reference Include="FontAwesome.Sharp, Version=5.13.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.5.13.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
     </Reference>
@@ -106,6 +106,7 @@
     <Compile Include="CSharp\Game\Computer\Impl\DameComputer.cs" />
     <Compile Include="CSharp\Game\Computer\Impl\GameLogicComputer.cs" />
     <Compile Include="CSharp\Game\Computer\Impl\PawnComputer.cs" />
+    <Compile Include="CSharp\Game\Computer\Impl\RuleComputer.cs" />
     <Compile Include="CSharp\Game\Context\Impl\Dame.cs" />
     <Compile Include="CSharp\Game\Context\Impl\Pawn.cs" />
     <Compile Include="CSharp\Game\Context\Rule.cs" />

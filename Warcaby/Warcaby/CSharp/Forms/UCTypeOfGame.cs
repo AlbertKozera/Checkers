@@ -10,27 +10,27 @@ namespace Warcaby.CSharp.Forms
             InitializeComponent();
         }
 
-        private void GoToNewGame()
+        private void GoToNewGame(int typeOfGame)
         {
             Controls.Clear();
-            UCNewGame ucNewGame = new UCNewGame();
+            UCNewGame ucNewGame = new UCNewGame(typeOfGame);
             Controls.Add(ucNewGame);
             ucNewGame.Show();
         }
 
         private void ButtonComputerVSComputer_Click(object sender, EventArgs e)
         {
-            GoToNewGame();
+            GoToNewGame(3);
         }
 
         private void ButtonPlayerVSComputer_Click(object sender, EventArgs e)
         {
-            GoToNewGame();
+            GoToNewGame(2);
         }
 
         private void ButtonPlayerVSPlayer_Click(object sender, EventArgs e)
         {
-            GoToNewGame();
+            GoToNewGame(1);
         }
 
         private void UCTypeOfGame_Load(object sender, EventArgs e)

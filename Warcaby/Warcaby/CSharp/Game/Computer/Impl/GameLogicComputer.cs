@@ -15,18 +15,24 @@ namespace Warcaby.CSharp.Game.Computer.Impl
         PawnComputer pawn = new PawnComputer();
         DameComputer dame = new DameComputer();
 
-
-        public void UpdateFields(MoveAndPoints moveAndPoints)
+        public void CheckForMoreBeating(MoveAndPoints moveAndPoints, string color)
         {
-            GameService.gameBoard[moveAndPoints.move.indexTo] = GameService.gameBoard[moveAndPoints.move.indexFrom];
-            Extend.GetFieldByIndex(moveAndPoints.move.indexTo).Image = Extend.GetFieldByIndex(moveAndPoints.move.indexFrom).Image;
-            if (moveAndPoints.move.indexThrough != 0)
+            List<Move> forcedBeatingForPieces = GetPossibleMoves(GameService.gameBoard, color);
+
+            bool thereAreForcedBeatings = false;
+            foreach(Move move in forcedBeatingForPieces)
             {
-                GameService.gameBoard[moveAndPoints.move.indexThrough] = Constant.EMPTY_FIELD;
-                Extend.GetFieldByIndex(moveAndPoints.move.indexThrough).Image = new Bitmap(Properties.Resources.empty_field);
+                if (move.indexFrom.Equals(moveAndPoints.move.indexTo) && move.indexThrough != 0)
+                    thereAreForcedBeatings = true;                    
             }
-            GameService.gameBoard[moveAndPoints.move.indexFrom] = Constant.EMPTY_FIELD;
-            Extend.GetFieldByIndex(moveAndPoints.move.indexFrom).Image = new Bitmap(Properties.Resources.empty_field);
+            if (thereAreForcedBeatings)
+                Extend.RepeatTheTurn(color);
+            else
+            {
+                CheckIfThePawnHasReachedThePromotionField(moveAndPoints, color);
+                Extend.FinishTheTurn(color);
+                Extend.ChangeImageOfTurn(color);
+            }
         }
 
         public List<Move> GetPossibleMoves(Dictionary<int, Field> gameBoard, string color)
@@ -59,6 +65,36 @@ namespace Warcaby.CSharp.Game.Computer.Impl
             }
 
             return list;
+        }
+
+        public void UpdateFields(MoveAndPoints moveAndPoints)
+        {
+            GameService.gameBoard[moveAndPoints.move.indexTo] = GameService.gameBoard[moveAndPoints.move.indexFrom];
+            Extend.GetFieldByIndex(moveAndPoints.move.indexTo).Image = Extend.GetFieldByIndex(moveAndPoints.move.indexFrom).Image;
+            if (moveAndPoints.move.indexThrough != 0)
+            {
+                GameService.gameBoard[moveAndPoints.move.indexThrough] = Constant.EMPTY_FIELD;
+                Extend.GetFieldByIndex(moveAndPoints.move.indexThrough).Image = new Bitmap(Properties.Resources.empty_field);
+            }
+            GameService.gameBoard[moveAndPoints.move.indexFrom] = Constant.EMPTY_FIELD;
+            Extend.GetFieldByIndex(moveAndPoints.move.indexFrom).Image = new Bitmap(Properties.Resources.empty_field);
+            Extend.UpdateGuiCounters();
+        }
+
+        public void CheckIfThePawnHasReachedThePromotionField(MoveAndPoints moveAndPoints, string color)
+        {
+            if (Rule.ThePawnStoodInThePromotionField(moveAndPoints.move.indexTo, color))
+            {
+                PromoteThePawn(moveAndPoints, color);
+                Extend.UpdateGuiCounters();
+            }
+        }
+
+        public void PromoteThePawn(MoveAndPoints moveAndPoints, string color)
+        {
+            Extend.GetFieldByIndex(moveAndPoints.move.indexTo).Image = Extend.GetDameImage(color);
+            GameService.gameBoard[moveAndPoints.move.indexTo] = Extend.GetDameField(color);
+            Extend.UpdateGuiCounters();
         }
     }
 }
