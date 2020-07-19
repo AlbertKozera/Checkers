@@ -68,7 +68,10 @@ namespace Warcaby.Service.Context
             if (whiteTurn)
                 Human(playerWhite, Constant.WHITE);
             else
+            {
                 Computer(Constant.RED);
+                Extend.CheckIfAnyoneAlreadyWon();
+            }
         }
 
         public void ComputerVsComputer()
@@ -86,8 +89,6 @@ namespace Warcaby.Service.Context
             Extend.printTimeOfBatch(time);
         }
 
-
-
         public void Human(GameLogic player, string color)
         {
             forcedBeatingForPawnsList = pawn.GetDataAboutBeatings(color);
@@ -102,7 +103,7 @@ namespace Warcaby.Service.Context
         {
             AI ai = new AI(color);
             Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
-            MoveAndPoints moveAndPoints = ai.MinMax(gameBoardCopy, color, true, 4); // MinMax start
+            MoveAndPoints moveAndPoints = ai.MinMax(gameBoardCopy, color, true, 3); // MinMax start
           
             gameLogicComputer.UpdateFields(moveAndPoints);
             if (moveAndPoints.move.indexThrough != 0)
