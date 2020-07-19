@@ -114,7 +114,7 @@ namespace Warcaby.Forms
             label.Text = GetNumberOfDames(GameService.gameBoard, Constant.RED).ToString();
         }
 
-        public static void CheckIfAnyoneAlreadyWon()
+        public static Boolean CheckIfAnyoneAlreadyWon()
         {
             Label label = (Label)GetControlByName("winner");
             if (Rule.WhoIsTheWinner().Equals(Constant.WHITE))
@@ -122,12 +122,18 @@ namespace Warcaby.Forms
                 label.Text = "WYGRYWA BIAŁY";
                 label.Left = 79;
                 label.BringToFront();
+                return true;
             }
             else if (Rule.WhoIsTheWinner().Equals(Constant.RED))
             {
                 label.Text = "WYGRYWA CZERWONY";
                 label.Left = 9;
                 label.BringToFront();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -156,6 +162,13 @@ namespace Warcaby.Forms
         {
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(gameBoard);
             return Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<int, Field>>(json);
+        }
+
+        public static void printTimeOfBatch(long time)
+        {
+            Label label = (Label)GetControlByName("computersDuration");
+            label.Text = "Czas trwania partii: " + time + "ms";
+            label.BringToFront();
         }
     }
 }

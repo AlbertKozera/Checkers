@@ -6,6 +6,7 @@ using Warcaby.CSharp.Dto;
 using Warcaby.CSharp.Game.Computer;
 using Warcaby.CSharp.Game.Computer.Impl;
 using Warcaby.CSharp.Game.Context.Impl;
+using Warcaby.CSharp.Service;
 using Warcaby.Forms;
 
 
@@ -40,14 +41,18 @@ namespace Warcaby.Service.Context
             GameService.fieldTo = fieldTo;
         }
 
-        public void GameChooser(PictureBox fieldFrom, PictureBox fieldTo)
+        public void GameChooser(PictureBox fieldFrom, PictureBox fieldTo, int typeOfGame)
         {
             GameConstructor(fieldFrom, fieldTo);
             GameLogic playerWhite = new GameLogic(fieldFrom, fieldTo, indexFrom, indexTo, Constant.WHITE);
             GameLogic playerRed = new GameLogic(fieldFrom, fieldTo, indexFrom, indexTo, Constant.RED);
 
-            //PlayerVsPlayer(playerWhite, playerRed);
-            PlayerVsComputer(playerWhite);
+            if(typeOfGame == 1)
+                PlayerVsPlayer(playerWhite, playerRed);
+            else if (typeOfGame == 2)
+                PlayerVsComputer(playerWhite);
+            else
+                ComputerVsComputer();
         }
 
         public void PlayerVsPlayer(GameLogic playerWhite, GameLogic playerRed)
@@ -66,6 +71,23 @@ namespace Warcaby.Service.Context
                 Computer(Constant.RED);
         }
 
+        public void ComputerVsComputer()
+        {
+            System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
+            while (!Extend.CheckIfAnyoneAlreadyWon())
+            {
+                if (whiteTurn)
+                    Computer(Constant.WHITE);
+                else
+                    Computer(Constant.RED);
+            }
+            watch.Stop();
+            long time = watch.ElapsedMilliseconds;
+            Extend.printTimeOfBatch(time);
+        }
+
+
+
         public void Human(GameLogic player, string color)
         {
             forcedBeatingForPawnsList = pawn.GetDataAboutBeatings(color);
@@ -80,12 +102,16 @@ namespace Warcaby.Service.Context
         {
             AI ai = new AI(color);
             Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
-            MoveAndPoints moveAndPoints = ai.MinMax(gameBoardCopy, color, true, 5);
-
+            MoveAndPoints moveAndPoints = ai.MinMax(gameBoardCopy, color, true, 4); // MinMax start
+          
             gameLogicComputer.UpdateFields(moveAndPoints);
-
-            Extend.FinishTheTurn(color);
-            Extend.ChangeImageOfTurn(Extend.GetEnemyPlayerColor(color));
+            if (moveAndPoints.move.indexThrough != 0)
+                gameLogicComputer.CheckForMoreBeating(moveAndPoints, color);
+            else
+            {
+                gameLogicComputer.CheckIfThePawnHasReachedThePromotionField(moveAndPoints, color);
+                Extend.FinishTheTurn(color);
+            }
         }
     }
 }
