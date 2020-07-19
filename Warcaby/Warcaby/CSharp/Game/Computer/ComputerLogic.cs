@@ -15,8 +15,7 @@ namespace Warcaby.CSharp.Game.Computer
         PawnComputer pawn = new PawnComputer();
         DameComputer dame = new DameComputer();
         string myColor = Constant.WHITE;
-
-
+        Dictionary<int, Move> slownik = new Dictionary<int, Move>();
 
 
         public int MinMax(Dictionary<int, Field> gameBoard, string color, Boolean maximizingPlayer, int depth)
@@ -52,7 +51,7 @@ namespace Warcaby.CSharp.Game.Computer
             }
         }
 
-        public int evaluateGameBoard(Dictionary<int, Field> gameBoard, string color)
+        public int evaluateGameBoard(Dictionary<int, Field> gameBoard, string color) // funkcja heurycystyczna
         {
             return Extend.GetNumberOfPieces(gameBoard, color) - Extend.GetNumberOfPieces(gameBoard, Extend.GetEnemyPlayerColor(color));
         }

@@ -60,7 +60,7 @@ namespace Warcaby.Service.Context
 
             Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
 
-            lisc = computerLogic.MinMax(gameBoardCopy, color, true, 6);
+            lisc = computerLogic.MinMax(gameBoardCopy, color, true, 3); // 9 - 20 sekund czekania
 
 
 
