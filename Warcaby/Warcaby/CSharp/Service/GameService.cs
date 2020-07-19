@@ -47,7 +47,7 @@ namespace Warcaby.Service.Context
             GameLogic playerRed = new GameLogic(fieldFrom, fieldTo, indexFrom, indexTo, Constant.RED);
 
             //PlayerVsPlayer(playerWhite, playerRed);
-            PlayerVsComputer(playerRed);
+            PlayerVsComputer(playerWhite);
         }
 
         public void Gameplay(GameLogic player, string color)
@@ -77,13 +77,17 @@ namespace Warcaby.Service.Context
                 Gameplay(playerRed, Constant.RED);
         }
 
-        public void PlayerVsComputer(GameLogic playerRed)
+        public void PlayerVsComputer(GameLogic playerWhite)
         {
             ComputerLogic computerLogic = new ComputerLogic();
             if (whiteTurn)
             {
+                Gameplay(playerWhite, Constant.WHITE);
+            }
+            else
+            {
                 Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
-                MoveAndPoints moveAndPoints = computerLogic.MinMax(gameBoardCopy, Constant.WHITE, true, 3);
+                MoveAndPoints moveAndPoints = computerLogic.MinMax(gameBoardCopy, Constant.RED, true, 6);
 
 
                 gameBoard[moveAndPoints.move.indexTo] = gameBoard[moveAndPoints.move.indexFrom];
@@ -97,11 +101,12 @@ namespace Warcaby.Service.Context
 
                 gameBoard[moveAndPoints.move.indexFrom] = Constant.EMPTY_FIELD;
                 Extend.GetFieldByIndex(moveAndPoints.move.indexFrom).Image = new Bitmap(Properties.Resources.empty_field);
-                whiteTurn = false;
+                whiteTurn = true;
                 Extend.ChangeImageOfTurn(Constant.WHITE);
             }
-            else
-                Gameplay(playerRed, Constant.RED);
+
+
+                
         }
     }
 }
