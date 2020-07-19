@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Warcaby.CSharp.Config;
 using Warcaby.CSharp.Dto;
-using Warcaby.CSharp.Game.Context;
+using Warcaby.CSharp.Game.Computer.Impl;
 using Warcaby.Forms;
+
 
 namespace Warcaby.CSharp.Game.Computer
 {
     public class AI
     {
-        PawnComputer pawn = new PawnComputer();
-        DameComputer dame = new DameComputer();
+        GameLogicComputer gameLogicComputer = new GameLogicComputer();
         string enemyColor = Constant.WHITE;
 
-
-
+        public AI(string enemyColor)
+        {
+            this.enemyColor = enemyColor;
+        }
 
 
         public MoveAndPoints MinMax(Dictionary<int, Field> gameBoard, string myColor, Boolean maximizingPlayer, int depth)
@@ -30,7 +31,7 @@ namespace Warcaby.CSharp.Game.Computer
             if (maximizingPlayer)
             {
                 bestValue.points = int.MinValue;
-                foreach (Move move in GetPossibleMoves(gameBoard, myColor))
+                foreach (Move move in gameLogicComputer.GetPossibleMoves(gameBoard, myColor))
                 {
                     gameBoard = ApplyMove(gameBoard, move);
                     bestValue.move = move;
@@ -43,7 +44,7 @@ namespace Warcaby.CSharp.Game.Computer
             else
             {
                 bestValue.points = int.MaxValue;
-                foreach (Move move in GetPossibleMoves(gameBoard, myColor))
+                foreach (Move move in gameLogicComputer.GetPossibleMoves(gameBoard, myColor))
                 {
                     gameBoard = ApplyMove(gameBoard, move);
                     val = MinMax(gameBoard, Extend.GetEnemyPlayerColor(myColor), true, depth - 1);
@@ -60,6 +61,12 @@ namespace Warcaby.CSharp.Game.Computer
             int enemyCountOfPieces = Extend.GetNumberOfPieces(gameBoard, Extend.GetEnemyPlayerColor(color));
             return  myCountOfPieces - enemyCountOfPieces;
         }
+
+
+
+
+
+
 
 
 
@@ -84,96 +91,21 @@ namespace Warcaby.CSharp.Game.Computer
             return gameBoard;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public List<Move> GetPossibleMoves(Dictionary<int, Field> gameBoard, string color)
-        {
-            List<Move> list = new List<Move>();
-            bool playerHaveABeat = false;
-
-
-
-            foreach (int i in gameBoard.Keys)
-            {
-                if (gameBoard[i].isPawn && gameBoard[i].color.Equals(color))
-                {
-                    list.AddRange(pawn.GetPossibleMovesForField(i, color, gameBoard));
-                }
-                else if (gameBoard[i].isDame && gameBoard[i].color.Equals(color))
-                {
-                    list.AddRange(dame.GetPossibleMovesForField(i, color, gameBoard));
-                }
-            }
-            for (int i = 0; i < list.Count(); i++)
-            {
-                if (list[i].indexThrough != 0)
-                {
-                    playerHaveABeat = true;
-                    break;
-                }
-            }
-            if (playerHaveABeat)
-            {
-                list.RemoveAll(m => m.indexThrough == 0);
-            }
-
-
-
-
-
-            return list;
-        }
-
-
-
-
-
-
-
-
-
-
         public Dictionary<int, Field> UpdateFieldFrom(Dictionary<int, Field> gameBoard, Move move)
         {
-            //Extend.GetFieldByIndex(move.indexFrom).Image = new Bitmap(Properties.Resources.empty_field);
+            ;
             gameBoard[move.indexFrom] = Constant.EMPTY_FIELD;
             return gameBoard;
         }
 
         public Dictionary<int, Field> UpdateFieldThrough(Dictionary<int, Field> gameBoard, Move move)
         {
-            //PictureBox fieldThrough = Extend.GetFieldByIndex(indexThrough);
-            //fieldThrough.Image = new Bitmap(Properties.Resources.empty_field);
             gameBoard[move.indexThrough] = Constant.EMPTY_FIELD;
             return gameBoard;
-            //Extend.UpdateGuiCounters();
-            //Extend.CheckIfAnyoneAlreadyWon();
         }
 
         public Dictionary<int, Field> UpdateFieldTo(Dictionary<int, Field> gameBoard, Move move)
         {
-            //fieldTo.Image = fieldFrom.Image;
             gameBoard[move.indexTo] = move.fieldFrom;
             return gameBoard;
         }

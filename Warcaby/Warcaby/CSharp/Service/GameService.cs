@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using Warcaby.CSharp.Config;
 using Warcaby.CSharp.Dto;
 using Warcaby.CSharp.Game.Computer;
+using Warcaby.CSharp.Game.Computer.Impl;
 using Warcaby.CSharp.Game.Context.Impl;
 using Warcaby.Forms;
 
@@ -21,15 +21,16 @@ namespace Warcaby.Service.Context
         public static int indexTo;
         public static PictureBox fieldFrom;
         public static PictureBox fieldTo;
+        GameLogicComputer gameLogicComputer = new GameLogicComputer();
         Pawn pawn = new Pawn();
         Dame dame = new Dame();
-        AI ai = new AI();
 
         public GameService()
         {
             Initializer.SpaceThePawns();
             whiteTurn = true;
         }
+
 
         public void GameConstructor(PictureBox fieldFrom, PictureBox fieldTo)
         {
@@ -48,8 +49,6 @@ namespace Warcaby.Service.Context
             //PlayerVsPlayer(playerWhite, playerRed);
             PlayerVsComputer(playerWhite);
         }
-
-
 
         public void PlayerVsPlayer(GameLogic playerWhite, GameLogic playerRed)
         {
@@ -79,23 +78,11 @@ namespace Warcaby.Service.Context
 
         public void Computer(string color)
         {
+            AI ai = new AI(color);
             Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
             MoveAndPoints moveAndPoints = ai.MinMax(gameBoardCopy, color, true, 3);
 
-            gameBoard[moveAndPoints.move.indexTo] = gameBoard[moveAndPoints.move.indexFrom];
-            Extend.GetFieldByIndex(moveAndPoints.move.indexTo).Image = Extend.GetFieldByIndex(moveAndPoints.move.indexFrom).Image;
-
-            if (moveAndPoints.move.indexThrough != 0)
-            {
-                gameBoard[moveAndPoints.move.indexThrough] = Constant.EMPTY_FIELD;
-                Extend.GetFieldByIndex(moveAndPoints.move.indexThrough).Image = new Bitmap(Properties.Resources.empty_field);
-            }
-
-            gameBoard[moveAndPoints.move.indexFrom] = Constant.EMPTY_FIELD;
-            Extend.GetFieldByIndex(moveAndPoints.move.indexFrom).Image = new Bitmap(Properties.Resources.empty_field);
-
-
-
+            gameLogicComputer.UpdateFields(moveAndPoints);
 
             Extend.FinishTheTurn(color);
             Extend.ChangeImageOfTurn(Extend.GetEnemyPlayerColor(color));

@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="CSharp\Game\Computer\AI.cs" />
     <Compile Include="CSharp\Game\Computer\Impl\DameComputer.cs" />
+    <Compile Include="CSharp\Game\Computer\Impl\GameLogicComputer.cs" />
     <Compile Include="CSharp\Game\Computer\Impl\PawnComputer.cs" />
     <Compile Include="CSharp\Game\Context\Impl\Dame.cs" />
     <Compile Include="CSharp\Game\Context\Impl\Pawn.cs" />
