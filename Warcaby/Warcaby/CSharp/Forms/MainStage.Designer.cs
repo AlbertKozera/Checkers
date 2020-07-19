@@ -1,4 +1,6 @@
-﻿namespace Warcaby
+﻿
+
+namespace Warcaby.CSharp.Forms
 {
     partial class MainStage
     {
@@ -29,10 +31,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainStage));
-            this.ucOptions = new Warcaby.Forms.UCOptions();
-            this.ucNewGame = new Warcaby.Forms.UCNewGame();
-            this.ucMainMenu = new Warcaby.Forms.UCMainMenu();
-            this.ucTypeOfGame = new Warcaby.Forms.UCTypeOfGame();
+            this.ucOptions = new UCOptions();
+            this.ucNewGame = new UCNewGame();
+            this.ucMainMenu = new UCMainMenu();
+            this.ucTypeOfGame = new UCTypeOfGame();
             this.SuspendLayout();
             // 
             // ucOptions

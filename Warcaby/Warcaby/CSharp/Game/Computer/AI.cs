@@ -1,24 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Warcaby.CSharp.Config;
+using Warcaby.CSharp.Dto;
 using Warcaby.CSharp.Game.Context;
 using Warcaby.Forms;
-using Warcaby.Service.Context;
 
 namespace Warcaby.CSharp.Game.Computer
 {
-    public class ComputerLogic
+    public class AI
     {
         PawnComputer pawn = new PawnComputer();
         DameComputer dame = new DameComputer();
         string enemyColor = Constant.WHITE;
-        Dictionary<int, Move> slownik = new Dictionary<int, Move>();
-
-
-
 
 
 
@@ -62,7 +56,9 @@ namespace Warcaby.CSharp.Game.Computer
 
         public int evaluateGameBoard(Dictionary<int, Field> gameBoard, string color) // funkcja heurycystyczna
         {
-            return Extend.GetNumberOfPieces(gameBoard, color) - Extend.GetNumberOfPieces(gameBoard, Extend.GetEnemyPlayerColor(color));
+            int myCountOfPieces = Extend.GetNumberOfPieces(gameBoard, color);
+            int enemyCountOfPieces = Extend.GetNumberOfPieces(gameBoard, Extend.GetEnemyPlayerColor(color));
+            return  myCountOfPieces - enemyCountOfPieces;
         }
 
 

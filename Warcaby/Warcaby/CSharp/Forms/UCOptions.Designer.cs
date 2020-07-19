@@ -1,6 +1,6 @@
-﻿using System;
+﻿
 
-namespace Warcaby.Forms
+namespace Warcaby.CSharp.Forms
 {
     partial class UCOptions
     {

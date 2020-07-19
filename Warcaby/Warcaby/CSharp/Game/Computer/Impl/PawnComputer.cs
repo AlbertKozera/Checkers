@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Warcaby.CSharp.Config;
+using Warcaby.CSharp.Dto;
 using Warcaby.Forms;
-using Warcaby.Service.Context;
 
 
 namespace Warcaby.CSharp.Game.Context
@@ -66,6 +66,5 @@ namespace Warcaby.CSharp.Game.Context
 
             return possibleMovesList;
         }
-
     }
 }

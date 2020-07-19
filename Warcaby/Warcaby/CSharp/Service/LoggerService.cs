@@ -1,12 +1,7 @@
 ﻿using NLog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Warcaby.CSharp.Game.Context;
-using Warcaby.Forms;
+using Warcaby.CSharp.Config;
+
 
 namespace Warcaby.CSharp.Service
 {

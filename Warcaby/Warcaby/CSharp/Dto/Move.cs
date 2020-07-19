@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Warcaby.Forms;
+﻿
 
-namespace Warcaby.CSharp.Game
+namespace Warcaby.CSharp.Dto
 {
     public class Move
     {
@@ -33,6 +28,5 @@ namespace Warcaby.CSharp.Game
             this.fieldThrough = fieldThrough;
             this.fieldTo = fieldTo;
         }
-
     }
 }

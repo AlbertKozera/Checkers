@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Globalization;
 using System.Windows.Forms;
-using Warcaby.CSharp.Game.Context;
+using Warcaby.CSharp.Game.Context.Impl;
 using Warcaby.CSharp.Service;
 using Warcaby.Service.Context;
 
-namespace Warcaby.Forms
+
+namespace Warcaby.CSharp.Forms
 {
     public partial class UCNewGame : UserControl
     {

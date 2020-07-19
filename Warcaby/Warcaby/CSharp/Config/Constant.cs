@@ -1,6 +1,7 @@
-﻿
+﻿using Warcaby.CSharp.Dto;
 
-namespace Warcaby.Forms
+
+namespace Warcaby.CSharp.Config
 {
     public sealed class Constant
     {

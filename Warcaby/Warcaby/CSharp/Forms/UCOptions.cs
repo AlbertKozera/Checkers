@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
-using System.Reflection;
 using Warcaby.CSharp.Service;
 
-namespace Warcaby.Forms
+namespace Warcaby.CSharp.Forms
 {
     public partial class UCOptions : UserControl
     {

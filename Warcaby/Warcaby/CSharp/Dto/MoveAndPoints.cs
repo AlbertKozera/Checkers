@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Warcaby.CSharp.Game;
+﻿
 
-namespace Warcaby.CSharp.Game
+namespace Warcaby.CSharp.Dto
 {
     public class MoveAndPoints
     {

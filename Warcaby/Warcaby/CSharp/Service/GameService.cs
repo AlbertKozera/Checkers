@@ -1,13 +1,11 @@
-﻿using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Warcaby.CSharp.Config;
-using Warcaby.CSharp.Game;
+using Warcaby.CSharp.Dto;
 using Warcaby.CSharp.Game.Computer;
-using Warcaby.CSharp.Game.Context;
-using Warcaby.CSharp.Service;
+using Warcaby.CSharp.Game.Context.Impl;
 using Warcaby.Forms;
 
 
@@ -52,8 +50,8 @@ namespace Warcaby.Service.Context
 
         public void Gameplay(GameLogic player, string color)
         {
-            ComputerLogic computerLogic = new ComputerLogic();
-            List<Move> list = computerLogic.GetPossibleMoves(gameBoard, color);
+            AI ai = new AI();
+            List<Move> list = ai.GetPossibleMoves(gameBoard, color);
 
 
 
@@ -79,7 +77,7 @@ namespace Warcaby.Service.Context
 
         public void PlayerVsComputer(GameLogic playerWhite)
         {
-            ComputerLogic computerLogic = new ComputerLogic();
+            AI ai = new AI();
             if (whiteTurn)
             {
                 Gameplay(playerWhite, Constant.WHITE);
@@ -87,7 +85,7 @@ namespace Warcaby.Service.Context
             else
             {
                 Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
-                MoveAndPoints moveAndPoints = computerLogic.MinMax(gameBoardCopy, Constant.RED, true, 6);
+                MoveAndPoints moveAndPoints = ai.MinMax(gameBoardCopy, Constant.RED, true, 3);
 
 
                 gameBoard[moveAndPoints.move.indexTo] = gameBoard[moveAndPoints.move.indexFrom];

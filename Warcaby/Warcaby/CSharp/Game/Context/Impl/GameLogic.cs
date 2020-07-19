@@ -1,10 +1,11 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using Warcaby.CSharp.Config;
 using Warcaby.Forms;
 using Warcaby.Service.Context;
 
 
-namespace Warcaby.CSharp.Game.Context
+namespace Warcaby.CSharp.Game.Context.Impl
 {
     public class GameLogic
     {

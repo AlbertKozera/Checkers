@@ -37,7 +37,7 @@
     </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Warcaby.EntryPoint</StartupObject>
+    <StartupObject>Warcaby.CSharp.EntryPoint</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -67,7 +67,7 @@
     <Compile Include="CSharp\Config\Initializer.cs" />
     <Compile Include="CSharp\Config\Constant.cs" />
     <Compile Include="CSharp\Config\Extend.cs" />
-    <Compile Include="CSharp\Config\Field.cs" />
+    <Compile Include="CSharp\Dto\Field.cs" />
     <Compile Include="CSharp\Forms\UCTypeOfGame.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -99,15 +99,14 @@
     <Compile Include="CSharp\Forms\UCOptions.Designer.cs">
       <DependentUpon>UCOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="CSharp\Game\Computer\ComputerLogic.cs" />
-    <Compile Include="CSharp\Game\Computer\DameComputer.cs" />
-    <Compile Include="CSharp\Game\Computer\PawnComputer.cs" />
-    <Compile Include="CSharp\Game\Computer\RuleComputer.cs" />
+    <Compile Include="CSharp\Game\Computer\AI.cs" />
+    <Compile Include="CSharp\Game\Computer\Impl\DameComputer.cs" />
+    <Compile Include="CSharp\Game\Computer\Impl\PawnComputer.cs" />
     <Compile Include="CSharp\Game\Context\Impl\Dame.cs" />
     <Compile Include="CSharp\Game\Context\Impl\Pawn.cs" />
     <Compile Include="CSharp\Game\Context\Rule.cs" />
-    <Compile Include="CSharp\Game\Move.cs" />
-    <Compile Include="CSharp\Game\MoveAndPoints.cs" />
+    <Compile Include="CSharp\Dto\Move.cs" />
+    <Compile Include="CSharp\Dto\MoveAndPoints.cs" />
     <Compile Include="CSharp\Service\LoggerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CSharp\Game\Context\Impl\GameLogic.cs" />
