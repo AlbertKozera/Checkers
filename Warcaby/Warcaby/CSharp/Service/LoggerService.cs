@@ -1,7 +1,7 @@
 ﻿using NLog;
 using System.Windows.Forms;
 using Warcaby.CSharp.Config;
-
+using Warcaby.Forms;
 
 namespace Warcaby.CSharp.Service
 {
