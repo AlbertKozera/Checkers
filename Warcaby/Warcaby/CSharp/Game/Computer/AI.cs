@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Warcaby.CSharp.Config;
 using Warcaby.CSharp.Dto;
 using Warcaby.CSharp.Game.Computer.Impl;
@@ -61,6 +62,55 @@ namespace Warcaby.CSharp.Game.Computer
                 return bestValue;
             }
         }
+
+        public MoveAndPoints MinMax_Alpha(Dictionary<int, Field> gameBoard, string myColor, Boolean maximizingPlayer, int depth)
+        {
+            MoveAndPoints bestValue = new MoveAndPoints();
+            if (0 == depth)
+            {
+                return new MoveAndPoints(((myColor == selfColor) ? 1 : -1) * evaluateGameBoard(gameBoard, myColor), bestValue.move);
+            }
+
+            MoveAndPoints val = new MoveAndPoints();
+            if (maximizingPlayer)
+            {
+                bestValue.points = int.MinValue;
+                foreach (Move move in gameLogicComputer.GetPossibleMoves(gameBoard, myColor))
+                {
+                    gameBoard = ApplyMove(gameBoard, move);
+                    bestValue.move = move;
+                    var thread = new Thread(() =>
+                    {
+                        val = MinMax(gameBoard, Extend.GetEnemyPlayerColor(myColor), false, depth - 1);
+                    });
+                    thread.Start();
+                    thread.Join();
+                    bestValue.points = Math.Max(bestValue.points, val.points);
+                    gameBoard = RevertMove(gameBoard, move);
+
+                }
+                return bestValue;
+            }
+            else
+            {
+                bestValue.points = int.MaxValue;
+                foreach (Move move in gameLogicComputer.GetPossibleMoves(gameBoard, myColor))
+                {
+                    gameBoard = ApplyMove(gameBoard, move);
+                    var thread = new Thread(() =>
+                    {
+                        val = MinMax(gameBoard, Extend.GetEnemyPlayerColor(myColor), true, depth - 1);
+                    });
+                    thread.Start();
+                    thread.Join();
+                    bestValue.points = Math.Min(bestValue.points, val.points);
+                    gameBoard = RevertMove(gameBoard, move);
+                }
+                return bestValue;
+            }
+        }
+
+
 
         public int evaluateGameBoard(Dictionary<int, Field> gameBoard, string color) // funkcja heurycystyczna
         {
