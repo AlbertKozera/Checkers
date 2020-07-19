@@ -1,6 +1,7 @@
 ﻿using NLog;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using Warcaby.CSharp.Config;
 using Warcaby.CSharp.Game;
@@ -45,10 +46,8 @@ namespace Warcaby.Service.Context
             GameLogic playerWhite = new GameLogic(fieldFrom, fieldTo, indexFrom, indexTo, Constant.WHITE);
             GameLogic playerRed = new GameLogic(fieldFrom, fieldTo, indexFrom, indexTo, Constant.RED);
 
-            if (whiteTurn)
-                Gameplay(playerWhite, Constant.WHITE);
-            else
-                Gameplay(playerRed, Constant.RED);
+            //PlayerVsPlayer(playerWhite, playerRed);
+            PlayerVsComputer(playerRed);
         }
 
         public void Gameplay(GameLogic player, string color)
@@ -56,15 +55,11 @@ namespace Warcaby.Service.Context
             ComputerLogic computerLogic = new ComputerLogic();
             List<Move> list = computerLogic.GetPossibleMoves(gameBoard, color);
 
-            int lisc;
-
-            Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
-
-            lisc = computerLogic.MinMax(gameBoardCopy, color, true, 3); // 9 - 20 sekund czekania
 
 
+            
 
-
+            //var lisc = computerLogic.MinMax(gameBoardCopy, color, true, 3); // 9 - 20 sekund czekania
 
             forcedBeatingForPawnsList = pawn.GetDataAboutBeatings(color);
             forcedBeatingForDamesList = dame.GetDataAboutBeatings(color);
@@ -72,6 +67,41 @@ namespace Warcaby.Service.Context
             player.MovingADameThatHasNoBeating();
             player.MovingAPawnThatHasABeating();
             player.MovingADameThatHasABeating();
+        }
+
+        public void PlayerVsPlayer(GameLogic playerWhite, GameLogic playerRed)
+        {
+            if (whiteTurn)
+                Gameplay(playerWhite, Constant.WHITE);
+            else
+                Gameplay(playerRed, Constant.RED);
+        }
+
+        public void PlayerVsComputer(GameLogic playerRed)
+        {
+            ComputerLogic computerLogic = new ComputerLogic();
+            if (whiteTurn)
+            {
+                Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
+                MoveAndPoints moveAndPoints = computerLogic.MinMax(gameBoardCopy, Constant.WHITE, true, 3);
+
+
+                gameBoard[moveAndPoints.move.indexTo] = gameBoard[moveAndPoints.move.indexFrom];
+                Extend.GetFieldByIndex(moveAndPoints.move.indexTo).Image = Extend.GetFieldByIndex(moveAndPoints.move.indexFrom).Image;
+
+                if (moveAndPoints.move.indexThrough != 0)
+                {
+                    gameBoard[moveAndPoints.move.indexThrough] = Constant.EMPTY_FIELD;
+                    Extend.GetFieldByIndex(moveAndPoints.move.indexThrough).Image = new Bitmap(Properties.Resources.empty_field);
+                }
+
+                gameBoard[moveAndPoints.move.indexFrom] = Constant.EMPTY_FIELD;
+                Extend.GetFieldByIndex(moveAndPoints.move.indexFrom).Image = new Bitmap(Properties.Resources.empty_field);
+                whiteTurn = false;
+                Extend.ChangeImageOfTurn(Constant.WHITE);
+            }
+            else
+                Gameplay(playerRed, Constant.RED);
         }
     }
 }

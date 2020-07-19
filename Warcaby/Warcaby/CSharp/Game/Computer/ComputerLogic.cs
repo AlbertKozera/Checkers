@@ -14,37 +14,46 @@ namespace Warcaby.CSharp.Game.Computer
     {
         PawnComputer pawn = new PawnComputer();
         DameComputer dame = new DameComputer();
-        string myColor = Constant.WHITE;
+        string enemyColor = Constant.WHITE;
         Dictionary<int, Move> slownik = new Dictionary<int, Move>();
 
 
-        public int MinMax(Dictionary<int, Field> gameBoard, string color, Boolean maximizingPlayer, int depth)
-        {
-            int bestValue;
-            if (0 == depth)
-                return ((color == myColor) ? 1 : -1) * evaluateGameBoard(gameBoard, color);
 
-            int val;
+
+
+
+
+
+        public MoveAndPoints MinMax(Dictionary<int, Field> gameBoard, string myColor, Boolean maximizingPlayer, int depth)
+        {
+            MoveAndPoints bestValue = new MoveAndPoints();
+            if (0 == depth)
+            {
+                return new MoveAndPoints(((myColor == enemyColor) ? 1 : -1) * evaluateGameBoard(gameBoard, myColor), bestValue.move);
+            }
+                
+            MoveAndPoints val = new MoveAndPoints();
             if (maximizingPlayer)
             {
-                bestValue = int.MinValue;
-                foreach (Move move in GetPossibleMoves(gameBoard, color))
+                bestValue.points = int.MinValue;
+                foreach (Move move in GetPossibleMoves(gameBoard, myColor))
                 {
                     gameBoard = ApplyMove(gameBoard, move);
-                    val = MinMax(gameBoard, Extend.GetEnemyPlayerColor(color), false, depth - 1);
-                    bestValue = Math.Max(bestValue, val);
+                    bestValue.move = move;
+                    val = MinMax(gameBoard, Extend.GetEnemyPlayerColor(myColor), false, depth - 1);
+                    bestValue.points = Math.Max(bestValue.points, val.points);
                     gameBoard = RevertMove(gameBoard, move);
                 }
                 return bestValue;
             }
             else
             {
-                bestValue = int.MaxValue;
-                foreach (Move move in GetPossibleMoves(gameBoard, color))
+                bestValue.points = int.MaxValue;
+                foreach (Move move in GetPossibleMoves(gameBoard, myColor))
                 {
                     gameBoard = ApplyMove(gameBoard, move);
-                    val = MinMax(gameBoard, Extend.GetEnemyPlayerColor(color), true, depth - 1);
-                    bestValue = Math.Min(bestValue, val);
+                    val = MinMax(gameBoard, Extend.GetEnemyPlayerColor(myColor), true, depth - 1);
+                    bestValue.points = Math.Min(bestValue.points, val.points);
                     gameBoard = RevertMove(gameBoard, move);
                 }
                 return bestValue;
