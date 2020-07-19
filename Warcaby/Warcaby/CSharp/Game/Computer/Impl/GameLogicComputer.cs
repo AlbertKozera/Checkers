@@ -78,6 +78,7 @@ namespace Warcaby.CSharp.Game.Computer.Impl
             }
             GameService.gameBoard[moveAndPoints.move.indexFrom] = Constant.EMPTY_FIELD;
             Extend.GetFieldByIndex(moveAndPoints.move.indexFrom).Image = new Bitmap(Properties.Resources.empty_field);
+            Extend.UpdateGuiCounters();
         }
 
         public void CheckIfThePawnHasReachedThePromotionField(MoveAndPoints moveAndPoints, string color)
@@ -85,6 +86,7 @@ namespace Warcaby.CSharp.Game.Computer.Impl
             if (Rule.ThePawnStoodInThePromotionField(moveAndPoints.move.indexTo, color))
             {
                 PromoteThePawn(moveAndPoints, color);
+                Extend.UpdateGuiCounters();
             }
         }
 

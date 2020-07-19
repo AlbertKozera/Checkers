@@ -11,11 +11,11 @@ namespace Warcaby.CSharp.Game.Computer
     public class AI
     {
         GameLogicComputer gameLogicComputer = new GameLogicComputer();
-        string enemyColor = Constant.WHITE;
+        string selfColor = Constant.WHITE;
 
-        public AI(string enemyColor)
+        public AI(string selfColor)
         {
-            this.enemyColor = enemyColor;
+            this.selfColor = selfColor;
         }
 
 
@@ -24,7 +24,7 @@ namespace Warcaby.CSharp.Game.Computer
             MoveAndPoints bestValue = new MoveAndPoints();
             if (0 == depth)
             {
-                return new MoveAndPoints(((myColor == enemyColor) ? 1 : -1) * evaluateGameBoard(gameBoard, myColor), bestValue.move);
+                return new MoveAndPoints(((myColor == selfColor) ? 1 : -1) * evaluateGameBoard(gameBoard, myColor), bestValue.move);
             }
                 
             MoveAndPoints val = new MoveAndPoints();

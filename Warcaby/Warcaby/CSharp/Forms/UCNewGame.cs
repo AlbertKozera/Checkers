@@ -15,10 +15,14 @@ namespace Warcaby.CSharp.Forms
         System.Diagnostics.Stopwatch watchWhite;
         int i = 0;
         int j = 0;
+        int typeOfGame;
 
-        public UCNewGame()
+
+
+        public UCNewGame(int typeOfGame)
         {
             InitializeComponent();
+            this.typeOfGame = typeOfGame;
         }
 
         private void UCNewGame_Load(object sender, EventArgs e)
@@ -47,7 +51,7 @@ namespace Warcaby.CSharp.Forms
             MyDraggedData data = (MyDraggedData)e.Data.GetData(typeof(MyDraggedData));
             PictureBox fieldTo = (PictureBox)sender;
             PictureBox fieldFrom = (PictureBox)data.Data;
-            gameService.GameChooser(fieldFrom, fieldTo);
+            gameService.GameChooser(fieldFrom, fieldTo, typeOfGame);
         }
 
         private void MouseDownEvent(object sender, MouseEventArgs e)

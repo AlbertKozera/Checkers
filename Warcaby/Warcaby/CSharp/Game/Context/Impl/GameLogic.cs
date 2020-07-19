@@ -118,6 +118,7 @@ namespace Warcaby.CSharp.Game.Context.Impl
             if (Rule.ThePawnStoodInThePromotionField(indexTo, COLOR))
             {
                 PromoteThePawn();
+                Extend.UpdateGuiCounters();
             }
         }
 

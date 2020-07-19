@@ -32,7 +32,7 @@ namespace Warcaby.CSharp.Forms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainStage));
             this.ucOptions = new UCOptions();
-            this.ucNewGame = new UCNewGame();
+            this.ucNewGame = new UCNewGame(0);
             this.ucMainMenu = new UCMainMenu();
             this.ucTypeOfGame = new UCTypeOfGame();
             this.SuspendLayout();
