@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using Warcaby.Service.Context;
 using Warcaby.Forms;
+using Warcaby.CSharp.Config;
+using Warcaby.CSharp.Game.Context.Impl;
 
 namespace Warcaby.CSharp.Game.Context.Tests
 {
