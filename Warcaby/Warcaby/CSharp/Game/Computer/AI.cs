@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Threading.Tasks;
 using Warcaby.CSharp.Config;
 using Warcaby.CSharp.Dto;
 using Warcaby.CSharp.Game.Computer.Impl;
@@ -35,108 +37,68 @@ namespace Warcaby.CSharp.Game.Computer
             {
                 return new MoveAndPoints(((myColor == selfColor) ? 1 : -1) * evaluateGameBoard(gameBoard, myColor), bestValue.move);
             }
-                
-            MoveAndPoints val = new MoveAndPoints();
             if (maximizingPlayer)
             {
                 bestValue.points = int.MinValue;
-                foreach (Move move in gameLogicComputer.GetPossibleMoves(gameBoard, myColor))
+                var list = gameLogicComputer.GetPossibleMoves(gameBoard, myColor);
+                List<int> listOfPoints = new List<int>();
+                Parallel.ForEach(list, move =>
                 {
-                    gameBoard = ApplyMove(gameBoard, move);
+                    MoveAndPoints val = new MoveAndPoints();
+                    Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
+                    gameBoardCopy = ApplyMove(gameBoardCopy, move);
                     bestValue.move = move;
-                    val = MinMax(gameBoard, Extend.GetEnemyPlayerColor(myColor), false, depth - 1);
+                    val = MinMax(gameBoardCopy, Extend.GetEnemyPlayerColor(myColor), false, depth - 1);
+                    listOfPoints.Add(val.points);
                     bestValue.points = Math.Max(bestValue.points, val.points);
-                    gameBoard = RevertMove(gameBoard, move);
-                }
+                    if (bestValue.points < val.points)
+                        bestValue.move = val.move;
+                    gameBoardCopy = RevertMove(gameBoardCopy, move);
+                });
                 return bestValue;
             }
             else
             {
                 bestValue.points = int.MaxValue;
-                foreach (Move move in gameLogicComputer.GetPossibleMoves(gameBoard, myColor))
+                var list = gameLogicComputer.GetPossibleMoves(gameBoard, myColor);
+                List<int> listOfPoints = new List<int>();
+                Parallel.ForEach(list, move =>
                 {
-                    gameBoard = ApplyMove(gameBoard, move);
-                    val = MinMax(gameBoard, Extend.GetEnemyPlayerColor(myColor), true, depth - 1);
-                    bestValue.points = Math.Min(bestValue.points, val.points);
-                    gameBoard = RevertMove(gameBoard, move);
-                }
-                return bestValue;
-            }
-        }
-
-        public MoveAndPoints MinMax_Alpha(Dictionary<int, Field> gameBoard, string myColor, Boolean maximizingPlayer, int depth)
-        {
-            MoveAndPoints bestValue = new MoveAndPoints();
-            if (0 == depth)
-            {
-                return new MoveAndPoints(((myColor == selfColor) ? 1 : -1) * evaluateGameBoard(gameBoard, myColor), bestValue.move);
-            }
-
-            MoveAndPoints val = new MoveAndPoints();
-            if (maximizingPlayer)
-            {
-                bestValue.points = int.MinValue;
-                foreach (Move move in gameLogicComputer.GetPossibleMoves(gameBoard, myColor))
-                {
-                    gameBoard = ApplyMove(gameBoard, move);
+                    MoveAndPoints val = new MoveAndPoints();
+                    Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
+                    gameBoardCopy = ApplyMove(gameBoardCopy, move);
                     bestValue.move = move;
-                    var thread = new Thread(() =>
-                    {
-                        val = MinMax(gameBoard, Extend.GetEnemyPlayerColor(myColor), false, depth - 1);
-                    });
-                    thread.Start();
-                    thread.Join();
-                    bestValue.points = Math.Max(bestValue.points, val.points);
-                    gameBoard = RevertMove(gameBoard, move);
-
-                }
-                return bestValue;
-            }
-            else
-            {
-                bestValue.points = int.MaxValue;
-                foreach (Move move in gameLogicComputer.GetPossibleMoves(gameBoard, myColor))
-                {
-                    gameBoard = ApplyMove(gameBoard, move);
-                    var thread = new Thread(() =>
-                    {
-                        val = MinMax(gameBoard, Extend.GetEnemyPlayerColor(myColor), true, depth - 1);
-                    });
-                    thread.Start();
-                    thread.Join();
+                    val = MinMax(gameBoardCopy, Extend.GetEnemyPlayerColor(myColor), true, depth - 1);
+                    listOfPoints.Add(val.points);
                     bestValue.points = Math.Min(bestValue.points, val.points);
-                    gameBoard = RevertMove(gameBoard, move);
-                }
+                    if (bestValue.points > val.points)
+                        bestValue.move = val.move;
+                    gameBoardCopy = RevertMove(gameBoardCopy, move);
+                });
                 return bestValue;
             }
         }
 
-
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public int evaluateGameBoard(Dictionary<int, Field> gameBoard, string color) // funkcja heurycystyczna
         {
             int points = 0;
             int myCountOfPieces = Extend.GetNumberOfPieces(gameBoard, color);
             int enemyCountOfPieces = Extend.GetNumberOfPieces(gameBoard, Extend.GetEnemyPlayerColor(color));
             points += 40 * (myCountOfPieces - enemyCountOfPieces);
-            
-            foreach (int key in gameBoard.Keys)
+
+            foreach (int index in gameBoard.Keys)
             {
-                if (gameBoard[key].isPawn)
-                    points += ruleComputer.CheckIfThePawnHasBeat(key, Extend.GetEnemyPlayerColor(color), gameBoard);
-                if (gameBoard[key].isDame)
-                    points += ruleComputer.CheckIfTheDameHasBeat(key, Extend.GetEnemyPlayerColor(color), gameBoard);
+                if (gameBoard[index].isPawn)
+                    points += ruleComputer.CheckIfThePawnHasBeat(index, Extend.GetEnemyPlayerColor(color), gameBoard);
+                if (gameBoard[index].isDame)
+                    points += ruleComputer.CheckIfTheDameHasBeat(index, Extend.GetEnemyPlayerColor(color), gameBoard);
 
-                points += -1 * ruleComputer.CheckIfThePawnHasBeat(key, color, gameBoard);
+                points += -1 * ruleComputer.CheckIfThePawnHasBeat(index, color, gameBoard);
 
-                points += -1 * ruleComputer.CheckIfTheDameHasBeat(key, color, gameBoard);
+                points += -1 * ruleComputer.CheckIfTheDameHasBeat(index, color, gameBoard);
 
-                points += ruleComputer.ThePawnStoodInTheArea(key);
-
-                if (Rule.ThePawnStoodInThePromotionField(key, color))
-                    points += 50;
-                else
-                    points += 0;
+                points += ruleComputer.ThePawnStoodInTheArea(index);
             }
             return points;
         }

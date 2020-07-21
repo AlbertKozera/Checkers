@@ -103,7 +103,7 @@ namespace Warcaby.Service.Context
         {
             AI ai = new AI(color);
             Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
-            MoveAndPoints moveAndPoints = ai.MinMax(gameBoardCopy, color, true, 3); // MinMax start
+            MoveAndPoints moveAndPoints = ai.MinMax(gameBoardCopy, color, true, 1); // MinMax start
             //MoveAndPoints moveAndPoints = ai.MinMax_Alpha(gameBoardCopy, color, true, 3); // MinMax_Alpha start
 
             gameLogicComputer.UpdateFields(moveAndPoints);

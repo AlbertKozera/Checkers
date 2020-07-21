@@ -22,7 +22,7 @@ namespace Warcaby.CSharp.Game.Context
                 if (gameBoard.TryGetValue(i + Constant.TOP_LEFT, out field) && field.isEmptyField)
                     possibleMovesList.Add(new Move(i, i + Constant.TOP_LEFT, gameBoard[i], gameBoard[i + Constant.TOP_LEFT]));
 
-                    return possibleMovesList;
+                return possibleMovesList;
             }
             else
             {
@@ -39,12 +39,16 @@ namespace Warcaby.CSharp.Game.Context
 
         public Move GetBeatingForFieldOnSpecificDiagonal(int i, string enemyColor, int diagonal, Dictionary<int, Field> gameBoard)
         {
+            string myColor = Extend.GetEnemyPlayerColor(enemyColor);
             Field fieldData;
-            if (gameBoard.TryGetValue(i + diagonal, out fieldData) && fieldData.color.Equals(enemyColor))
+            if (gameBoard.TryGetValue(i, out fieldData) && fieldData.color.Equals(myColor) && fieldData.isPawn)
             {
-                if (gameBoard.TryGetValue(i + (2 * diagonal), out fieldData) && fieldData.isEmptyField)
+                if (gameBoard.TryGetValue(i + diagonal, out fieldData) && fieldData.color.Equals(enemyColor))
                 {
-                    return new Move(i, i + diagonal, i + (2 * diagonal), gameBoard[i], gameBoard[i + diagonal], gameBoard[i + (2 * diagonal)]);
+                    if (gameBoard.TryGetValue(i + (2 * diagonal), out fieldData) && fieldData.isEmptyField)
+                    {
+                        return new Move(i, i + diagonal, i + (2 * diagonal), gameBoard[i], gameBoard[i + diagonal], gameBoard[i + (2 * diagonal)]);
+                    }
                 }
             }
             return null;
@@ -53,8 +57,8 @@ namespace Warcaby.CSharp.Game.Context
         public List<Move> GetPossibleMovesForField(int i, string myColor, Dictionary<int, Field> gameBoard)
         {
             List<Move> possibleMovesList = new List<Move>();
-            string enemyColor = Extend.GetEnemyPlayerColor(myColor);    
-           
+            string enemyColor = Extend.GetEnemyPlayerColor(myColor);
+
             possibleMovesList.Add(GetBeatingForFieldOnSpecificDiagonal(i, enemyColor, Constant.TOP_LEFT, gameBoard));
             possibleMovesList.Add(GetBeatingForFieldOnSpecificDiagonal(i, enemyColor, Constant.TOP_RIGHT, gameBoard));
             possibleMovesList.Add(GetBeatingForFieldOnSpecificDiagonal(i, enemyColor, Constant.DOWN_LEFT, gameBoard));
@@ -62,7 +66,7 @@ namespace Warcaby.CSharp.Game.Context
             possibleMovesList = possibleMovesList.Where(l => l != null).ToList();
 
             if (possibleMovesList.IsNullOrEmpty())
-                if(GetMovesForFieldByIndex(i, enemyColor, gameBoard) != null)
+                if (GetMovesForFieldByIndex(i, enemyColor, gameBoard) != null)
                     possibleMovesList.AddRange(GetMovesForFieldByIndex(i, enemyColor, gameBoard));
 
             return possibleMovesList;

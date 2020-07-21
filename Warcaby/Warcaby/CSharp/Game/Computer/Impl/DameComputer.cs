@@ -33,23 +33,30 @@ namespace Warcaby.CSharp.Game.Context
         public List<Move> GetBeatingForFieldOnSpecificDiagonal(int i, string enemyColor, int diagonal, Dictionary<int, Field> gameBoard)
         {
             Field field;
+            string myColor = Extend.GetEnemyPlayerColor(enemyColor);
             int indexFrom = i;
-            while (gameBoard.TryGetValue(i += diagonal, out field))
+
+
+            if (gameBoard[indexFrom].isDame && gameBoard[indexFrom].color.Equals(myColor))
             {
-                if (field.color.Equals(enemyColor) && (gameBoard.TryGetValue(i + diagonal, out Field fieldBehind)))
+                while (gameBoard.TryGetValue(i += diagonal, out field))
                 {
-                    if (fieldBehind.isEmptyField)
+                    if (field.color.Equals(enemyColor) && (gameBoard.TryGetValue(i + diagonal, out Field fieldBehind)))
                     {
-                        List<Move> possibleMovesList = new List<Move>();
-                        int indexThrough = i;
-                        while (gameBoard.TryGetValue(i += diagonal, out field) && field.isEmptyField)
-                            possibleMovesList.Add(new Move(indexFrom, indexThrough, i, gameBoard[indexFrom], gameBoard[indexThrough], gameBoard[i]));
-                        return possibleMovesList;
+                        if (fieldBehind.isEmptyField)
+                        {
+                            List<Move> possibleMovesList = new List<Move>();
+                            int indexThrough = i;
+                            while (gameBoard.TryGetValue(i += diagonal, out field) && field.isEmptyField)
+                                possibleMovesList.Add(new Move(indexFrom, indexThrough, i, gameBoard[indexFrom], gameBoard[indexThrough], gameBoard[i]));
+                            return possibleMovesList;
+                        }
+                        else
+                            return null;
                     }
-                    else
-                        return null;
                 }
             }
+
             return null;
         }
 
@@ -63,7 +70,7 @@ namespace Warcaby.CSharp.Game.Context
             var down_left_diagonal = GetBeatingForFieldOnSpecificDiagonal(i, enemyColor, Constant.DOWN_LEFT, gameBoard);
             var down_right_diagonal = GetBeatingForFieldOnSpecificDiagonal(i, enemyColor, Constant.DOWN_RIGHT, gameBoard);
 
-            if(!top_left_diagonal.IsNullOrEmpty())
+            if (!top_left_diagonal.IsNullOrEmpty())
                 possibleMovesList.AddRange(top_left_diagonal);
             if (!top_right_diagonal.IsNullOrEmpty())
                 possibleMovesList.AddRange(top_right_diagonal);

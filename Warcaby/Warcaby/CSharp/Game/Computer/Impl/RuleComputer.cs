@@ -30,29 +30,29 @@ namespace Warcaby.CSharp.Game.Computer.Impl
                 return 0;
         }
 
-        public int CheckIfThePawnHasBeat(int key, string color, Dictionary<int, Field> gameBoard)
+        public int CheckIfThePawnHasBeat(int key, string enemyColor, Dictionary<int, Field> gameBoard)
         {
-            if (pawnComputer.GetBeatingForFieldOnSpecificDiagonal(key, color, Constant.TOP_LEFT, gameBoard) != null)
+            if (pawnComputer.GetBeatingForFieldOnSpecificDiagonal(key, enemyColor, Constant.TOP_LEFT, gameBoard) != null)
                 return 40;
-            else if (pawnComputer.GetBeatingForFieldOnSpecificDiagonal(key, color, Constant.TOP_RIGHT, gameBoard) != null)
+            else if (pawnComputer.GetBeatingForFieldOnSpecificDiagonal(key, enemyColor, Constant.TOP_RIGHT, gameBoard) != null)
                 return 40;
-            else if (pawnComputer.GetBeatingForFieldOnSpecificDiagonal(key, color, Constant.DOWN_LEFT, gameBoard) != null)
+            else if (pawnComputer.GetBeatingForFieldOnSpecificDiagonal(key, enemyColor, Constant.DOWN_LEFT, gameBoard) != null)
                 return 40;
-            else if (pawnComputer.GetBeatingForFieldOnSpecificDiagonal(key, color, Constant.DOWN_RIGHT, gameBoard) != null)
+            else if (pawnComputer.GetBeatingForFieldOnSpecificDiagonal(key, enemyColor, Constant.DOWN_RIGHT, gameBoard) != null)
                 return 40;
             else
                 return 0;
         }
 
-        public int CheckIfTheDameHasBeat(int key, string color, Dictionary<int, Field> gameBoard)
+        public int CheckIfTheDameHasBeat(int key, string enemyColor, Dictionary<int, Field> gameBoard)
         {
-            if(dameComputer.GetBeatingForFieldOnSpecificDiagonal(key, color, Constant.TOP_LEFT, gameBoard) != null)
+            if(dameComputer.GetBeatingForFieldOnSpecificDiagonal(key, enemyColor, Constant.TOP_LEFT, gameBoard) != null)
                 return 40;
-            else if (dameComputer.GetBeatingForFieldOnSpecificDiagonal(key, color, Constant.TOP_RIGHT, gameBoard) != null)
+            else if (dameComputer.GetBeatingForFieldOnSpecificDiagonal(key, enemyColor, Constant.TOP_RIGHT, gameBoard) != null)
                 return 40;
-            else if (dameComputer.GetBeatingForFieldOnSpecificDiagonal(key, color, Constant.DOWN_LEFT, gameBoard) != null)
+            else if (dameComputer.GetBeatingForFieldOnSpecificDiagonal(key, enemyColor, Constant.DOWN_LEFT, gameBoard) != null)
                 return 40;
-            else if (dameComputer.GetBeatingForFieldOnSpecificDiagonal(key, color, Constant.DOWN_RIGHT, gameBoard) != null)
+            else if (dameComputer.GetBeatingForFieldOnSpecificDiagonal(key, enemyColor, Constant.DOWN_RIGHT, gameBoard) != null)
                 return 40;
             else
                 return 0;
