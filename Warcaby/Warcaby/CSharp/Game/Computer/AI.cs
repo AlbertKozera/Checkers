@@ -84,7 +84,7 @@ namespace Warcaby.CSharp.Game.Computer
             MoveAndPoints bestValue = new MoveAndPoints();
             if (0 == depth)
             {
-                return new MoveAndPoints(((myColor == selfColor) ? 1 : -1) * evaluateGameBoard(gameBoard, myColor), bestValue.move);
+                return new MoveAndPoints(((myColor == selfColor) ? 1 : -1) * evaluateGameBoardWithoutThreads(gameBoard, myColor), bestValue.move);
             }
 
             MoveAndPoints val = new MoveAndPoints();
@@ -117,6 +117,30 @@ namespace Warcaby.CSharp.Game.Computer
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public int evaluateGameBoard(Dictionary<int, Field> gameBoard, string color) // funkcja heurycystyczna
+        {
+            int points = 0;
+            int myCountOfPieces = Extend.GetNumberOfPieces(gameBoard, color);
+            int enemyCountOfPieces = Extend.GetNumberOfPieces(gameBoard, Extend.GetEnemyPlayerColor(color));
+            points += 40 * (myCountOfPieces - enemyCountOfPieces);
+
+            foreach (int index in gameBoard.Keys)
+            {
+                if (gameBoard[index].isPawn)
+                    points += ruleComputer.CheckIfThePawnHasBeat(index, Extend.GetEnemyPlayerColor(color), gameBoard);
+                if (gameBoard[index].isDame)
+                    points += ruleComputer.CheckIfTheDameHasBeat(index, Extend.GetEnemyPlayerColor(color), gameBoard);
+
+                points += -1 * ruleComputer.CheckIfThePawnHasBeat(index, color, gameBoard);
+
+                points += -1 * ruleComputer.CheckIfTheDameHasBeat(index, color, gameBoard);
+
+                if (gameBoard[index].color.Equals(color))
+                    points += ruleComputer.ThePawnStoodInTheArea(index);
+            }
+            return points;
+        }
+
+        public int evaluateGameBoardWithoutThreads(Dictionary<int, Field> gameBoard, string color) // funkcja heurycystyczna
         {
             int points = 0;
             int myCountOfPieces = Extend.GetNumberOfPieces(gameBoard, color);

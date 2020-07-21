@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Warcaby.CSharp.Config;
 using Warcaby.CSharp.Dto;
@@ -25,6 +27,8 @@ namespace Warcaby.Service.Context
         GameLogicComputer gameLogicComputer = new GameLogicComputer();
         Pawn pawn = new Pawn();
         Dame dame = new Dame();
+        OptionsService optionsService = new OptionsService();
+        public MoveAndPoints moveAndPoints;
 
         public GameService()
         {
@@ -103,8 +107,19 @@ namespace Warcaby.Service.Context
         {
             AI ai = new AI(color);
             Dictionary<int, Field> gameBoardCopy = Extend.CloneGameBoard(gameBoard);
-            //MoveAndPoints moveAndPoints = ai.MinMax(gameBoardCopy, color, true, 5); // MinMax start
-            MoveAndPoints moveAndPoints = ai.MinMaxWithoutThreads(gameBoardCopy, color, true, 5); // MinMax_WithoutThreads start
+            string filePath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+            filePath = optionsService.CreateFileAndGetPath(filePath).ToString();
+            string readFirstLine = File.ReadLines(filePath).First();
+            if(readFirstLine == "Checked")
+            {
+                moveAndPoints = ai.MinMax(gameBoardCopy, color, true, 6); // MinMax start
+            }
+                
+            if(readFirstLine == "Unchecked")
+            {
+                moveAndPoints = ai.MinMaxWithoutThreads(gameBoardCopy, color, true, 6); // MinMax_WithoutThreads start
+            }
+                
 
             gameLogicComputer.UpdateFields(moveAndPoints);
             if (moveAndPoints.move.indexThrough != 0)
