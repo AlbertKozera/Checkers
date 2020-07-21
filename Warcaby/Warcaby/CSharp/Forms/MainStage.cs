@@ -17,6 +17,7 @@ namespace Warcaby.CSharp.Forms
             ucNewGame.Visible = false;
             ucOptions.Visible = false;
             ucTypeOfGame.Visible = false;
+            clientStage.Visible = false;
         }
     }
 }

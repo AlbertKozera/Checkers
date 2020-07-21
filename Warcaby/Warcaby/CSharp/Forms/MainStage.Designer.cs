@@ -35,6 +35,7 @@ namespace Warcaby.CSharp.Forms
             this.ucNewGame = new UCNewGame(0);
             this.ucMainMenu = new UCMainMenu();
             this.ucTypeOfGame = new UCTypeOfGame();
+            this.clientStage = new ClientStage();
             this.SuspendLayout();
             // 
             // ucOptions
@@ -68,6 +69,13 @@ namespace Warcaby.CSharp.Forms
             this.ucTypeOfGame.Size = new System.Drawing.Size(762, 600);
             this.ucTypeOfGame.TabIndex = 3;
             // 
+            // ClientStage
+            // 
+            this.clientStage.Location = new System.Drawing.Point(300, 0);
+            this.clientStage.Name = "ClientStage";
+            this.clientStage.Size = new System.Drawing.Size(762, 30);
+            this.clientStage.TabIndex = 4;
+            // 
             // MainStage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -77,6 +85,7 @@ namespace Warcaby.CSharp.Forms
             this.Controls.Add(this.ucMainMenu);
             this.Controls.Add(this.ucNewGame);
             this.Controls.Add(this.ucOptions);
+            this.Controls.Add(this.clientStage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "MainStage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -92,6 +101,7 @@ namespace Warcaby.CSharp.Forms
         private Forms.UCNewGame ucNewGame;
         private Forms.UCMainMenu ucMainMenu;
         private Forms.UCTypeOfGame ucTypeOfGame;
+        private Forms.ClientStage clientStage;
     }
 }
 

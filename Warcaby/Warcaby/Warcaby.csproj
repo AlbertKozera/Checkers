@@ -49,6 +49,9 @@
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.7.2\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="SimpleTCP, Version=1.0.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleTCP.1.0.24\lib\net45\SimpleTCP.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -71,6 +74,12 @@
     <Compile Include="CSharp\Config\Constant.cs" />
     <Compile Include="CSharp\Config\Extend.cs" />
     <Compile Include="CSharp\Dto\Field.cs" />
+    <Compile Include="CSharp\Forms\ClientStage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CSharp\Forms\ClientStage.Designer.cs">
+      <DependentUpon>ClientStage.cs</DependentUpon>
+    </Compile>
     <Compile Include="CSharp\Forms\UCTypeOfGame.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -117,6 +126,9 @@
     <Compile Include="CSharp\Game\Context\Impl\GameLogic.cs" />
     <Compile Include="CSharp\Service\GameService.cs" />
     <Compile Include="CSharp\Service\OptionsService.cs" />
+    <EmbeddedResource Include="CSharp\Forms\ClientStage.resx">
+      <DependentUpon>ClientStage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CSharp\Forms\UCTypeOfGame.resx">
       <DependentUpon>UCTypeOfGame.cs</DependentUpon>
     </EmbeddedResource>

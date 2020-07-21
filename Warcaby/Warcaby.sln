@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warcaby", "Warcaby\Warcaby.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarcabyTests", "WarcabyTests2\WarcabyTests.csproj", "{A6BF0460-0BEC-45D7-A5B7-83FBFAF488C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{77FCFAC1-3E5D-4710-B0B9-179841069C92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A6BF0460-0BEC-45D7-A5B7-83FBFAF488C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6BF0460-0BEC-45D7-A5B7-83FBFAF488C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6BF0460-0BEC-45D7-A5B7-83FBFAF488C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77FCFAC1-3E5D-4710-B0B9-179841069C92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77FCFAC1-3E5D-4710-B0B9-179841069C92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77FCFAC1-3E5D-4710-B0B9-179841069C92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77FCFAC1-3E5D-4710-B0B9-179841069C92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

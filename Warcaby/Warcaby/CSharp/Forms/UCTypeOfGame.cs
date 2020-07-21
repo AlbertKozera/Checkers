@@ -30,7 +30,11 @@ namespace Warcaby.CSharp.Forms
 
         private void ButtonPlayerVSPlayer_Click(object sender, EventArgs e)
         {
-            GoToNewGame(1);
+            //GoToNewGame(1);
+            Controls.Clear();
+            ClientStage clientStage = new ClientStage();
+            Controls.Add(clientStage);
+            clientStage.Show();
         }
 
         private void UCTypeOfGame_Load(object sender, EventArgs e)
