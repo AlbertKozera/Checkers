@@ -4,6 +4,7 @@ using Warcaby.Forms;
 using Warcaby.CSharp.Forms;
 using Warcaby.CSharp.Game.Context.Impl;
 using Warcaby.CSharp.Config;
+using System.Reflection.Emit;
 
 namespace Warcaby.CSharp.Game.Context.Tests
 {
@@ -40,7 +41,7 @@ namespace Warcaby.CSharp.Game.Context.Tests
         public void UpdateFieldFromTest()
         {
             //given
-            UCNewGame uCNewGame = new UCNewGame();
+            UCNewGame uCNewGame = new UCNewGame(1);
             CompleteBoardTest();
             //when
             GameLogic gameLogic = new GameLogic(uCNewGame.field_18, uCNewGame.field_25, 18, 25, "white");
@@ -53,26 +54,13 @@ namespace Warcaby.CSharp.Game.Context.Tests
         public void UpdateFieldToTest()
         {
             //given
-            UCNewGame uCNewGame = new UCNewGame();
+            UCNewGame uCNewGame = new UCNewGame(1);
             CompleteBoardTest();
             //when
-            GameLogic gameLogic = new GameLogic(uCNewGame.field_45, uCNewGame.field_36, 45, 36, "white");
+            GameLogic gameLogic = new GameLogic(uCNewGame.field_45, uCNewGame.field_36, 45, 36, "red");
             //then
             gameLogic.UpdateFieldTo();
             Assert.AreEqual(Constant.PAWN_RED, GameService.gameBoard[36]);
-        }
-
-        [TestMethod()]
-        public void RepeatTheTurnTest()
-        {
-            //given
-            UCNewGame uCNewGame = new UCNewGame();
-            CompleteBoardTest();
-            //when
-            GameLogic gameLogic = new GameLogic(uCNewGame.field_18, uCNewGame.field_25, 18, 25, "white");
-            //then
-            Extend.FinishTheTurn("white");
-            Assert.AreEqual(false, GameService.whiteTurn);
         }
     }
 }

@@ -41,23 +41,6 @@ namespace Warcaby.Forms.Tests
             GameService.gameBoard[4] = Constant.DAME_RED;
         }
 
-        public void CompleteBoardWhiteWinTest()
-        {
-            GameService.gameBoard.Clear();
-            for (int i = 2; i <= 63; i += 2)
-            {
-                GameService.gameBoard.Add(i, Constant.EMPTY_FIELD);
-                if (i == 8) i--;
-                if (i == 15) i++;
-                if (i == 24) i--;
-                if (i == 31) i++;
-                if (i == 40) i--;
-                if (i == 47) i++;
-                if (i == 56) i--;
-            }
-            GameService.gameBoard[18] = Constant.PAWN_WHITE;
-        }
-
         public void CompleteBoardRedWinTest()
         {
             GameService.gameBoard.Clear();
@@ -144,7 +127,7 @@ namespace Warcaby.Forms.Tests
         public void GetIndexFromFieldTest()
         {
             //given
-            UCNewGame uCNewGame = new UCNewGame();
+            UCNewGame uCNewGame = new UCNewGame(1);
             PictureBox picture;
             //when
             picture = uCNewGame.field_38;
