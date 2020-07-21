@@ -79,6 +79,42 @@ namespace Warcaby.CSharp.Game.Computer
             }
         }
 
+        public MoveAndPoints MinMaxWithoutThreads(Dictionary<int, Field> gameBoard, string myColor, Boolean maximizingPlayer, int depth)
+        {
+            MoveAndPoints bestValue = new MoveAndPoints();
+            if (0 == depth)
+            {
+                return new MoveAndPoints(((myColor == selfColor) ? 1 : -1) * evaluateGameBoard(gameBoard, myColor), bestValue.move);
+            }
+
+            MoveAndPoints val = new MoveAndPoints();
+            if (maximizingPlayer)
+            {
+                bestValue.points = int.MinValue;
+                foreach (Move move in gameLogicComputer.GetPossibleMoves(gameBoard, myColor))
+                {
+                    gameBoard = ApplyMove(gameBoard, move);
+                    bestValue.move = move;
+                    val = MinMax(gameBoard, Extend.GetEnemyPlayerColor(myColor), false, depth - 1);
+                    bestValue.points = Math.Max(bestValue.points, val.points);
+                    gameBoard = RevertMove(gameBoard, move);
+                }
+                return bestValue;
+            }
+            else
+            {
+                bestValue.points = int.MaxValue;
+                foreach (Move move in gameLogicComputer.GetPossibleMoves(gameBoard, myColor))
+                {
+                    gameBoard = ApplyMove(gameBoard, move);
+                    val = MinMax(gameBoard, Extend.GetEnemyPlayerColor(myColor), true, depth - 1);
+                    bestValue.points = Math.Min(bestValue.points, val.points);
+                    gameBoard = RevertMove(gameBoard, move);
+                }
+                return bestValue;
+            }
+        }
+
         [MethodImpl(MethodImplOptions.Synchronized)]
         public int evaluateGameBoard(Dictionary<int, Field> gameBoard, string color) // funkcja heurycystyczna
         {
@@ -98,7 +134,8 @@ namespace Warcaby.CSharp.Game.Computer
 
                 points += -1 * ruleComputer.CheckIfTheDameHasBeat(index, color, gameBoard);
 
-                points += ruleComputer.ThePawnStoodInTheArea(index);
+                if (gameBoard[index].color.Equals(color))
+                    points += ruleComputer.ThePawnStoodInTheArea(index);
             }
             return points;
         }
