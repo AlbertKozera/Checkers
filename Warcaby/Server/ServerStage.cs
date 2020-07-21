@@ -11,20 +11,23 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Warcaby.Service.Context;
 
 namespace Server
 {
     public partial class ServerStage : Form
     {
+        GameService gameService = new GameService();
         public Player playerWhite;
         public Player playerRed;
+        public int roomIsFull = 0;
 
         public ServerStage()
         {
             InitializeComponent();
         }
 
-        SimpleTcpServer server;
+        public static SimpleTcpServer server;
         private void ServerStage_Load(object sender, EventArgs e)
         {
             server = new SimpleTcpServer();
@@ -42,21 +45,29 @@ namespace Server
                 String dataFromClient = e.MessageString;
                 dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf('\u0013'));
 
+                if(roomIsFull < 2)
+                {
+                    CheckIfHostEnter(dataFromClient, e);
+                    CheckIfGuestJoin(dataFromClient, e);
+                    roomIsFull++;
+                }
+                else
+                {
+                    string color = getDataFromClient(dataFromClient, "color");
+                    int indexFrom = int.Parse(getDataFromClient(dataFromClient, "indexFrom"));
+                    int indexTo = int.Parse(getDataFromClient(dataFromClient, "indexTo"));
 
-                CheckIfHostEnter(dataFromClient, e);
-                CheckIfGuestJoin(dataFromClient, e);
+
+                    gameService.GameChooser(indexFrom, indexTo, color, 1);
+                }
+
 
                 UpdateConsoleLogs(dataFromClient, id);
-
-
-                ReplyToClient(e);
-
-
-                //  e.ReplyLine(string.Format("You said: {0}", e.MessageString));
+                AssignColorsToClients(e);
             });
         }
 
-        public void ReplyToClient(SimpleTCP.Message e)
+        public void AssignColorsToClients(SimpleTCP.Message e)
         {
             if (playerWhite != null && playerWhite.id == GetClientID(e))
             {
@@ -73,13 +84,6 @@ namespace Server
 
         public void UpdateConsoleLogs(string dataFromClient, string id)
         {
-            if (playerWhite != null && playerRed != null)
-            {
-                if (id.Equals(playerWhite.id))
-                    txtStatusServer.Text += "white - ";
-                else
-                    txtStatusServer.Text += "red - ";
-            }
             txtStatusServer.Text += dataFromClient;
             txtStatusServer.SelectionStart = txtStatusServer.Text.Length;
             txtStatusServer.ScrollToCaret();
@@ -131,12 +135,30 @@ namespace Server
                 server.Stop();
             txtStatusServer.AppendText(Environment.NewLine);
             txtStatusServer.Text += "Server is down...";
-            // server.BroadcastLine("aaa");
         }
 
         public int GetNumberOfConnectedClients()
         {
             return server.ConnectedClientsCount;
+        }
+
+        public string getDataFromClient(string dataFromClient, string typeOfData)
+        {
+            string[] data = dataFromClient.Split('_');
+
+            if (typeOfData.Equals("color"))
+                return data[0];
+            if (typeOfData.Equals("indexFrom"))
+                return data[1];
+            if (typeOfData.Equals("indexTo"))
+                return data[2];
+            return null;
+        }
+
+        public static void SendRespondToClient(string respond)
+        {
+            server.Broadcast("");
+            server.BroadcastLine(respond);
         }
     }
 }

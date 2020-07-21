@@ -36,11 +36,22 @@
     <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.7.2\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="SimpleTCP, Version=1.0.24.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleTCP.1.0.24\lib\net45\SimpleTCP.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,7 +63,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CSharp\Config\Constant.cs" />
+    <Compile Include="CSharp\Config\Extend.cs" />
+    <Compile Include="CSharp\Config\Initializer.cs" />
+    <Compile Include="CSharp\Dto\Field.cs" />
+    <Compile Include="CSharp\Dto\Move.cs" />
+    <Compile Include="CSharp\Dto\MoveAndPoints.cs" />
     <Compile Include="CSharp\Dto\Player.cs" />
+    <Compile Include="CSharp\Game\Computer\AI.cs" />
+    <Compile Include="CSharp\Game\Computer\Impl\DameComputer.cs" />
+    <Compile Include="CSharp\Game\Computer\Impl\GameLogicComputer.cs" />
+    <Compile Include="CSharp\Game\Computer\Impl\PawnComputer.cs" />
+    <Compile Include="CSharp\Game\Computer\Impl\RuleComputer.cs" />
+    <Compile Include="CSharp\Game\Context\Impl\Dame.cs" />
+    <Compile Include="CSharp\Game\Context\Impl\GameLogic.cs" />
+    <Compile Include="CSharp\Game\Context\Impl\Pawn.cs" />
+    <Compile Include="CSharp\Game\Context\Rule.cs" />
+    <Compile Include="CSharp\Service\GameService.cs" />
+    <Compile Include="CSharp\Service\LoggerService.cs" />
+    <Compile Include="CSharp\Service\OptionsService.cs" />
     <Compile Include="ServerStage.cs">
       <SubType>Form</SubType>
     </Compile>

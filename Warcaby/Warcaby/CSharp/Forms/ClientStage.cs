@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimpleTCP;
 using System.Net;
+using Warcaby.Forms;
+using System.Runtime.CompilerServices;
+using Warcaby.CSharp.Config;
 
 namespace Warcaby.CSharp.Forms
 {
@@ -30,8 +33,10 @@ namespace Warcaby.CSharp.Forms
             client.DataReceived += Client_DataReceived;
         }
 
-        public static void SendDataToServer(string[] data)
+        public static void SendDataToServer(string[] data, string color)
         {
+            if (color != null)
+                client.WriteLine(color + "_" + data[0] + "_" + data[1]);
             client.WriteLine(data[0] + "_" + data[1]);
         }
 
@@ -61,10 +66,8 @@ namespace Warcaby.CSharp.Forms
         private void btnJoin_Click(object sender, EventArgs e)
         {
 
-
             client.Connect(txtHost.Text, Int32.Parse(txtPort.Text));
             client.WriteLine("GUEST");
-
 
             Controls.Clear();
             UCNewGame ucNewGame = new UCNewGame(1);
@@ -75,10 +78,41 @@ namespace Warcaby.CSharp.Forms
 
         private void Client_DataReceived(object sender, SimpleTCP.Message e)
         {
-            myColor = e.MessageString;
+            String respondFromServerToAllClients = e.MessageString;
+            if (respondFromServerToAllClients.Contains('\u0013'))
+                respondFromServerToAllClients = respondFromServerToAllClients.Substring(0, respondFromServerToAllClients.IndexOf('\u0013'));
+            if (myColor == null)
+                myColor = e.MessageString;
+            else
+                UpdateGuiAfterRespondFromServer(respondFromServerToAllClients);
         }
 
-  
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public void UpdateGuiAfterRespondFromServer(string feedback)
+        {
+            string[] data = feedback.Split('_');
+
+            lock (data)
+            {
+                if (data[0].Equals("move"))
+                {
+                    if (data[1].Equals("pawn"))
+                        UpdateGuiAfterMovePawn(data[2], int.Parse(data[3]), int.Parse(data[4]));
+                    if (data[1].Equals("dame"))
+                        UpdateGuiAfterMovePawn(data[2], int.Parse(data[3]), int.Parse(data[4]));
+                }
+            } 
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public void UpdateGuiAfterMovePawn(string color, int indexFrom, int indexTo)
+        {
+            Extend.GetFieldByIndex(indexFrom).Image = Properties.Resources.empty_field;
+            if(color.Equals(Constant.WHITE))
+                Extend.GetFieldByIndex(indexTo).Image = Properties.Resources.pawn_white;
+            else if (color.Equals(Constant.RED))
+                Extend.GetFieldByIndex(indexTo).Image = Properties.Resources.pawn_red;
+        }
 
     }
 }

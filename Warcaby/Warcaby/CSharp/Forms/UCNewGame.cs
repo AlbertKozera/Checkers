@@ -59,7 +59,7 @@ namespace Warcaby.CSharp.Forms
             string[] dataArray = new string[2];
             dataArray[0] = Extend.GetIndexByFieldName(fieldFrom.Name);
             dataArray[1] = Extend.GetIndexByFieldName(fieldTo.Name);
-            ClientStage.SendDataToServer(dataArray);
+            ClientStage.SendDataToServer(dataArray, ClientStage.myColor);
         }
 
         private void MouseDownEvent(object sender, MouseEventArgs e)
