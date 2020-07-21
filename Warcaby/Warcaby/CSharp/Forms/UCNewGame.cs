@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Warcaby.CSharp.Game.Context.Impl;
 using Warcaby.CSharp.Service;
+using Warcaby.Forms;
 using Warcaby.Service.Context;
 
 
@@ -51,7 +52,15 @@ namespace Warcaby.CSharp.Forms
             MyDraggedData data = (MyDraggedData)e.Data.GetData(typeof(MyDraggedData));
             PictureBox fieldTo = (PictureBox)sender;
             PictureBox fieldFrom = (PictureBox)data.Data;
-            gameService.GameChooser(fieldFrom, fieldTo, typeOfGame);
+            //gameService.GameChooser(fieldFrom, fieldTo, typeOfGame);
+
+            string[] dataArray = new string[2];
+            dataArray[0] = Extend.GetIndexByFieldName(fieldFrom.Name);
+            dataArray[1] = Extend.GetIndexByFieldName(fieldTo.Name);
+
+
+
+            ClientStage.SendDataToServer(dataArray);
         }
 
         private void MouseDownEvent(object sender, MouseEventArgs e)

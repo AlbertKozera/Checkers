@@ -32,22 +32,34 @@ namespace Server
         {
             txtStatusServer.Invoke((MethodInvoker)delegate ()
             {
+                txtStatusServer.AppendText(Environment.NewLine);
                 txtStatusServer.Text += e.MessageString;
+                txtStatusServer.SelectionStart = txtStatusServer.Text.Length;
+                txtStatusServer.ScrollToCaret();
+
+
+
+
                 e.ReplyLine(string.Format("You said: {0}", e.MessageString));
             });
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            txtStatusServer.AppendText(Environment.NewLine);
             txtStatusServer.Text += "Server starting...";
             IPAddress ip = IPAddress.Parse(txtHost.Text);
             server.Start(ip, Convert.ToInt32(txtPort.Text));
+            txtStatusServer.AppendText(Environment.NewLine);
+            txtStatusServer.Text += "Server is working...";
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
             if (server.IsStarted)
                 server.Stop();
+            txtStatusServer.AppendText(Environment.NewLine);
+            txtStatusServer.Text += "Server is down...";
             // server.BroadcastLine("maaaaaaaar");
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Warcaby.CSharp.Config;
 using Warcaby.CSharp.Dto;
@@ -169,6 +170,11 @@ namespace Warcaby.Forms
             Label label = (Label)GetControlByName("computersDuration");
             label.Text = "Czas trwania partii: " + time + "ms";
             label.BringToFront();
+        }
+
+        public static string GetIndexByFieldName(string fieldName)
+        {
+            return Regex.Match(fieldName, @"\d+").Value; 
         }
     }
 }

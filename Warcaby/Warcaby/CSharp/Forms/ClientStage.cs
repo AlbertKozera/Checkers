@@ -13,12 +13,14 @@ namespace Warcaby.CSharp.Forms
 {
     public partial class ClientStage : UserControl
     {
+        UCTypeOfGame uCTypeOfGame = new UCTypeOfGame();
+
         public ClientStage()
         {
             InitializeComponent();
         }
 
-        SimpleTcpClient client;
+        public static SimpleTcpClient client;
         private void ClientStage_Load(object sender, EventArgs e)
         {
             client = new SimpleTcpClient();
@@ -28,19 +30,30 @@ namespace Warcaby.CSharp.Forms
 
 
 
+        public static void SendDataToServer(string []data)
+        {
+            client.WriteLine(data[0] + "_" + data[1]);
+            
+        }
+
+
 
 
         private void btnCreateGame_Click(object sender, EventArgs e)
         {
             client.Connect(txtHost.Text, Int32.Parse(txtPort.Text));
-            btnCreateGame.Enabled = false;
-            client.WriteLine("_23_46_");
+            //btnCreateGame.Enabled = false;
+            Controls.Clear();
+            UCNewGame ucNewGame = new UCNewGame(1);
+            Controls.Add(ucNewGame);
+            ucNewGame.Show();
         }
 
         private void btnJoin_Click(object sender, EventArgs e)
         {
             client.Connect(txtHost.Text, Int32.Parse(txtPort.Text));
-            btnJoin.Enabled = false;
+            //btnJoin.Enabled = false;
+            uCTypeOfGame.GoToNewGame(2);
         }
 
 

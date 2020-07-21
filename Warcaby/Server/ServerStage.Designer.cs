@@ -46,6 +46,7 @@
             this.txtStatusServer.Name = "txtStatusServer";
             this.txtStatusServer.Size = new System.Drawing.Size(434, 162);
             this.txtStatusServer.TabIndex = 19;
+            this.txtStatusServer.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             // 
             // btnStop
             // 

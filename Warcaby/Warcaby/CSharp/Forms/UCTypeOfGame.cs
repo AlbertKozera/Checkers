@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Warcaby.Forms;
 
 namespace Warcaby.CSharp.Forms
 {
@@ -10,7 +11,7 @@ namespace Warcaby.CSharp.Forms
             InitializeComponent();
         }
 
-        private void GoToNewGame(int typeOfGame)
+        public void GoToNewGame(int typeOfGame)
         {
             Controls.Clear();
             UCNewGame ucNewGame = new UCNewGame(typeOfGame);
