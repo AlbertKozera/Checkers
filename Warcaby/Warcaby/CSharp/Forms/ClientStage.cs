@@ -15,6 +15,7 @@ namespace Warcaby.CSharp.Forms
     public partial class ClientStage : UserControl
     {
         UCTypeOfGame uCTypeOfGame = new UCTypeOfGame();
+        public static string myColor;
 
         public ClientStage()
         {
@@ -26,19 +27,18 @@ namespace Warcaby.CSharp.Forms
         {
             client = new SimpleTcpClient();
             client.StringEncoder = Encoding.UTF8;
-            //client.DataReceived += Client_DataReceived;
+            client.DataReceived += Client_DataReceived;
         }
 
-
-
-        public static void SendDataToServer(string []data)
+        public static void SendDataToServer(string[] data)
         {
             client.WriteLine(data[0] + "_" + data[1]);
-            
         }
 
-
-
+        public static void SendMessageToServer(string message)
+        {
+            client.WriteLine(message);
+        }
 
         private void btnCreateGame_Click(object sender, EventArgs e)
         {
@@ -50,12 +50,6 @@ namespace Warcaby.CSharp.Forms
             else
                 color = "red";
             client.WriteLine("HOST" + "_" + color);
-            
-
-
-
-
-
 
             Controls.Clear();
             UCNewGame ucNewGame = new UCNewGame(1);
@@ -66,15 +60,10 @@ namespace Warcaby.CSharp.Forms
 
         private void btnJoin_Click(object sender, EventArgs e)
         {
+
+
             client.Connect(txtHost.Text, Int32.Parse(txtPort.Text));
-            //btnJoin.Enabled = false;
-
             client.WriteLine("GUEST");
-
-
-
-
-
 
 
             Controls.Clear();
@@ -84,27 +73,12 @@ namespace Warcaby.CSharp.Forms
 
         }
 
+        private void Client_DataReceived(object sender, SimpleTCP.Message e)
+        {
+            myColor = e.MessageString;
+        }
 
-        /*        private void Client_DataReceived(object sender, SimpleTCP.Message e)
-                {
-
-                    txtStatus.Invoke((MethodInvoker)delegate ()
-                    {
-                        txtStatus.Text += e.MessageString;
-                    });
-                }
-
-                private void btnSend_Click(object sender, EventArgs e)
-                {
-                    client.WriteLineAndGetReply(txtMessage.Text, TimeSpan.FromSeconds(3));
-                }*/
-
-
-
-
-
-
-
+  
 
     }
 }

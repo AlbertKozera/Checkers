@@ -36,6 +36,8 @@ namespace Warcaby.CSharp.Forms
 
         private void backToMenu(object sender, EventArgs e)
         {
+            ClientStage.SendMessageToServer("Player " + ClientStage.myColor + " disconnected");
+            ClientStage.client.Disconnect();
             Controls.Clear();
             UCMainMenu ucMainMenu = new UCMainMenu();
             Controls.Add(ucMainMenu);
@@ -57,9 +59,6 @@ namespace Warcaby.CSharp.Forms
             string[] dataArray = new string[2];
             dataArray[0] = Extend.GetIndexByFieldName(fieldFrom.Name);
             dataArray[1] = Extend.GetIndexByFieldName(fieldTo.Name);
-
-
-
             ClientStage.SendDataToServer(dataArray);
         }
 
@@ -68,6 +67,7 @@ namespace Warcaby.CSharp.Forms
             PictureBox fieldFrom = (PictureBox)sender;
             MyDraggedData data = new MyDraggedData();
             data.Data = fieldFrom;
+
             fieldFrom.DoDragDrop(data, DragDropEffects.Move);
         }
 

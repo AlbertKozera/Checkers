@@ -176,5 +176,13 @@ namespace Warcaby.Forms
         {
             return Regex.Match(fieldName, @"\d+").Value; 
         }
+
+        public static Boolean CanIMoveThisPawn(PictureBox field, string myColor)
+        {
+            if(myColor.Equals(Constant.WHITE))
+                return field.Image.Equals(Properties.Resources.white) ? true : false;
+            else
+                return field.Image.Equals(Properties.Resources.red) ? true : false;
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,10 +28,10 @@ namespace Server
         private void ServerStage_Load(object sender, EventArgs e)
         {
             server = new SimpleTcpServer();
-            server.Delimiter = 0x13; //enter
             server.StringEncoder = Encoding.UTF8;
             server.DataReceived += Server_DataReceived;
         }
+
 
         private void Server_DataReceived(object sender, SimpleTCP.Message e)
         {
@@ -41,23 +42,44 @@ namespace Server
                 String dataFromClient = e.MessageString;
                 dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf('\u0013'));
 
-                
+
                 CheckIfHostEnter(dataFromClient, e);
                 CheckIfGuestJoin(dataFromClient, e);
 
                 UpdateConsoleLogs(dataFromClient, id);
 
 
+                ReplyToClient(e);
+
+
                 //  e.ReplyLine(string.Format("You said: {0}", e.MessageString));
             });
         }
 
+        public void ReplyToClient(SimpleTCP.Message e)
+        {
+            if (playerWhite != null && playerWhite.id == GetClientID(e))
+            {
+                e.Reply(playerWhite.color);
+            }
+            else if (playerRed != null && playerRed.id == GetClientID(e))
+            {
+                e.Reply(playerRed.color);
+            }
+        }
+
+
+
+
         public void UpdateConsoleLogs(string dataFromClient, string id)
         {
-            if (id.Equals(playerWhite.id))
-                txtStatusServer.Text += "white - ";
-            else
-                txtStatusServer.Text += "red - ";
+            if (playerWhite != null && playerRed != null)
+            {
+                if (id.Equals(playerWhite.id))
+                    txtStatusServer.Text += "white - ";
+                else
+                    txtStatusServer.Text += "red - ";
+            }
             txtStatusServer.Text += dataFromClient;
             txtStatusServer.SelectionStart = txtStatusServer.Text.Length;
             txtStatusServer.ScrollToCaret();
@@ -80,10 +102,10 @@ namespace Server
         {
             if (dataFromGuest.Contains("GUEST"))
             {
-                string id = ((System.Net.IPEndPoint)e.TcpClient.Client.RemoteEndPoint).Port.ToString();
-                if (playerWhite.Equals("null"))
+                string id = ((IPEndPoint)e.TcpClient.Client.RemoteEndPoint).Port.ToString();
+                if (playerWhite == null)
                     playerWhite = new Player(id, "white");
-                else
+                else if (playerRed == null)
                     playerRed = new Player(id, "red");
             }
         }
@@ -110,6 +132,11 @@ namespace Server
             txtStatusServer.AppendText(Environment.NewLine);
             txtStatusServer.Text += "Server is down...";
             // server.BroadcastLine("aaa");
+        }
+
+        public int GetNumberOfConnectedClients()
+        {
+            return server.ConnectedClientsCount;
         }
     }
 }
