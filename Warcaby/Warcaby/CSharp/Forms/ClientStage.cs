@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimpleTCP;
+using System.Net;
 
 namespace Warcaby.CSharp.Forms
 {
@@ -42,18 +43,45 @@ namespace Warcaby.CSharp.Forms
         private void btnCreateGame_Click(object sender, EventArgs e)
         {
             client.Connect(txtHost.Text, Int32.Parse(txtPort.Text));
-            //btnCreateGame.Enabled = false;
+
+            string color;
+            if (checkBoxWhiteTurn.Checked)
+                color = "white";
+            else
+                color = "red";
+            client.WriteLine("HOST" + "_" + color);
+            
+
+
+
+
+
+
             Controls.Clear();
             UCNewGame ucNewGame = new UCNewGame(1);
             Controls.Add(ucNewGame);
             ucNewGame.Show();
+
         }
 
         private void btnJoin_Click(object sender, EventArgs e)
         {
             client.Connect(txtHost.Text, Int32.Parse(txtPort.Text));
             //btnJoin.Enabled = false;
-            uCTypeOfGame.GoToNewGame(2);
+
+            client.WriteLine("GUEST");
+
+
+
+
+
+
+
+            Controls.Clear();
+            UCNewGame ucNewGame = new UCNewGame(1);
+            Controls.Add(ucNewGame);
+            ucNewGame.Show();
+
         }
 
 
