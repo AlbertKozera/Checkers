@@ -63,7 +63,6 @@ namespace Warcaby.CSharp.Game.Computer.Impl
             {
                 list.RemoveAll(m => m.indexThrough == 0);
             }
-
             return list;
         }
 
