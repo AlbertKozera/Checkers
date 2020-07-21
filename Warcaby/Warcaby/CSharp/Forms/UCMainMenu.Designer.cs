@@ -31,7 +31,6 @@ namespace Warcaby.CSharp.Forms
         private void InitializeComponent()
         {
             this.buttonNewGame = new FontAwesome.Sharp.IconButton();
-            this.buttonOption = new FontAwesome.Sharp.IconButton();
             this.buttonExit = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
             // 
@@ -45,7 +44,7 @@ namespace Warcaby.CSharp.Forms
             this.buttonNewGame.IconColor = System.Drawing.Color.Black;
             this.buttonNewGame.IconSize = 35;
             this.buttonNewGame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonNewGame.Location = new System.Drawing.Point(301, 158);
+            this.buttonNewGame.Location = new System.Drawing.Point(301, 215);
             this.buttonNewGame.Name = "buttonNewGame";
             this.buttonNewGame.Rotation = 0D;
             this.buttonNewGame.Size = new System.Drawing.Size(160, 60);
@@ -54,25 +53,6 @@ namespace Warcaby.CSharp.Forms
             this.buttonNewGame.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonNewGame.UseVisualStyleBackColor = false;
             this.buttonNewGame.Click += new System.EventHandler(this.TypeOfGameEvent);
-            // 
-            // buttonOption
-            // 
-            this.buttonOption.BackColor = System.Drawing.Color.White;
-            this.buttonOption.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOption.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.buttonOption.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonOption.IconChar = FontAwesome.Sharp.IconChar.Cogs;
-            this.buttonOption.IconColor = System.Drawing.Color.Black;
-            this.buttonOption.IconSize = 30;
-            this.buttonOption.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonOption.Location = new System.Drawing.Point(301, 269);
-            this.buttonOption.Name = "buttonOption";
-            this.buttonOption.Rotation = 0D;
-            this.buttonOption.Size = new System.Drawing.Size(160, 60);
-            this.buttonOption.TabIndex = 4;
-            this.buttonOption.Text = "Opcje";
-            this.buttonOption.UseVisualStyleBackColor = false;
-            this.buttonOption.Click += new System.EventHandler(this.OptionsEvent);
             // 
             // buttonExit
             // 
@@ -84,7 +64,7 @@ namespace Warcaby.CSharp.Forms
             this.buttonExit.IconColor = System.Drawing.Color.Black;
             this.buttonExit.IconSize = 35;
             this.buttonExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonExit.Location = new System.Drawing.Point(301, 387);
+            this.buttonExit.Location = new System.Drawing.Point(301, 313);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Rotation = 0D;
             this.buttonExit.Size = new System.Drawing.Size(160, 60);
@@ -100,7 +80,6 @@ namespace Warcaby.CSharp.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Warcaby.Properties.Resources.background;
             this.Controls.Add(this.buttonExit);
-            this.Controls.Add(this.buttonOption);
             this.Controls.Add(this.buttonNewGame);
             this.Name = "UCMainMenu";
             this.Size = new System.Drawing.Size(762, 600);
@@ -111,7 +90,6 @@ namespace Warcaby.CSharp.Forms
         #endregion
 
         private FontAwesome.Sharp.IconButton buttonNewGame;
-        private FontAwesome.Sharp.IconButton buttonOption;
         private FontAwesome.Sharp.IconButton buttonExit;
     }
 }

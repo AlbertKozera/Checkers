@@ -99,20 +99,101 @@ namespace Warcaby.CSharp.Forms
                     if (data[1].Equals("pawn"))
                         UpdateGuiAfterMovePawn(data[2], int.Parse(data[3]), int.Parse(data[4]));
                     if (data[1].Equals("dame"))
-                        UpdateGuiAfterMovePawn(data[2], int.Parse(data[3]), int.Parse(data[4]));
+                        UpdateGuiAfterMoveDame(data[2], int.Parse(data[3]), int.Parse(data[4]));
                 }
-            } 
+                else if (data[0].Equals("beat"))
+                {
+                    if (data[1].Equals("pawn"))
+                        UpdateGuiAfterBeatByPawn(data[2], int.Parse(data[3]), int.Parse(data[4]), int.Parse(data[5]));
+                    if (data[1].Equals("dame"))
+                        UpdateGuiAfterBeatByDame(data[2], int.Parse(data[3]), int.Parse(data[4]), int.Parse(data[5]));
+                }
+                if (data[0].Equals("promote") && data[1].Equals("move") && data[2].Equals("pawn"))
+                    UpdateGuiAfterMovePawnAndPromote(data[3], int.Parse(data[4]), int.Parse(data[5]));
+                if (data[0].Equals("promote") && data[1].Equals("beat") && data[2].Equals("pawn"))
+                    UpdateGuiAfterBeatPawnAndPromote(data[3], int.Parse(data[4]), int.Parse(data[5]), int.Parse(data[6]));
+                // if (data[0].Equals("round"))
+                //     UpdateGuiImageRound(data[1]);
+
+            }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateGuiAfterMovePawn(string color, int indexFrom, int indexTo)
         {
             Extend.GetFieldByIndex(indexFrom).Image = Properties.Resources.empty_field;
-            if(color.Equals(Constant.WHITE))
+            if (color.Equals(Constant.WHITE))
                 Extend.GetFieldByIndex(indexTo).Image = Properties.Resources.pawn_white;
             else if (color.Equals(Constant.RED))
                 Extend.GetFieldByIndex(indexTo).Image = Properties.Resources.pawn_red;
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public void UpdateGuiAfterMoveDame(string color, int indexFrom, int indexTo)
+        {
+            Extend.GetFieldByIndex(indexFrom).Image = Properties.Resources.empty_field;
+            if (color.Equals(Constant.WHITE))
+                Extend.GetFieldByIndex(indexTo).Image = Properties.Resources.dame_white;
+            else if (color.Equals(Constant.RED))
+                Extend.GetFieldByIndex(indexTo).Image = Properties.Resources.dame_red;
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public void UpdateGuiAfterBeatByPawn(string color, int indexFrom, int indexThrough, int indexTo)
+        {
+            Extend.GetFieldByIndex(indexFrom).Image = Properties.Resources.empty_field;
+            Extend.GetFieldByIndex(indexThrough).Image = Properties.Resources.empty_field;
+            if (color.Equals(Constant.WHITE))
+                Extend.GetFieldByIndex(indexTo).Image = Properties.Resources.pawn_white;
+            else if (color.Equals(Constant.RED))
+                Extend.GetFieldByIndex(indexTo).Image = Properties.Resources.pawn_red;
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public void UpdateGuiAfterBeatByDame(string color, int indexFrom, int indexThrough, int indexTo)
+        {
+            Extend.GetFieldByIndex(indexFrom).Image = Properties.Resources.empty_field;
+            Extend.GetFieldByIndex(indexThrough).Image = Properties.Resources.empty_field;
+            if (color.Equals(Constant.WHITE))
+                Extend.GetFieldByIndex(indexTo).Image = Properties.Resources.dame_white;
+            else if (color.Equals(Constant.RED))
+                Extend.GetFieldByIndex(indexTo).Image = Properties.Resources.dame_red;
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public void UpdateGuiAfterPromotePawn(string color, int index)
+        {
+            if (color.Equals(Constant.WHITE))
+                Extend.GetFieldByIndex(index).Image = Properties.Resources.dame_white;
+            else if (color.Equals(Constant.RED))
+                Extend.GetFieldByIndex(index).Image = Properties.Resources.dame_red;
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public void UpdateGuiImageRound(string color)
+        {
+            Extend.ChangeImageOfTurn(color);
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public void UpdateGuiAfterMovePawnAndPromote(string color, int indexFrom, int indexTo)
+        {
+            Extend.GetFieldByIndex(indexFrom).Image = Properties.Resources.empty_field;
+            if (color.Equals(Constant.WHITE))
+                Extend.GetFieldByIndex(indexTo).Image = Properties.Resources.dame_white;
+            else if (color.Equals(Constant.RED))
+                Extend.GetFieldByIndex(indexTo).Image = Properties.Resources.dame_red;
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public void UpdateGuiAfterBeatPawnAndPromote(string color, int indexFrom, int indexThrough, int indexTo)
+        {
+            Extend.GetFieldByIndex(indexFrom).Image = Properties.Resources.empty_field;
+            Extend.GetFieldByIndex(indexThrough).Image = Properties.Resources.empty_field;
+            if (color.Equals(Constant.WHITE))
+                Extend.GetFieldByIndex(indexTo).Image = Properties.Resources.dame_white;
+            else if (color.Equals(Constant.RED))
+                Extend.GetFieldByIndex(indexTo).Image = Properties.Resources.dame_red;
+        }
     }
 }

@@ -31,8 +31,15 @@ namespace Warcaby.CSharp.Game.Context.Impl
             if (Rule.ThePawnWantsToMoveProperly(indexFrom, indexTo, COLOR))
             {
                 CheckerUpdateAfterMove();
-                CheckIfThePawnHasReachedThePromotionField();
-                Extend.FinishTheTurn(COLOR);
+                if(CheckIfThePawnHasReachedThePromotionField())
+                {
+                    ServerStage.SendRespondToClient("promote_move_pawn_" + COLOR + "_" + indexFrom + "_" + indexTo); // wykonano poprawny ruch - pionem;
+                }
+                else
+                {
+                    ServerStage.SendRespondToClient("move_pawn_" + COLOR + "_" + indexFrom + "_" + indexTo); // wykonano poprawny ruch - pionem;
+                }
+                Extend.FinishTheTurn(COLOR);  
             }
         }
 
@@ -42,6 +49,7 @@ namespace Warcaby.CSharp.Game.Context.Impl
             {
                 CheckerUpdateAfterMove();
                 Extend.FinishTheTurn(COLOR);
+                ServerStage.SendRespondToClient("move_dame_" + COLOR + "_" + indexFrom + "_" + indexTo); // wykonano poprawny ruch - damką;
             }
         }
 
@@ -52,12 +60,25 @@ namespace Warcaby.CSharp.Game.Context.Impl
                 if (Rule.ThePawnWantToExecuteMultipleBeatProperly(indexFrom, indexTo, indexWhichHaveMultipleBeats, COLOR))
                 {
                     CheckerUpdateAfterBeat();
+                    ServerStage.SendRespondToClient("beat_pawn_" + COLOR + "_" + indexFrom + "_" + indexThrough + "_" + indexTo); // wykonano poprawne bicie - pionem;
                     CheckForMoreBeating();
                 }
             }
             else if (Rule.ThePawnWantToExecuteBeatProperly(indexFrom, indexTo, COLOR))
             {
                 CheckerUpdateAfterBeat();
+
+                if (CheckIfThePawnHasReachedThePromotionField())
+                {
+                    ServerStage.SendRespondToClient("promote_beat_pawn_" + COLOR + "_" + indexFrom + "_" + indexThrough + "_" + indexTo); // wykonano poprawne bicie - pionem;
+                }
+                else
+                {
+                    ServerStage.SendRespondToClient("beat_pawn_" + COLOR + "_" + indexFrom + "_" + indexThrough + "_" + indexTo); // wykonano poprawne bicie - pionem;
+                }
+
+
+               
                 CheckForMoreBeating();
             }
         }
@@ -69,12 +90,14 @@ namespace Warcaby.CSharp.Game.Context.Impl
                 if (Rule.TheDameWantToExecuteMultipleBeatProperly(indexFrom, indexTo, indexWhichHaveMultipleBeats, COLOR))
                 {
                     CheckerUpdateAfterBeat();
+                    ServerStage.SendRespondToClient("beat_dame_" + COLOR + "_" + indexFrom + "_" + indexThrough + "_" + indexTo); // wykonano poprawne bicie - damką;
                     CheckForMoreBeating();
                 }
             }
             else if (Rule.TheDameWantToExecuteBeatProperly(indexFrom, indexTo, COLOR))
             {
                 CheckerUpdateAfterBeat();
+                ServerStage.SendRespondToClient("beat_dame_" + COLOR + "_" + indexFrom + "_" + indexThrough + "_" + indexTo); // wykonano poprawne bicie - damką;
                 CheckForMoreBeating();
             }
         }
@@ -83,7 +106,6 @@ namespace Warcaby.CSharp.Game.Context.Impl
         {
             UpdateFieldTo();
             UpdateFieldFrom();
-            ServerStage.SendRespondToClient("move_pawn_" + COLOR + "_" + indexFrom + "_" + indexTo); // wykonano poprawny ruch - pionem;
         }
 
         public void CheckerUpdateAfterBeat()
@@ -104,19 +126,19 @@ namespace Warcaby.CSharp.Game.Context.Impl
             }
             else
             {
-                if (Rule.SelectedPieceIsPawn(indexTo))
-                    CheckIfThePawnHasReachedThePromotionField();
                 indexWhichHaveMultipleBeats = 0;
                 Extend.FinishTheTurn(COLOR);
             }
         }
 
-        public void CheckIfThePawnHasReachedThePromotionField()
+        public bool CheckIfThePawnHasReachedThePromotionField()
         {
             if (Rule.ThePawnStoodInThePromotionField(indexTo, COLOR))
             {
                 PromoteThePawn();
+                return true;
             }
+            return false;
         }
 
         public void UpdateFieldFrom()
@@ -127,8 +149,6 @@ namespace Warcaby.CSharp.Game.Context.Impl
         public void UpdateFieldThrough()
         {
             GameService.gameBoard[indexThrough] = Constant.EMPTY_FIELD;
-            Extend.UpdateGuiCounters();
-            Extend.CheckIfAnyoneAlreadyWon();
         }
 
         public void UpdateFieldTo()

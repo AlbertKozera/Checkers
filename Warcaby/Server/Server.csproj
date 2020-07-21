@@ -80,7 +80,6 @@
     <Compile Include="CSharp\Game\Context\Impl\Pawn.cs" />
     <Compile Include="CSharp\Game\Context\Rule.cs" />
     <Compile Include="CSharp\Service\GameService.cs" />
-    <Compile Include="CSharp\Service\LoggerService.cs" />
     <Compile Include="CSharp\Service\OptionsService.cs" />
     <Compile Include="ServerStage.cs">
       <SubType>Form</SubType>

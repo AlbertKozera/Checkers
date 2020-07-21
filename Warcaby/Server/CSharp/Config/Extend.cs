@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Server;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -132,6 +133,7 @@ namespace Warcaby.Forms
             {
                 GameService.whiteTurn = true;
             }
+            //ServerStage.SendRespondToClient("round_" + color); // zmiana rundy;
         }
 
         public static void RepeatTheTurn(string color)

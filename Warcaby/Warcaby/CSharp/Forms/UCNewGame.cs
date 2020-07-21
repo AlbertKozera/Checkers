@@ -60,6 +60,7 @@ namespace Warcaby.CSharp.Forms
             dataArray[0] = Extend.GetIndexByFieldName(fieldFrom.Name);
             dataArray[1] = Extend.GetIndexByFieldName(fieldTo.Name);
             ClientStage.SendDataToServer(dataArray, ClientStage.myColor);
+            //Extend.UpdateGuiCounters();
         }
 
         private void MouseDownEvent(object sender, MouseEventArgs e)
@@ -78,7 +79,7 @@ namespace Warcaby.CSharp.Forms
 
         private void TimerTurnEvent(object sender, EventArgs e)
         {
-            i++;
+/*            i++;
             if (i < 2 && !GameService.whiteTurn)
             {
                 watchRed = System.Diagnostics.Stopwatch.StartNew();
@@ -99,7 +100,7 @@ namespace Warcaby.CSharp.Forms
                 LoggerService.timer = watchWhite.ElapsedMilliseconds;
                 logger.WriteLogger(GameService.whiteTurn, GameService.indexFrom, GameLogic.indexThrough, GameService.indexTo, GameService.fieldFrom, GameService.fieldTo);
                 j = 0;
-            }
+            }*/
         }
     }
 }
