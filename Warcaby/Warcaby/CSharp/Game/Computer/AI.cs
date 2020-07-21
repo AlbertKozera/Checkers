@@ -17,6 +17,7 @@ namespace Warcaby.CSharp.Game.Computer
         GameLogicComputer gameLogicComputer = new GameLogicComputer();
         string selfColor = Constant.WHITE;
         PawnComputer pawnComputer = new PawnComputer();
+        DameComputer dameComputer = new DameComputer();
         RuleComputer ruleComputer = new RuleComputer();
         Rule rule = new Rule();
 
@@ -114,44 +115,30 @@ namespace Warcaby.CSharp.Game.Computer
 
         public int evaluateGameBoard(Dictionary<int, Field> gameBoard, string color) // funkcja heurycystyczna
         {
-            /*
-            int myCountOfPieces = Extend.GetNumberOfPieces(gameBoard, color);
-            int enemyCountOfPieces = Extend.GetNumberOfPieces(gameBoard, Extend.GetEnemyPlayerColor(color));*/
             int points = 0;
-            List<Move> possibleMovesList = new List<Move>();
-            foreach (KeyValuePair<int, Field> pair in gameBoard)
+            int myCountOfPieces = Extend.GetNumberOfPieces(gameBoard, color);
+            int enemyCountOfPieces = Extend.GetNumberOfPieces(gameBoard, Extend.GetEnemyPlayerColor(color));
+            points += 40 * (myCountOfPieces - enemyCountOfPieces);
+            
+            foreach (int key in gameBoard.Keys)
             {
-                if (pawnComputer.GetBeatingForFieldOnSpecificDiagonal(pair.Key, Extend.GetEnemyPlayerColor(color), Constant.TOP_LEFT, gameBoard) != null)
-                    points = 4;
-                if (pawnComputer.GetBeatingForFieldOnSpecificDiagonal(pair.Key, Extend.GetEnemyPlayerColor(color), Constant.TOP_RIGHT, gameBoard) != null)
-                    points = 4;
-                if (pawnComputer.GetBeatingForFieldOnSpecificDiagonal(pair.Key, Extend.GetEnemyPlayerColor(color), Constant.DOWN_LEFT, gameBoard) != null)
-                    points = 4;
-                if (pawnComputer.GetBeatingForFieldOnSpecificDiagonal(pair.Key, Extend.GetEnemyPlayerColor(color), Constant.DOWN_RIGHT, gameBoard) != null)
-                    points = 4;
+                if (gameBoard[key].isPawn)
+                    points += ruleComputer.CheckIfThePawnHasBeat(key, Extend.GetEnemyPlayerColor(color), gameBoard);
+                if (gameBoard[key].isDame)
+                    points += ruleComputer.CheckIfTheDameHasBeat(key, Extend.GetEnemyPlayerColor(color), gameBoard);
 
-            }
-            foreach (KeyValuePair<int, Field> pair in gameBoard)
-            {
-                possibleMovesList = pawnComputer.GetPossibleMovesForField(pair.Key, color, gameBoard);
-                foreach (Move move in possibleMovesList)
-                {
-                    points = ruleComputer.ThePawnStoodInTheArea(move.indexTo);
-                }
-            }
-            foreach (KeyValuePair<int, Field> pair in gameBoard)
-            {
-                possibleMovesList = pawnComputer.GetPossibleMovesForField(pair.Key, color, gameBoard);
-                foreach (Move move in possibleMovesList)
-                {
-                    if (Rule.ThePawnStoodInThePromotionField(move.indexTo, color))
-                        points = 5;
-                    else
-                        points = 0;
-                }
+                points += -1 * ruleComputer.CheckIfThePawnHasBeat(key, color, gameBoard);
+
+                points += -1 * ruleComputer.CheckIfTheDameHasBeat(key, color, gameBoard);
+
+                points += ruleComputer.ThePawnStoodInTheArea(key);
+
+                if (Rule.ThePawnStoodInThePromotionField(key, color))
+                    points += 50;
+                else
+                    points += 0;
             }
             return points;
-            //return  myCountOfPieces - enemyCountOfPieces;
         }
 
 
