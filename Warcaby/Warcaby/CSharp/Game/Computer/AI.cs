@@ -41,7 +41,6 @@ namespace Warcaby.CSharp.Game.Computer
             {
                 bestValue.points = int.MinValue;
                 var list = gameLogicComputer.GetPossibleMoves(gameBoard, myColor);
-                List<int> listOfPoints = new List<int>();
                 Parallel.ForEach(list, move =>
                 {
                     MoveAndPoints val = new MoveAndPoints();
@@ -49,7 +48,6 @@ namespace Warcaby.CSharp.Game.Computer
                     gameBoardCopy = ApplyMove(gameBoardCopy, move);
                     bestValue.move = move;
                     val = MinMax(gameBoardCopy, Extend.GetEnemyPlayerColor(myColor), false, depth - 1);
-                    listOfPoints.Add(val.points);
                     bestValue.points = Math.Max(bestValue.points, val.points);
                     if (bestValue.points < val.points)
                         bestValue.move = val.move;
@@ -61,7 +59,6 @@ namespace Warcaby.CSharp.Game.Computer
             {
                 bestValue.points = int.MaxValue;
                 var list = gameLogicComputer.GetPossibleMoves(gameBoard, myColor);
-                List<int> listOfPoints = new List<int>();
                 Parallel.ForEach(list, move =>
                 {
                     MoveAndPoints val = new MoveAndPoints();
@@ -69,7 +66,6 @@ namespace Warcaby.CSharp.Game.Computer
                     gameBoardCopy = ApplyMove(gameBoardCopy, move);
                     bestValue.move = move;
                     val = MinMax(gameBoardCopy, Extend.GetEnemyPlayerColor(myColor), true, depth - 1);
-                    listOfPoints.Add(val.points);
                     bestValue.points = Math.Min(bestValue.points, val.points);
                     if (bestValue.points > val.points)
                         bestValue.move = val.move;

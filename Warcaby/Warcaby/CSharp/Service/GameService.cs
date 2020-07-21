@@ -112,12 +112,12 @@ namespace Warcaby.Service.Context
             string readFirstLine = File.ReadLines(filePath).First();
             if(readFirstLine == "Checked")
             {
-                moveAndPoints = ai.MinMax(gameBoardCopy, color, true, 5); // MinMax start
+                moveAndPoints = ai.MinMax(gameBoardCopy, color, true, 3); // MinMax start
             }
                 
             if(readFirstLine == "Unchecked")
             {
-                moveAndPoints = ai.MinMaxWithoutThreads(gameBoardCopy, color, true, 6); // MinMax_WithoutThreads start
+                moveAndPoints = ai.MinMaxWithoutThreads(gameBoardCopy, color, true, 3); // MinMax_WithoutThreads start
             }
 
             gameLogicComputer.UpdateFields(moveAndPoints);
